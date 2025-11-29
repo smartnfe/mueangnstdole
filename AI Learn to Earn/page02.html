@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mindset - From Zero to Hero</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background decorations */
+        .shape-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #4f46e5;
+            /* Indigo 600 */
+            top: -200px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #be185d;
+            /* Pink 700 */
+            bottom: -150px;
+            right: -100px;
+        }
+
+        .glass-card {
+            background-color: rgba(30, 41, 59, 0.6);
+            /* Slate 800 opacity */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .icon-circle {
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover .icon-circle {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Custom bullet points */
+        ul.custom-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        ul.custom-list li::before {
+            content: "\f00c";
+            /* Check icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #34d399;
+            /* Emerald 400 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background Elements -->
+        <div class="shape-blob blob-1"></div>
+        <div class="shape-blob blob-2"></div>
+        <!-- Main Content -->
+        <div class="z-10 flex flex-col flex-1 px-16 py-10 w-full h-full">
+            <!-- Header Section -->
+            <div class="flex justify-between items-end mb-10 border-b border-gray-700 pb-4">
+                <div>
+                    <div class="flex items-center space-x-3 mb-2">
+                        <span
+                            class="bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Mindset</span>
+                        <p class="text-gray-400 text-sm">เปลี่ยนวิธีคิด ชีวิตเปลี่ยน</p>
+                    </div>
+                    <h1 class="text-5xl font-bold text-white leading-tight">From Zero to <span
+                            class="text-transparent bg-clip-text" style="color: #fbbf24;">Hero</span></h1>
+                </div>
+                <div class="text-right">
+                    <p class="text-xl text-gray-300 font-light italic">"ยุคนี้ <span
+                            class="text-pink-400 font-semibold">คนดู</span> คือคนจ่าย... <span
+                            class="text-emerald-400 font-semibold">คนสร้าง</span> คือคนรับ"</p>
+                </div>
+            </div>
+            <!-- Cards Grid -->
+            <div class="flex flex-1 justify-center items-stretch space-x-8 pb-8">
+                <!-- Card 1: Affiliate -->
+                <div class="glass-card rounded-3xl p-8 flex-1 flex flex-col items-center text-center group">
+                    <div
+                        class="icon-circle w-24 h-24 rounded-full bg-gradient-to-br bg-pink-500 flex items-center justify-center mb-6 shadow-lg shadow-pink-500/30 border-4 border-slate-800">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Affiliate</h2>
+                    <p class="text-pink-300 text-sm font-medium mb-6">นักป้ายยาออนไลน์</p>
+                    <div class="w-full border-t border-gray-700 my-2"></div>
+                    <div class="mt-4 text-gray-300 text-left w-full flex-1">
+                        <p class="mb-3 leading-relaxed">ชอบรีวิวของใน TikTok ไม่ต้องสต็อกของ แค่แปะตะกร้า</p>
+                        <p class="text-sm text-gray-400"><i
+                                class="fa-solid fa-coins text-yellow-400 mr-2"></i>รับค่าคอมมิชชั่นทันที</p>
+                    </div>
+                </div>
+                <!-- Card 2: Freelance -->
+                <div
+                    class="glass-card rounded-3xl p-8 flex-1 flex flex-col items-center text-center group relative overflow-hidden">
+                    <!-- Highlight effect for middle card -->
+                    <div class="absolute top-0 left-0 w-full h-1 bg-blue-500"></div>
+                    <div
+                        class="icon-circle w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-600/30 border-4 border-slate-800">
+                        <i class="fa-solid fa-clapperboard text-4xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Freelance</h2>
+                    <p class="text-blue-300 text-sm font-medium mb-6">มือปืนรับจ้างผลิตสื่อ</p>
+                    <div class="w-full border-t border-gray-700 my-2"></div>
+                    <div class="mt-4 text-gray-300 text-left w-full flex-1">
+                        <p class="mb-3 leading-relaxed">รับจ้างถ่ายทำและตัดต่อคลิปวิดีโอให้กับร้านค้า</p>
+                        <p class="text-sm text-gray-400"><i
+                                class="fa-solid fa-briefcase text-blue-400 mr-2"></i>ตลาดในจังหวัดต้องการสูง</p>
+                    </div>
+                </div>
+                <!-- Card 3: Business Owner -->
+                <div class="glass-card rounded-3xl p-8 flex-1 flex flex-col items-center text-center group">
+                    <div
+                        class="icon-circle w-24 h-24 rounded-full bg-emerald-600 flex items-center justify-center mb-6 shadow-lg shadow-emerald-600/30 border-4 border-slate-800">
+                        <i class="fa-solid fa-store text-4xl text-white"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Business Owner</h2>
+                    <p class="text-emerald-300 text-sm font-medium mb-6">เจ้าของแบรนด์ตัวจริง</p>
+                    <div class="w-full border-t border-gray-700 my-2"></div>
+                    <div class="mt-4 text-gray-300 text-left w-full flex-1">
+                        <p class="mb-3 leading-relaxed">มีสินค้า OTOP หรือของดีที่บ้าน เอามาสร้างแบรนด์</p>
+                        <p class="text-sm text-gray-400"><i
+                                class="fa-solid fa-chart-line text-emerald-400 mr-2"></i>ขายเอง กำไรเต็มเม็ด</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Note -->
+            <div class="text-center">
+                <div class="inline-block bg-slate-800 rounded-lg px-6 py-2 border border-slate-700">
+                    <p class="text-gray-400 text-sm"><i
+                            class="fa-solid fa-lightbulb text-yellow-400 mr-2"></i>สกิลการทำวิดีโอวันนี้ ต่อยอดได้ทั้ง
+                        <span class="text-white font-bold">3 เส้นทาง</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="navigation.js"></script>
+</body>
+
+</html>

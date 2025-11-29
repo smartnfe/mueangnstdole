@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Step 3 - Storyboard (Gemini)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background decorations */
+        .shape-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.25;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #7c3aed;
+            /* Violet 600 */
+            top: -200px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #db2777;
+            /* Pink 600 */
+            bottom: -150px;
+            left: -100px;
+        }
+
+        /* Glass Panels */
+        .glass-panel {
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Step Numbers */
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #8b5cf6;
+            /* Violet */
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: white;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+            flex-shrink: 0;
+        }
+
+        /* Chat Interface Simulation */
+        .chat-interface {
+            background-color: #1e293b;
+            border-radius: 1rem;
+            border: 1px solid #334155;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-header {
+            background-color: #0f172a;
+            padding: 1rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-bubble-user {
+            background-color: #334155;
+            color: #e2e8f0;
+            border-radius: 1rem 1rem 0 1rem;
+            padding: 1rem;
+            max-width: 90%;
+            align-self: flex-end;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .chat-bubble-ai {
+            background-color: rgba(124, 58, 237, 0.1);
+            /* Violet tint */
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #ddd6fe;
+            border-radius: 1rem 1rem 1rem 0;
+            padding: 1rem;
+            max-width: 98%;
+            align-self: flex-start;
+            position: relative;
+        }
+
+        .storyboard-card {
+            background-color: #0f172a;
+            border: 1px solid #4c1d95;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background -->
+        <div class="shape-blob blob-1"></div>
+        <div class="shape-blob blob-2"></div>
+        <!-- Content -->
+        <div class="z-10 flex flex-col h-full px-16 py-8">
+            <!-- Header -->
+            <div class="flex items-center mb-6">
+                <div
+                    class="bg-violet-600 w-14 h-14 rounded-2xl flex items-center justify-center mr-5 shadow-lg shadow-violet-600/40 transform rotate-3">
+                    <span class="text-2xl font-bold text-white">3</span>
+                </div>
+                <div>
+                    <p class="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-1">Workshop Step 3</p>
+                    <h1 class="text-4xl font-bold text-white">Plan Storyboard <span
+                            class="text-gray-400 font-light">with Gemini</span></h1>
+                </div>
+            </div>
+            <!-- Main Layout -->
+            <div class="flex flex-1 gap-10">
+                <!-- Left Column: Instructions -->
+                <div class="w-5/12 flex flex-col justify-center space-y-6">
+                    <!-- Step 1 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl flex items-start space-x-4 hover:bg-slate-800 transition-colors">
+                        <div class="step-number bg-violet-600">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Refer to Lyrics</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">นำเนื้อเพลงที่ได้จาก Step 1
+                                มาเป็นตัวตั้งต้นในการคิดภาพ</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl flex items-start space-x-4 border-violet-500 border-opacity-50 bg-violet-900 bg-opacity-20">
+                        <div class="step-number bg-pink-500">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Ask Gemini</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">สั่งให้ AI ออกแบบ <span
+                                    class="text-pink-400">"ช็อตต่อช็อต"</span> ระบุมุมกล้องและการเคลื่อนไหว</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl flex items-start space-x-4 hover:bg-slate-800 transition-colors">
+                        <div class="step-number bg-indigo-500">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Structure Check</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">ต้องมีครบ: <span
+                                    class="text-yellow-400">เปิดตัว</span> &gt; <span
+                                    class="text-yellow-400">จุดขาย</span> &gt; <span class="text-yellow-400">CTA</span>
+                                (ตอนจบ)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Interface Simulation -->
+                <div class="w-7/12 relative">
+                    <!-- Chat Interface -->
+                    <div class="chat-interface shadow-2xl">
+                        <!-- Header -->
+                        <div class="chat-header justify-between">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-sparkles text-violet-400"></i>
+                                <span class="text-gray-200 font-medium">Gemini</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                        </div>
+                        <!-- Body -->
+                        <div
+                            class="flex-1 p-6 bg-slate-900 bg-opacity-50 flex flex-col justify-between overflow-hidden relative">
+                            <div class="flex flex-col space-y-4 z-10">
+                                <!-- User Prompt -->
+                                <div class="chat-bubble-user w-full">
+                                    <div class="flex items-center mb-2 text-gray-400 text-xs uppercase tracking-wider">
+                                        <i class="fa-solid fa-user mr-2"></i> You (Prompt)
+                                    </div>
+                                    <p class="text-white">"ช่วยทำ <span class="text-yellow-400">Storyboard</span>
+                                        จากเนื้อเพลงนี้ให้หน่อย... ท่อนไหนควรถ่ายภาพอะไร? ขอแบบละเอียด ระบุมุมกล้อง
+                                        (Close-up, Wide) และท่าทาง"</p>
+                                </div>
+                                <!-- AI Response -->
+                                <div class="chat-bubble-ai w-full flex-1 overflow-hidden">
+                                    <div class="flex items-center mb-3">
+                                        <i class="fa-solid fa-wand-magic-sparkles mr-2 text-violet-400"></i> Gemini
+                                    </div>
+                                    <p class="mb-3 text-gray-300 text-sm">จัดวางโครงเรื่องให้แบบมืออาชีพครับ:</p>
+                                    <!-- Visual Storyboard List -->
+                                    <div class="space-y-2">
+                                        <!-- Scene 1 -->
+                                        <div class="storyboard-card">
+                                            <div class="bg-slate-800 p-2 rounded mr-3 text-center w-16">
+                                                <span class="block text-xs text-gray-400">0:00-0:05</span>
+                                                <i class="fa-solid fa-camera text-pink-400 mt-1"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-pink-300 text-xs font-bold uppercase">Intro / เปิดตัว</p>
+                                                <p class="text-white text-sm">ถ่ายเจาะ <span
+                                                        class="text-yellow-300">Close-up</span> สินค้า วางบนโต๊ะ แสงสวยๆ
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Scene 2 -->
+                                        <div class="storyboard-card">
+                                            <div class="bg-slate-800 p-2 rounded mr-3 text-center w-16">
+                                                <span class="block text-xs text-gray-400">0:05-0:15</span>
+                                                <i class="fa-solid fa-person-walking text-blue-400 mt-1"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-blue-300 text-xs font-bold uppercase">Hook / จุดขาย</p>
+                                                <p class="text-white text-sm">นางแบบกินแล้วทำหน้าฟิน <span
+                                                        class="text-yellow-300">Medium Shot</span> + เต้นเบาๆ</p>
+                                            </div>
+                                        </div>
+                                        <!-- Scene 3 -->
+                                        <div class="storyboard-card border-green-800 bg-green-900 bg-opacity-20">
+                                            <div class="bg-slate-800 p-2 rounded mr-3 text-center w-16">
+                                                <span class="block text-xs text-gray-400">0:25-End</span>
+                                                <i class="fa-solid fa-bullhorn text-green-400 mt-1"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-green-300 text-xs font-bold uppercase">CTA / ปิดท้าย</p>
+                                                <p class="text-white text-sm">ขึ้นโลโก้ร้าน + เบอร์โทร <span
+                                                        class="text-yellow-300">Zoom In</span> ชัดเจน</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Floating Tip -->
+                    <div
+                        class="absolute -bottom-4 -right-4 bg-pink-500 text-white px-6 py-3 rounded-xl shadow-xl transform rotate-2 border-2 border-white">
+                        <p class="font-bold text-sm"><i class="fa-solid fa-layer-group mr-2"></i>Pro Tip: ถามหา "B-Roll
+                            Ideas" เพิ่มได้!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="mt-4 flex justify-center">
+                <p class="text-gray-500 text-xs">วางแผนดี มีชัยไปกว่าครึ่ง ลดเวลาถ่ายทำได้จริง</p>
+            </div>
+        </div>
+    </div>
+    <script src="navigation.js"></script>
+</body>
+
+</html>

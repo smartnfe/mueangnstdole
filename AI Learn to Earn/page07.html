@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Step 1 - Lyrics (Gemini)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background decorations - Solid colors */
+        .shape-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.25;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #2563eb;
+            /* Blue 600 */
+            top: -200px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #0ea5e9;
+            /* Sky 500 */
+            bottom: -150px;
+            left: -100px;
+        }
+
+        /* Glass Panels */
+        .glass-panel {
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Step Numbers */
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: white;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            flex-shrink: 0;
+        }
+
+        /* Chat Interface Simulation */
+        .chat-interface {
+            background-color: #1e293b;
+            /* Slate 800 */
+            border-radius: 1rem;
+            border: 1px solid #334155;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-header {
+            background-color: #0f172a;
+            padding: 1rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-bubble-user {
+            background-color: #334155;
+            color: #e2e8f0;
+            border-radius: 1rem 1rem 0 1rem;
+            padding: 1rem;
+            max-width: 90%;
+            align-self: flex-end;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .chat-bubble-ai {
+            background-color: rgba(37, 99, 235, 0.1);
+            /* Blue tint */
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #bfdbfe;
+            border-radius: 1rem 1rem 1rem 0;
+            padding: 1rem;
+            max-width: 95%;
+            align-self: flex-start;
+            position: relative;
+        }
+
+        .shimmer-text {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background-color: #0f172a;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #3b82f6;
+            font-family: monospace;
+            margin-top: 0.5rem;
+            color: #fbbf24;
+            /* Amber */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background -->
+        <div class="shape-blob blob-1"></div>
+        <div class="shape-blob blob-2"></div>
+        <!-- Content -->
+        <div class="z-10 flex flex-col h-full px-16 py-8">
+            <!-- Header -->
+            <div class="flex items-center mb-6">
+                <div
+                    class="bg-blue-600 w-14 h-14 rounded-2xl flex items-center justify-center mr-5 shadow-lg shadow-blue-600/40 transform rotate-3">
+                    <span class="text-2xl font-bold text-white">1</span>
+                </div>
+                <div>
+                    <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-1">Workshop Step 1</p>
+                    <h1 class="text-4xl font-bold text-white">Compose Lyrics <span class="text-gray-400 font-light">with
+                            Gemini</span></h1>
+                </div>
+            </div>
+            <!-- Main Layout -->
+            <div class="flex flex-1 gap-10">
+                <!-- Left Column: Instructions -->
+                <div class="w-5/12 flex flex-col justify-center space-y-6">
+                    <!-- Step 1 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl flex items-start space-x-4 hover:bg-slate-800 transition-colors">
+                        <div class="step-number bg-blue-600">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Open Gemini</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">เข้าเว็บไซต์ <span
+                                    class="text-blue-400 font-mono">gemini.google.com</span> หรือเปิดแอปฯ บนมือถือ</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl flex items-start space-x-4 border-blue-500 border-opacity-50 bg-blue-900 bg-opacity-20">
+                        <div class="step-number bg-amber-500">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Prompting (สำคัญ!)</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">พิมพ์คำสั่งให้ละเอียด ระบุบทบาท สินค้า
+                                และอารมณ์เพลง</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl flex items-start space-x-4 hover:bg-slate-800 transition-colors">
+                        <div class="step-number bg-emerald-500">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">Selection</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">เลือกท่อนฮุคที่ "โดนใจ" และ "จำง่าย"
+                                ที่สุดไปใช้ต่อ</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Interface Simulation -->
+                <div class="w-7/12 relative">
+                    <!-- Chat Interface -->
+                    <div class="chat-interface shadow-2xl">
+                        <!-- Header -->
+                        <div class="chat-header justify-between">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-sparkles text-blue-400"></i>
+                                <span class="text-gray-200 font-medium">Gemini</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                        </div>
+                        <!-- Body -->
+                        <div
+                            class="flex-1 p-6 bg-slate-900 bg-opacity-50 flex flex-col justify-between overflow-hidden relative">
+                            <div class="flex flex-col space-y-4 z-10">
+                                <!-- User Prompt -->
+                                <div class="chat-bubble-user w-full">
+                                    <div class="flex items-center mb-2 text-gray-400 text-xs uppercase tracking-wider">
+                                        <i class="fa-solid fa-user mr-2"></i> You (Prompt)
+                                    </div>
+                                    <p class="text-white">"สวมบทบาทนักแต่งเพลงมืออาชีพ <span
+                                            class="text-yellow-400">แต่งเพลงขาย [น้ำพริกคุณยาย]</span> ขอแนวสนุกๆ โจ๊ะๆ
+                                        ท่อนฮุคติดหู ความยาว 30 วินาที"</p>
+                                </div>
+                                <!-- AI Response -->
+                                <div class="chat-bubble-ai w-full flex-1">
+                                    <div class="flex items-center mb-3 shimer-text">
+                                        <i class="fa-solid fa-wand-magic-sparkles mr-2 text-blue-400"></i> Gemini
+                                    </div>
+                                    <p class="mb-3 text-gray-300">จัดให้ครับ! นี่คือเนื้อเพลงแนวสนุกๆ
+                                        สำหรับน้ำพริกคุณยาย:</p>
+                                    <div class="bg-slate-900 rounded-lg p-4 border border-slate-700 mb-2">
+                                        <p class="text-pink-400 text-xs font-bold mb-1">🎵 ท่อนฮุค (Hook)</p>
+                                        <p class="text-lg text-white font-medium italic">
+                                            "กินแล้วแซ่บ แซ่บถึงใจ<br />
+                                            น้ำพริกคุณยาย อร่อยจัดเต็ม!<br />
+                                            คำเดียวไม่พอ ต้องขอเบิ้ล<br />
+                                            เผ็ดร้อนถึงเครื่อง... เรื่องความนัว!"
+                                        </p>
+                                    </div>
+                                    <div class="flex gap-2 mt-3">
+                                        <span
+                                            class="text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded border border-blue-700">Copy
+                                            Text</span>
+                                        <span
+                                            class="text-xs bg-slate-700 text-gray-300 px-2 py-1 rounded border border-slate-600">Regenerate</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Floating Tip -->
+                    <div
+                        class="absolute -bottom-4 -right-4 bg-yellow-500 text-slate-900 px-6 py-3 rounded-xl shadow-xl transform rotate-2 border-2 border-white">
+                        <p class="font-bold text-sm"><i class="fa-solid fa-lightbulb mr-2"></i>Pro Tip: ระบุ "ทำนอง"
+                            ที่ต้องการไปด้วย!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="mt-4 flex justify-center">
+                <p class="text-gray-500 text-xs">ใช้ Prompt ที่ชัดเจน = ผลลัพธ์ที่ใช้งานได้จริง</p>
+            </div>
+        </div>
+    </div>
+    <script src="navigation.js"></script>
+</body>
+
+</html>
