@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Knowledge Hub - ศูนย์ส่งเสริมการเรียนรู้</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Glow effect */
+        .glow-box {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(51, 65, 85, 0.3) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.3), 0 0 20px rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glow-box:hover {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(51, 65, 85, 0.5) 100%);
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.5), 0 0 30px rgba(59, 130, 246, 0.25);
+            transform: translateY(-10px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #ec4899);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .course-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            padding: 12px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #60a5fa;
+        }
+
+        .text-gradient-blue {
+            color: #60a5fa;
+        }
+
+        .text-gradient-purple {
+            color: #a78bfa;
+        }
+
+        .text-gradient-pink {
+            color: #ec4899;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/30 border-b border-slate-700/30">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <i class="fa-solid fa-book text-white text-lg"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-white">Knowledge Hub</h1>
+            </div>
+            <div class="text-sm text-slate-300">
+                <i class="fa-solid fa-graduation-cap mr-1"></i>ศูนย์ส่งเสริมการเรียนรู้ ระดับอำเภอเมืองนครศรีธรรมราช
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="space-y-8">
+                    <div>
+                        <p class="text-blue-400 font-semibold mb-3 text-lg">🌟 ยินดีต้อนรับ</p>
+                        <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-4">
+                            คลังความรู้ <span class="gradient-text">ดิจิทัล</span>
+                        </h1>
+                        <p class="text-slate-400 text-lg leading-relaxed">
+                            หลักสูตรแบบครบวงจรที่ออกแบบมาเพื่อพัฒนาทักษะและสร้างอาชีพในยุคดิจิทัล เชื่อมโยงสิ่งที่เรียนรู้กับความสำเร็จในชีวิตจริง
+                        </p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="stat-box glow-box rounded-lg">
+                            <div class="stat-number">1</div>
+                            <p class="text-slate-300 text-sm">หลักสูตร</p>
+                        </div>
+                        <div class="stat-box glow-box rounded-lg">
+                            <div class="stat-number">14</div>
+                            <p class="text-slate-300 text-sm">หน้า</p>
+                        </div>
+                        <div class="stat-box glow-box rounded-lg">
+                            <div class="stat-number">✓</div>
+                            <p class="text-slate-300 text-sm">ฟรี</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="relative h-96 hidden lg:block">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl"></div>
+                    <div class="relative h-full flex items-center justify-center">
+                        <div class="space-y-6">
+                            <div class="hero-icon float-animation" style="animation-delay: 0s;">
+                                <i class="fa-solid fa-graduation-cap text-white"></i>
+                            </div>
+                            <div class="hero-icon float-animation" style="animation-delay: 1s;">
+                                <i class="fa-solid fa-brain text-white"></i>
+                            </div>
+                            <div class="hero-icon float-animation" style="animation-delay: 2s;">
+                                <i class="fa-solid fa-rocket text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-6 bg-gradient-to-b from-transparent to-slate-900/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    ทำไมต้องเลือก <span class="gradient-text">Knowledge Hub?</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    เราจัดเตรียมเนื้อหาที่ปรับปรุงแล้ว โดยผู้เชี่ยวชาญจริงในการตลาดออนไลน์และการสร้างรายได้ผ่าน AI
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-item glow-box rounded-xl p-8">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">เนื้อหาเสมือนจริง</h3>
+                    <p class="text-slate-400">บทเรียนอิเล็กทรอนิกส์ที่สร้างสรรค์ พร้อมวิดีโอคุณภาพสูง</p>
+                </div>
+
+                <div class="feature-item glow-box rounded-xl p-8">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-person-chalkboard"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ผู้สอนมืออาชีพ</h3>
+                    <p class="text-slate-400">เรียนรู้จากผู้ที่มีประสบการณ์จริงในสาขาของพวกเขา</p>
+                </div>
+
+                <div class="feature-item glow-box rounded-xl p-8">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ใบรับรอง</h3>
+                    <p class="text-slate-400">แสดงความสำเร็จของคุณผ่านใบรับรองที่ยอมรับ</p>
+                </div>
+
+                <div class="feature-item glow-box rounded-xl p-8">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">เรียนได้ตลอดเวลา</h3>
+                    <p class="text-slate-400">เข้าถึงเนื้อหาได้ทุกเมื่อ ทุกที่ จากอุปกรณ์ใดก็ได้</p>
+                </div>
+
+                <div class="feature-item glow-box rounded-xl p-8">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ชุมชนผู้เรียน</h3>
+                    <p class="text-slate-400">เชื่อมต่อกับผู้เรียนอื่นๆ และแลกเปลี่ยนความรู้</p>
+                </div>
+
+                <div class="feature-item glow-box rounded-xl p-8">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ความก้าวหน้าที่เห็นได้</h3>
+                    <p class="text-slate-400">ติดตามความสำเร็จของคุณและวัดผลการเรียนรู้</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    หลักสูตร <span class="gradient-text">ของเรา</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    หลักสูตร Learn to Earn with AI ครบวงจร 14 หน้า สำหรับการสร้างรายได้ออนไลน์
+                </p>
+            </div>
+
+            <!-- Featured Course: AI Learn to Earn -->
+            <div class="glow-box rounded-2xl p-8 lg:p-12 course-card">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <!-- Course Info -->
+                    <div class="lg:col-span-2">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div style="width: 100px; height: 100px;" class="bg-gradient-to-br from-pink-500 to-red-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-pink-500/30">
+                                <i class="fa-solid fa-robot text-5xl text-white"></i>
+                            </div>
+                            <div>
+                                <div class="inline-block px-4 py-2 bg-gradient-to-r from-pink-500 to-red-600 rounded-full text-sm font-bold mb-3">
+                                    🎯 หลักสูตรเด่น
+                                </div>
+                                <h3 class="text-3xl font-bold text-white">Learn to Earn with AI</h3>
+                                <p class="text-slate-300 mt-2">เรียนรู้และสร้างอาชีพด้วยปัญญาประดิษฐ์</p>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                            หลักสูตรครบวงจรที่ออกแบบมาเพื่อช่วยให้คุณเปลี่ยนมือถือให้เป็นเครื่องผลิตเงิน ด้วยการใช้เทคโนโลยี AI และการสร้างเนื้อหาดิจิทัล
+                        </p>
+
+                        <!-- Course Content -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-green-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-slate-300">14 หน้าครบวงจร</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-green-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-slate-300">เนื้อหา Affiliate Marketing</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-green-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-slate-300">วิธีสร้างเนื้อหา TikTok</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-green-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-slate-300">กลยุทธ์ธุรกิจออนไลน์</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-green-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-slate-300">การใช้ AI เพื่อสร้างรายได้</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-green-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-slate-300">ทำให้เป็นอาชีพที่ยั่งยืน</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4">
+                            <a href="AI Learn to Earn/page01.html" class="btn-primary">
+                                <i class="fa-solid fa-play"></i>
+                                เริ่มหลักสูตร
+                            </a>
+                            <button class="px-8 py-3 rounded-lg border border-slate-500 text-slate-300 font-semibold hover:bg-slate-800/50 transition-all">
+                                <i class="fa-solid fa-share-nodes mr-2"></i>
+                                แชร์
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Course Stats -->
+                    <div class="lg:col-span-1">
+                        <div class="space-y-6">
+                            <div class="bg-slate-800/50 rounded-lg p-6 text-center">
+                                <div class="text-4xl font-bold gradient-text mb-2">14</div>
+                                <p class="text-slate-400 text-sm">หน้า</p>
+                                <p class="text-slate-500 text-xs mt-1">แบบครบวงจร</p>
+                            </div>
+
+                            <div class="bg-slate-800/50 rounded-lg p-6 text-center">
+                                <div class="text-3xl font-bold text-emerald-400 mb-2">✓</div>
+                                <p class="text-slate-400 text-sm">ใบรับรอง</p>
+                                <p class="text-slate-500 text-xs mt-1">หลังเสร็จสิ้น</p>
+                            </div>
+
+                            <div class="bg-slate-800/50 rounded-lg p-6 text-center">
+                                <div class="text-2xl font-bold text-yellow-400 mb-2">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-slate-400 text-sm">ระดับ</p>
+                                <p class="text-slate-500 text-xs mt-1">เบื้องต้นถึงขั้นสูง</p>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-6 text-center border border-blue-500/30">
+                                <p class="text-slate-300 text-sm font-semibold mb-2">💡 Pro Tip</p>
+                                <p class="text-slate-400 text-xs">ทำการบ้าน ศึกษาตัวอย่าง และได้ผลลัพธ์ที่ยอดเยี่ยม</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Padlet Section -->
+            <div class="mt-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-white mb-2">ความคิดเห็นจากผู้เรียน</h3>
+                    <p class="text-slate-400">ดูประสบการณ์จากผู้เรียนที่สำเร็จจากหลักสูตรของเรา</p>
+                </div>
+                <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
+                    <p style="padding:0;margin:0">
+                        <iframe src="https://padlet.com/embed/dyw32qkjidk9e82o" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe>
+                    </p>
+                    <div style="display:flex;align-items:center;justify-content:end;margin:0;height:28px">
+                        <a href="https://padlet.com?ref=embed" style="display:block;flex-grow:0;margin:0;border:none;padding:0;text-decoration:none" target="_blank">
+                            <div style="display:flex;align-items:center;">
+                                <img src="https://padlet.net/embeds/made_with_padlet_2022.png" width="114" height="28" style="padding:0;margin:0;background:0 0;border:none;box-shadow:none" alt="สร้างขึ้นด้วย Padlet">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glow-box rounded-2xl p-12 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
+
+                <h2 class="text-4xl font-bold mb-4">
+                    พร้อมที่จะ <span class="gradient-text">เริ่มต้น?</span>
+                </h2>
+                <p class="text-slate-300 text-lg mb-8">
+                    เข้าร่วมหลักสูตร "Learn to Earn with AI" และเปิดโลกใหม่ของโอกาสในการสร้างรายได้ออนไลน์
+                </p>
+
+                <a href="AI Learn to Earn/page01.html" class="btn-primary text-lg">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    เข้าสู่หลักสูตร
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-700/30 py-12 px-6 mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                            <i class="fa-solid fa-book text-white text-sm"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Knowledge Hub</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm">
+                        แพลตฟอร์มการเรียนรู้ดิจิทัลที่ออกแบบมาเพื่อสร้างเอกลักษณ์ในยุคปัญญาประดิษฐ์
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">ลิงก์อย่างรวดเร็ว</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-blue-400 transition">หลักสูตรทั้งหมด</a></li>
+                        <li><a href="AI Learn to Earn/page01.html" class="hover:text-blue-400 transition">Learn to Earn</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">ติดต่อเรา</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">เกี่ยวกับเรา</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">ติดตามเรา</h4>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/powerit.nakhon" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition text-slate-300 hover:text-white">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition text-slate-300 hover:text-white">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@smartlearning1519" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition text-slate-300 hover:text-white">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition text-slate-300 hover:text-white">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-700/30 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+                    <p>&copy; 2568 ศูนย์ส่งเสริมการเรียนรู้ ระดับอำเภอเมืองนครศรีธรรมราช</p>
+                    <div class="flex gap-6">
+                        <a href="#" class="hover:text-slate-200 transition">นโยบายความเป็นส่วนตัว</a>
+                        <a href="#" class="hover:text-slate-200 transition">เงื่อนไขการใช้บริการ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

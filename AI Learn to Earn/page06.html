@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Intro to Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background decorations */
+        .shape-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #7c3aed;
+            /* Violet 600 */
+            top: -200px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #db2777;
+            /* Pink 600 */
+            bottom: -150px;
+            right: -50px;
+        }
+
+        .glass-panel {
+            background-color: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tool-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .icon-box {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .tool-card:hover .icon-box {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        .role-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background Elements -->
+        <div class="shape-blob blob-1"></div>
+        <div class="shape-blob blob-2"></div>
+        <!-- Main Content Wrapper -->
+        <div class="z-10 flex flex-col h-full px-16 py-10">
+            <!-- Header Section -->
+            <div class="flex items-end justify-between mb-10">
+                <div>
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span
+                            class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center">
+                            <i class="fa-solid fa-circle fa-xs mr-2 animate-pulse"></i> Live Project
+                        </span>
+                        <p class="text-gray-400 text-sm tracking-wide">Workshop เชิงปฏิบัติการ</p>
+                    </div>
+                    <h1 class="text-6xl font-bold text-white leading-none mb-2">
+                        AI <span class="text-transparent bg-clip-text" style="color: #f472b6;">Music Video</span>
+                    </h1>
+                    <h2 class="text-2xl text-gray-300 font-light">ผลิตโฆษณาสินค้าครบวงจรด้วย 3 เครื่องมือ AI</h2>
+                </div>
+                <div class="text-right hidden md:block">
+                    <div
+                        class="w-20 h-20 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700 shadow-xl transform rotate-6">
+                        <i class="fa-solid fa-clapperboard text-4xl text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Tools Grid -->
+            <div class="flex-1 grid grid-cols-3 gap-8 mb-4">
+                <!-- Tool 1: Gemini -->
+                <div class="tool-card glass-panel rounded-3xl p-6 flex flex-col border-t-4"
+                    style="border-top-color: #3b82f6;">
+                    <span class="role-badge bg-blue-900 text-blue-200 border border-blue-700">The Brain</span>
+                    <div class="flex-1 flex flex-col items-center text-center mt-4">
+                        <div
+                            class="icon-box w-24 h-24 rounded-2xl bg-blue-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
+                            <i class="fa-solid fa-wand-magic-sparkles text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-1">Gemini</h3>
+                        <p class="text-blue-400 font-medium mb-6">Creative Director</p>
+                        <ul class="text-left w-full space-y-3 text-gray-300 text-sm px-4">
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-blue-500 mr-3"></i>
+                                <p>คิดไอเดียและ Concept</p>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-blue-500 mr-3"></i>
+                                <p>แต่งเนื้อเพลง (Lyrics)</p>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-blue-500 mr-3"></i>
+                                <p>ออกแบบ Storyboard</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Tool 2: Suno -->
+                <div class="tool-card glass-panel rounded-3xl p-6 flex flex-col border-t-4"
+                    style="border-top-color: #ec4899;">
+                    <span class="role-badge bg-pink-900 text-pink-200 border border-pink-700">The Soul</span>
+                    <div class="flex-1 flex flex-col items-center text-center mt-4">
+                        <div
+                            class="icon-box w-24 h-24 rounded-2xl bg-pink-600 flex items-center justify-center mb-6 shadow-lg shadow-pink-500/30">
+                            <i class="fa-solid fa-music text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-1">Suno AI</h3>
+                        <p class="text-pink-400 font-medium mb-6">Music Producer</p>
+                        <ul class="text-left w-full space-y-3 text-gray-300 text-sm px-4">
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-pink-500 mr-3"></i>
+                                <p>สร้างทำนองเพลงใหม่</p>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-pink-500 mr-3"></i>
+                                <p>เลือกสไตล์ดนตรี (Genre)</p>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-pink-500 mr-3"></i>
+                                <p>ขับร้องด้วยเสียง AI</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Tool 3: CapCut -->
+                <div class="tool-card glass-panel rounded-3xl p-6 flex flex-col border-t-4"
+                    style="border-top-color: #10b981;">
+                    <span class="role-badge bg-emerald-900 text-emerald-200 border border-emerald-700">The Hands</span>
+                    <div class="flex-1 flex flex-col items-center text-center mt-4">
+                        <div
+                            class="icon-box w-24 h-24 rounded-2xl bg-gray-900 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/20 border border-gray-700">
+                            <i class="fa-solid fa-scissors text-4xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-1">CapCut</h3>
+                        <p class="text-emerald-400 font-medium mb-6">Master Editor</p>
+                        <ul class="text-left w-full space-y-3 text-gray-300 text-sm px-4">
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-emerald-500 mr-3"></i>
+                                <p>ตัดต่อให้เข้าจังหวะ (Beat)</p>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-emerald-500 mr-3"></i>
+                                <p>Auto Lyrics ซับไตเติล</p>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa-solid fa-check text-emerald-500 mr-3"></i>
+                                <p>ใส่ Effect และ CTA</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer CTA -->
+            <div class="mt-4 text-center">
+                <div class="inline-block bg-slate-800/80 px-6 py-3 rounded-xl border border-slate-700">
+                    <p class="text-gray-300 text-sm flex items-center justify-center">
+                        <i class="fa-solid fa-rocket text-yellow-400 mr-3"></i>
+                        ปกติทีมงานขนาดนี้ค่าตัวหลักแสน... แต่วันนี้เราใช้ AI <span
+                            class="text-white font-bold mx-1">ทำฟรี</span> บนมือถือ!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="navigation.js"></script>
+</body>
+
+</html>

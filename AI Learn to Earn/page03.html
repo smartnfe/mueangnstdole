@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Agenda - Roadmap วันนี้</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background decorations */
+        .shape-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background-color: #3b82f6;
+            /* Blue 500 */
+            top: -200px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background-color: #8b5cf6;
+            /* Violet 500 */
+            bottom: -150px;
+            left: -100px;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: rgba(51, 65, 85, 0.8);
+            /* Slate 700 */
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .timeline-point {
+            width: 3rem;
+            height: 3rem;
+            background-color: #1e293b;
+            /* Slate 800 */
+            border-width: 4px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 20;
+            box-shadow: 0 0 0 8px rgba(15, 23, 42, 0.8);
+            /* Slate 900 halo */
+        }
+
+        .timeline-content {
+            background-color: rgba(30, 41, 59, 0.6);
+            /* Slate 800 opacity */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            width: 100%;
+            max-width: 260px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-item:hover .timeline-point {
+            transform: scale(1.1);
+        }
+
+        /* Alternating Layout */
+        .timeline-item:nth-child(odd) {
+            flex-direction: column-reverse;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-top: 1rem;
+        }
+
+        .timeline-item:nth-child(1) .timeline-point {
+            border-color: #f59e0b;
+        }
+
+        /* Amber */
+        .timeline-item:nth-child(2) .timeline-point {
+            border-color: #ec4899;
+        }
+
+        /* Pink */
+        .timeline-item:nth-child(3) .timeline-point {
+            border-color: #3b82f6;
+        }
+
+        /* Blue */
+        .timeline-item:nth-child(4) .timeline-point {
+            border-color: #10b981;
+        }
+
+        /* Emerald */
+
+        .timeline-time {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background Elements -->
+        <div class="shape-blob blob-1"></div>
+        <div class="shape-blob blob-2"></div>
+        <!-- Main Content -->
+        <div class="z-10 flex flex-col flex-1 px-16 py-10 w-full h-full">
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h1 class="text-5xl font-bold text-white leading-tight mb-2">Agenda</h1>
+                    <p class="text-xl text-blue-300 font-light tracking-wide"><i
+                            class="fa-solid fa-map-location-dot mr-2"></i>Roadmap กิจกรรมวันนี้</p>
+                </div>
+                <div class="text-right bg-slate-800 bg-opacity-50 px-5 py-3 rounded-xl border border-slate-700">
+                    <p class="text-gray-400 text-sm uppercase tracking-widest mb-1">วันที่</p>
+                    <p class="text-lg font-semibold text-white">30 พฤศจิกายน 2568</p>
+                </div>
+            </div>
+            <!-- Timeline Section -->
+            <div class="flex-1 relative flex items-center">
+                <!-- Connecting Line -->
+                <div class="absolute top-1/2 left-0 w-full h-1 bg-slate-700 rounded-full"></div>
+                <!-- Timeline Items Container -->
+                <div class="w-full flex justify-between items-center z-10 h-full">
+                    <!-- Item 1: Morning -->
+                    <div class="timeline-item group">
+                        <div class="timeline-content">
+                            <div class="timeline-time text-amber-400">
+                                <i class="fa-regular fa-sun mr-2"></i>ช่วงเช้า
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Mindset &amp; Skills</h3>
+                            <ul class="text-sm text-gray-300 space-y-1 list-disc list-inside">
+                                <li>ปรับ Mindset ผู้สร้าง</li>
+                                <li>เทคนิคถ่ายทำมือโปร</li>
+                                <li>กฎเหล็ก 3 ข้อ</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-point group-hover:bg-amber-500 transition-colors duration-300">
+                            <i class="fa-solid fa-brain text-white text-sm group-hover:text-white"></i>
+                        </div>
+                        <div class="h-12 w-px bg-slate-700 border-l border-dashed border-slate-500 opacity-50"></div>
+                    </div>
+                    <!-- Item 2: Late Morning -->
+                    <div class="timeline-item group">
+                        <div class="h-12 w-px bg-slate-700 border-l border-dashed border-slate-500 opacity-50"></div>
+                        <div class="timeline-point group-hover:bg-pink-500 transition-colors duration-300">
+                            <i class="fa-solid fa-wand-magic-sparkles text-white text-sm"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-time text-pink-400">
+                                <i class="fa-solid fa-mug-hot mr-2"></i>ช่วงสาย
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">AI Creative</h3>
+                            <ul class="text-sm text-gray-300 space-y-1 list-disc list-inside">
+                                <li>ใช้ Gemini คิดไอเดีย</li>
+                                <li>แต่งเพลงด้วย Suno AI</li>
+                                <li>วางแผน Storyboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Item 3: Afternoon -->
+                    <div class="timeline-item group">
+                        <div class="timeline-content">
+                            <div class="timeline-time text-blue-400">
+                                <i class="fa-solid fa-video mr-2"></i>ช่วงบ่าย
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Production &amp; Edit</h3>
+                            <ul class="text-sm text-gray-300 space-y-1 list-disc list-inside">
+                                <li>ลงมือถ่ายทำจริง</li>
+                                <li>ตัดต่อด้วย CapCut</li>
+                                <li>ใส่ Auto Lyrics &amp; Beat</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-point group-hover:bg-blue-500 transition-colors duration-300">
+                            <i class="fa-solid fa-laptop-file text-white text-sm"></i>
+                        </div>
+                        <div class="h-12 w-px bg-slate-700 border-l border-dashed border-slate-500 opacity-50"></div>
+                    </div>
+                    <!-- Item 4: Evening -->
+                    <div class="timeline-item group">
+                        <div class="h-12 w-px bg-slate-700 border-l border-dashed border-slate-500 opacity-50"></div>
+                        <div class="timeline-point group-hover:bg-emerald-500 transition-colors duration-300">
+                            <i class="fa-solid fa-trophy text-white text-sm"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-time text-emerald-400">
+                                <i class="fa-solid fa-flag-checkered mr-2"></i>ช่วงเย็น
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Showtime</h3>
+                            <ul class="text-sm text-gray-300 space-y-1 list-disc list-inside">
+                                <li>นำเสนอผลงาน MV</li>
+                                <li>Feedback จากวิทยากร</li>
+                                <li>มอบรางวัล &amp; ปิดงาน</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Note -->
+            <div class="mt-6 text-center">
+                <p
+                    class="text-gray-400 text-sm font-light bg-slate-800 inline-block px-4 py-2 rounded-full border border-slate-700">
+                    <i class="fa-solid fa-info-circle text-blue-400 mr-2"></i>
+                    เตรียมอุปกรณ์ให้พร้อม ทั้งมือถือ อินเทอร์เน็ต และแอปพลิเคชันที่กำหนด
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="navigation.js"></script>
+</body>
+
+</html>
