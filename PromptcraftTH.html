@@ -25,7 +25,7 @@
 
     .glass{
       background:rgba(255,255,255,.68);
-      backdrop-filter:blur(14px);
+      backdrop-filter:blur(16px);
       border:1px solid rgba(255,255,255,.4);
     }
 
@@ -40,22 +40,37 @@
     .chip.active{
       background:#6d28d9;
       color:white;
-      box-shadow:0 10px 20px rgba(109,40,217,.25);
-    }
-
-    .prompt-box{
-      background:#111;
-      color:#8effb2;
-      font-family:monospace;
-      white-space:pre-wrap;
+      box-shadow:0 10px 25px rgba(109,40,217,.25);
     }
 
     textarea{
       resize:none;
     }
 
+    .prompt-box{
+      background:#111;
+      color:#8dffb3;
+      font-family:monospace;
+      white-space:pre-wrap;
+    }
+
     .glow{
       box-shadow:0 0 30px rgba(124,58,237,.25);
+    }
+
+    .circle-preview{
+      width:90px;
+      height:90px;
+      border-radius:999px;
+      border:3px dashed #7c3aed;
+      background:rgba(124,58,237,.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      color:#7c3aed;
+      text-align:center;
+      padding:10px;
     }
 
   </style>
@@ -84,9 +99,9 @@
           </h1>
 
           <p class="text-lg text-gray-600 leading-relaxed mb-8">
-            สร้าง Prompt สำหรับ ChatGPT Image,
-            Midjourney, SDXL และ DALL·E
-            พร้อมสไตล์ Typography แบบงานราชการสมัยใหม่
+            สร้าง Prompt ระดับมืออาชีพ
+            สำหรับ ChatGPT Image, Midjourney,
+            DALL·E และ SDXL
           </p>
 
           <div class="flex flex-wrap gap-3">
@@ -96,11 +111,11 @@
             </div>
 
             <div class="bg-white rounded-2xl px-5 py-3 shadow-sm">
-              🪄 Editorial
+              ✍️ Handwritten Typography
             </div>
 
             <div class="bg-white rounded-2xl px-5 py-3 shadow-sm">
-              ✍️ Handwritten Typography
+              🪄 Editorial Layout
             </div>
 
           </div>
@@ -108,7 +123,7 @@
         </div>
 
         <!-- RIGHT -->
-        <div class="glass rounded-[30px] p-6">
+        <div class="glass rounded-[32px] p-6">
 
           <div class="aspect-video rounded-3xl bg-gradient-to-br from-purple-200 to-yellow-100 flex items-center justify-center">
 
@@ -122,7 +137,7 @@
                 Smart Prompt Studio
               </h3>
 
-              <p class="text-gray-700 mt-2">
+              <p class="text-gray-700 mt-3">
                 Cinematic • Infographic • Premium
               </p>
 
@@ -157,8 +172,8 @@
             </label>
 
             <input
-              id="titleInput"
               type="text"
+              id="titleInput"
               placeholder="เช่น สกร.ระดับอำเภอเมืองนครศรีธรรมราช"
               class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
@@ -173,9 +188,9 @@
             </label>
 
             <textarea
-              id="detailInput"
               rows="6"
-              placeholder="เช่น การเรียนรู้ตลอดชีวิต การสร้างอาชีพ การวิจัยชุมชน"
+              id="detailInput"
+              placeholder="เช่น การเรียนรู้ตลอดชีวิต การสร้างอาชีพ การพัฒนาชุมชน"
               class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
             ></textarea>
 
@@ -218,7 +233,7 @@
 
           </div>
 
-          <!-- TYPO -->
+          <!-- TYPOGRAPHY -->
           <div class="mb-6">
 
             <label class="block mb-4 font-medium text-lg">
@@ -254,23 +269,88 @@
               🏛️ Logo Layout
             </label>
 
-            <select
-              id="logoPosition"
-              class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
-            >
-              <option value="top-left clean logo area">
-                Top Left Logo Area
-              </option>
+            <div class="grid md:grid-cols-3 gap-4">
 
-              <option value="top-right branding area">
-                Top Right Logo Area
-              </option>
+              <!-- TOP LEFT -->
+              <label class="cursor-pointer">
 
-              <option value="clean header for logo overlay">
-                Clean Header Area
-              </option>
+                <input
+                  type="radio"
+                  name="logoLayout"
+                  value="clean circular logo placeholder at top-left corner"
+                  class="hidden peer"
+                  checked
+                >
 
-            </select>
+                <div class="bg-white rounded-3xl p-5 border-2 border-transparent peer-checked:border-purple-600 transition">
+
+                  <div class="flex justify-start mb-4">
+                    <div class="circle-preview">
+                      LOGO
+                    </div>
+                  </div>
+
+                  <p class="font-medium">
+                    Top Left
+                  </p>
+
+                </div>
+
+              </label>
+
+              <!-- TOP RIGHT -->
+              <label class="cursor-pointer">
+
+                <input
+                  type="radio"
+                  name="logoLayout"
+                  value="clean circular logo placeholder at top-right corner"
+                  class="hidden peer"
+                >
+
+                <div class="bg-white rounded-3xl p-5 border-2 border-transparent peer-checked:border-purple-600 transition">
+
+                  <div class="flex justify-end mb-4">
+                    <div class="circle-preview">
+                      LOGO
+                    </div>
+                  </div>
+
+                  <p class="font-medium text-right">
+                    Top Right
+                  </p>
+
+                </div>
+
+              </label>
+
+              <!-- HEADER -->
+              <label class="cursor-pointer">
+
+                <input
+                  type="radio"
+                  name="logoLayout"
+                  value="minimal circular emblem placeholder in clean header area"
+                  class="hidden peer"
+                >
+
+                <div class="bg-white rounded-3xl p-5 border-2 border-transparent peer-checked:border-purple-600 transition">
+
+                  <div class="flex justify-center mb-4">
+                    <div class="circle-preview">
+                      LOGO
+                    </div>
+                  </div>
+
+                  <p class="font-medium text-center">
+                    Header Center
+                  </p>
+
+                </div>
+
+              </label>
+
+            </div>
 
           </div>
 
@@ -312,7 +392,7 @@
 
           </div>
 
-          <!-- BUTTON -->
+          <!-- GENERATE -->
           <button
             id="generateBtn"
             class="w-full py-5 rounded-3xl bg-gradient-to-r from-purple-700 to-purple-500 text-white text-xl font-semibold hover:scale-[1.02] transition glow"
@@ -327,7 +407,7 @@
       <!-- RIGHT -->
       <div class="space-y-8">
 
-        <!-- INFO -->
+        <!-- ANALYSIS -->
         <div class="glass rounded-[36px] p-8">
 
           <h2 class="text-3xl font-bold mb-6">
@@ -388,7 +468,7 @@
 
           <div
             id="result"
-            class="prompt-box rounded-3xl p-6 min-h-[550px] overflow-auto text-sm leading-8"
+            class="prompt-box rounded-3xl p-6 min-h-[600px] overflow-auto text-sm leading-8"
           >
 Your generated prompt will appear here...
           </div>
@@ -420,16 +500,20 @@ Your generated prompt will appear here...
 
       const title = document.getElementById('titleInput').value;
       const detail = document.getElementById('detailInput').value;
-      const logo = document.getElementById('logoPosition').value;
       const color = document.getElementById('colorTheme').value;
       const platform = document.getElementById('platform').value;
 
+      // GET LOGO POSITION
+      const logo = document.querySelector('input[name="logoLayout"]:checked').value;
+
+      // GET STYLE
       let styles = [];
 
       document.querySelectorAll('.chip.active').forEach(chip => {
         styles.push(chip.innerText);
       });
 
+      // FINAL PROMPT
       const finalPrompt = `
 ${title}
 
@@ -447,18 +531,22 @@ Logo Layout:
 ${logo}
 
 Include:
+- clean circular space reserved for official logo
+- circular emblem placeholder
+- empty round logo area
+- designed for official logo overlay
+- clean header composition
 - leave clean space for official logo placement
-- designed for post-edit logo overlay
-- clean negative space for typography
 - elegant handwritten Thai-style typography
 - highlighted quote sections
 - marker pen annotations
-- premium editorial magazine layout
-- infographic storytelling
-- motivational quote callouts
+- editorial magazine composition
+- premium infographic layout
 - mixed typography hierarchy
-- clean headline area
+- motivational quote callouts
 - stylish text overlay
+- clean negative space for typography
+- designed for Canva post-editing
 
 Visual Style:
 cinematic lighting,
@@ -467,7 +555,7 @@ ultra realistic,
 warm emotional storytelling,
 realistic Thai educators and community,
 lifelong learning atmosphere,
-modern government PR artwork,
+modern government public relations artwork,
 high detail,
 8k quality
 
@@ -479,7 +567,7 @@ optimized for ${platform}
 
     });
 
-    // COPY
+    // COPY BUTTON
     document.getElementById('copyBtn').addEventListener('click', () => {
 
       const text = document.getElementById('result').innerText;
