@@ -1220,10 +1220,13 @@
             }
             
             // Re-bind to execute with the answered variables safely
-            nextBtn.onclick = function() {
-                playSound('click');
-                recordAnswer(selectedIndex, correctIndex, isCorrect);
-            };
+            // Use factory function to ensure proper closure capture
+            nextBtn.onclick = (function(selIdx, corrIdx, isCorr) {
+                return function() {
+                    playSound('click');
+                    recordAnswer(selIdx, corrIdx, isCorr);
+                };
+            })(selectedIndex, correctIndex, isCorrect);
         }
 
         // Lifeline 50:50
