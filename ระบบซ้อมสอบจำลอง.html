@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบซ้อมสอบจำลอง สกร. สู้ชีวิต โดย สมฉุย</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Mali', cursive;
+            background: linear-gradient(135deg, #f8edeb 0%, #e0fbfc 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mode-card {
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-card.pink { border-color: #fde2e4; }
+        .mode-card.purple { border-color: #e2ece9; }
+        .mode-card.orange { 
+            background: linear-gradient(135deg, #fca311 0%, #ffb703 100%); 
+            color: white;
+            border: none;
+        }
+
+        .cat-avatar {
+            width: 120px;
+            height: 120px;
+            background: #ffe5d9;
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 8px 20px rgba(255, 181, 167, 0.4);
+            margin: -60px auto 20px;
+            border: 4px solid white;
+            position: relative;
+            z-index: 10;
+        }
+
+        .btn-choice {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-choice:hover:not(:disabled) {
+            border-color: #fca311;
+            background: #fffdf5;
+            transform: scale(1.01);
+        }
+
+        .btn-choice.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .btn-choice.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .animate-pop {
+            animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Mascot Speech Bubble */
+        .speech-bubble {
+            position: relative;
+            background: #fff;
+            border-radius: .4em;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid #fca311;
+        }
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-top-color: #fca311;
+            border-bottom: 0;
+            margin-left: -15px;
+            margin-bottom: -15px;
+        }
+
+        /* Custom Scrollbar for small screens */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 min-h-screen flex flex-col relative z-10">
+        
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-12 bg-white/60 p-4 rounded-2xl backdrop-blur-sm shadow-sm flex-wrap gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-orange-400"></div>
+                <div>
+                    <h1 class="font-bold text-xl text-pink-600 leading-tight">สกร. สายฮาพารอด!</h1>
+                    <p class="text-xs text-gray-500">เก็งข้อสอบโดย อ.กล้วย & สมฉุย 🐱</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <!-- Sound Toggle Button -->
+                <button onclick="toggleSound()" id="sound-btn" class="bg-white hover:bg-orange-50 text-orange-500 w-10 h-10 rounded-full flex items-center justify-center shadow-md border border-orange-200 transition-all active:scale-95">
+                    <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+
+                <div class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold shadow-inner border border-yellow-200">
+                    ฟีลลิ่งกำลังเดือด! 🔥
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Area -->
+        <main id="main-content" class="flex-grow flex flex-col justify-center pb-12">
+            <!-- Content will be injected here by JS -->
+        </main>
+        
+        <!-- Footer -->
+        <footer class="text-center text-sm text-gray-500 mt-auto pb-4">
+            สร้างสรรค์ด้วยความกวนโดย สมฉุย © 2026 | ลิขสิทธิ์ความฮาเป็นของทุกคน
+        </footer>
+    </div>
+
+    <!-- Background Decorative Elements -->
+    <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-96 h-96 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 z-0"></div>
+
+    <script>
+        // ระบบเสียงสังเคราะห์ Web Audio API (รับประกันความลื่น ไม่ต้องโหลดไฟล์)
+        let isMuted = false;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // เล่นเสียงบี๊บเบาๆ ตอนกดปุ่ม
+        function playSoundClick() {
+            if (isMuted) return;
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime); // ความถี่สูงหน่อยให้ฟีลป๊อปๆ
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // เล่นเสียงติ้งต่อง เมื่อตอบถูก
+        function playSoundCorrect() {
+            if (isMuted) return;
+            initAudio();
+            const now = audioCtx.currentTime;
+            
+            // โน้ตคู่ 2 ตัวเล่นต่อกัน (เสียงสวรรค์)
+            playNote(523.25, 0.1, now); // C5
+            playNote(659.25, 0.2, now + 0.1); // E5
+        }
+
+        // เล่นเสียงหวือออออ แป่ววว เมื่อตอบผิด
+        function playSoundWrong() {
+            if (isMuted) return;
+            initAudio();
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sawtooth'; // เสียงเลื่อยสั่นประสาทแบบเกรียนๆ
+            osc.frequency.setValueAtTime(180, now); // ต่ำๆ ทุ้มๆ
+            osc.frequency.linearRampToValueAtTime(100, now + 0.4); // รูดเสียงลงล่าง
+            
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.linearRampToValueAtTime(0.01, now + 0.4);
+            
+            osc.start();
+            osc.stop(now + 0.4);
+        }
+
+        // เล่นเสียงแฟนฟาร์ฉลองสอบผ่านเสร็จสมบูรณ์
+        function playSoundVictory() {
+            if (isMuted) return;
+            initAudio();
+            const now = audioCtx.currentTime;
+            // เมโลดี้ฉลองความสำเร็จ!
+            playNote(523.25, 0.15, now);       // C5
+            playNote(659.25, 0.15, now + 0.15);  // E5
+            playNote(783.99, 0.15, now + 0.3);   // G5
+            playNote(1046.50, 0.4, now + 0.45);  // C6 (สะใจมาก)
+        }
+
+        // ฟังก์ชันช่วยสร้างเสียงโน้ตเดี่ยว
+        function playNote(frequency, duration, startTime) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'triangle'; // เสียงนุ่มนวลฟังสบาย
+            osc.frequency.setValueAtTime(frequency, startTime);
+            gain.gain.setValueAtTime(0.08, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+            
+            osc.start(startTime);
+            osc.stop(startTime + duration);
+        }
+
+        // สลับเปิด-ปิดเสียง
+        window.toggleSound = function() {
+            isMuted = !isMuted;
+            const btn = document.getElementById('sound-btn');
+            if (isMuted) {
+                btn.innerHTML = `<i class="fa-solid fa-volume-xmark text-lg"></i>`;
+                btn.classList.remove('text-orange-500');
+                btn.classList.add('text-gray-400');
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-volume-high text-lg"></i>`;
+                btn.classList.remove('text-gray-400');
+                btn.classList.add('text-orange-500');
+                // เทสเสียงทันทีเวลาเปิด
+                initAudio();
+                playSoundClick();
+            }
+        }
+
+
+        // ข้อมูลข้อสอบทั้งหมด 60 ข้อ (แยกภาค ก และ ข)
+        const questionDatabase = {
+            partA: [
+                // ชุดที่ 1
+                { q: "วิสัยทัศน์ของกระทรวงศึกษาธิการภายใต้การนำของ พล.ต.อ.เพิ่มพูน ชิดชอบ คือข้อใด?", options: ["เรียนดี มีความสุข", "สร้างคนฉลาดเรียนรู้", "เรียนทุกที่ รู้ทุกเวลา", "Thailand Zero Dropout"], a: 0, ref: "นโยบาย รมว.ศธ." },
+                { q: "ตาม พ.ร.บ. ส่งเสริมการเรียนรู้ พ.ศ. 2566 กรมส่งเสริมการเรียนรู้ (สกร.) มีหน้าที่จัดกิจกรรมการเรียนรู้กี่รูปแบบ?", options: ["2 รูปแบบ", "3 รูปแบบ", "4 รูปแบบ", "5 รูปแบบ"], a: 1, ref: "มาตรา 6" },
+                { q: "\"Learn to Earn\" เป็นแนวทางหลักในจุดเน้นการดำเนินงาน สกร. ปี 2568-2569 ในด้านใด?", options: ["การลดความเหลื่อมล้ำ", "การเพิ่มอัตราการรู้หนังสือ", "การขับเคลื่อนการเรียนรู้สู่อาชีพและมีรายได้", "การปฏิรูประบบ Credit Bank"], a: 2, ref: "จุดเน้น สกร." },
+                { q: "ภารกิจสำคัญ (Flagship) ของ สกร. ที่มุ่งเน้นการแก้ปัญหาประชาชนที่หลุดออกนอกระบบการศึกษาคือโครงการใด?", options: ["Thailand Zero Dropout", "Career Plus", "Learning T-Map", "Smart Digital Library"], a: 0, ref: "Flagship" },
+                { q: "\"การศึกษาที่เกิดจากการผสมผสานระหว่างการศึกษาในระบบ นอกระบบ และตามอัธยาศัย\" ตรงกับนิยามในข้อใด?", options: ["การศึกษาขั้นพื้นฐาน", "การศึกษาตลอดชีวิต", "การศึกษาเพื่อการทำงาน", "การศึกษาภาคบังคับ"], a: 1, ref: "นิยาม พ.ร.บ.การศึกษาฯ" },
+                { q: "ยุทธศาสตร์ชาติ 20 ปี (พ.ศ. 2561 - 2580) กำหนดวิสัยทัศน์ประเทศไทยไว้อย่างไร?", options: ["มั่นคง มั่งคั่ง ยั่งยืน", "เรียนดี มีความสุข มีรายได้", "สังคมแห่งการเรียนรู้ที่ยั่งยืน", "ประเทศพัฒนาแล้วด้วยนวัตกรรม"], a: 0, ref: "ยุทธศาสตร์ชาติ" },
+                { q: "\"สถิติพยากรณ์\" หรือ \"Big Data\" ถูกระบุในจุดเน้นปี 2569 เพื่อนำมาใช้ประโยชน์ในเรื่องใด?", options: ["การจัดทำงบประมาณรายหัว", "การประเมินวิทยฐานะครู", "การออกแบบการเรียนรู้ที่แม่นยำและตอบโจทย์พื้นที่", "การจัดตั้งศูนย์ระดับตำบล"], a: 2, ref: "จุดเน้นเทคโนโลยี" },
+                { q: "คณะกรรมการส่งเสริมการเรียนรู้จังหวัด มีใครเป็นประธานกรรมการ?", options: ["ศึกษาธิการจังหวัด", "ผู้อำนวยการ สกร. จังหวัด", "ผู้ว่าราชการจังหวัด", "นายกองค์การบริหารส่วนจังหวัด"], a: 2, ref: "โครงสร้างบริหาร" },
+                { q: "ตาม พ.ร.บ. การศึกษาแห่งชาติ รัฐต้องจัดให้บุคคลมีสิทธิและโอกาสเสมอกันในการรับการศึกษาขั้นพื้นฐานไม่น้อยกว่ากี่ปี?", options: ["9 ปี", "12 ปี", "15 ปี", "ตลอดชีวิต"], a: 1, ref: "สิทธิการศึกษา" },
+                { q: "หน่วยงานใดมีหน้าที่ \"พัฒนาเกณฑ์และทำการประเมินผลการประกันคุณภาพภายนอก\"?", options: ["กรมส่งเสริมการเรียนรู้", "สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน", "สมศ.", "สภาการศึกษา"], a: 2, ref: "สมศ." },
+                { q: "ข้อมูลข่าวสารตามข้อใดที่หน่วยงานของรัฐ \"อาจมีคำสั่งมิให้เปิดเผยก็ได้\"?", options: ["ข้อมูลที่ก่อให้เกิดความเสียหายต่อสถาบันฯ", "การเปิดเผยจะทำให้การบังคับใช้กฎหมายเสื่อมประสิทธิภาพ", "โครงสร้างองค์กร", "แผนงานและงบประมาณ"], a: 1, ref: "พ.ร.บ.ข้อมูลข่าวสาร มาตรา 15" },
+                { q: "หากเจ้าหน้าที่มีคำสั่งมิให้เปิดเผยข้อมูลข่าวสาร ผู้ขอข้อมูลสามารถอุทธรณ์ได้ภายในกี่วัน?", options: ["7 วัน", "15 วัน", "30 วัน", "60 วัน"], a: 1, ref: "พ.ร.บ.ข้อมูลข่าวสาร" },
+                { q: "การกระทำละเมิดของเจ้าหน้าที่ \"ที่มิใช่การกระทำในการปฏิบัติหน้าที่\" ผู้เสียหายต้องฟ้องใคร?", options: ["หน่วยงานของรัฐที่สังกัด", "ฟ้องเจ้าหน้าที่เป็นการเฉพาะตัว", "ฟ้องกระทรวงการคลัง", "ฟ้องศาลปกครองเท่านั้น"], a: 1, ref: "พ.ร.บ.ความรับผิดทางละเมิด" },
+                { q: "\"บรรดาข้อความที่ผู้มีอำนาจหน้าที่วางไว้ โดยจะอาศัยอำนาจของกฎหมายหรือไม่ก็ได้\" คือหนังสือสั่งการประเภทใด?", options: ["คำสั่ง", "ระเบียบ", "ข้อบังคับ", "ประกาศ"], a: 1, ref: "ระเบียบงานสารบรรณ" },
+                { q: "หนังสือประชาสัมพันธ์ประเภทใดที่ \"ไม่ต้องใช้กระดาษตราครุฑ\"?", options: ["ประกาศ", "แถลงการณ์", "ข่าว", "ถูกทุกข้อ"], a: 2, ref: "ระเบียบงานสารบรรณ" },
+                { q: "ผู้สมัครสอบพนักงานราชการต้องมีอายุไม่ต่ำกว่ากี่ปี?", options: ["15 ปีบริบูรณ์", "18 ปีบริบูรณ์", "20 ปีบริบูรณ์", "22 ปีบริบูรณ์"], a: 1, ref: "ระเบียบพนักงานราชการ" },
+                { q: "ข้อใดคือโทษทางวินัยของพนักงานราชการตามระเบียบที่เกี่ยวข้อง?", options: ["ภาคทัณฑ์ ตัดเงินเดือน ลดขั้นเงินเดือน", "ภาคทัณฑ์ ตัดค่าตอบแทน ไล่ออก", "ว่ากล่าวตักเตือน ภาคทัณฑ์ ตัดค่าตอบแทน", "ไม่มีโทษทางวินัย มีเพียงเลิกสัญญา"], a: 1, ref: "วินัยพนักงานราชการ" },
+                { q: "ใครคือ \"ผู้รักษาการ\" ตาม พ.ร.บ. ส่งเสริมการเรียนรู้ พ.ศ. 2566?", options: ["นายกรัฐมนตรี", "ปลัดกระทรวงศึกษาธิการ", "รัฐมนตรีว่าการกระทรวงศึกษาธิการ", "อธิบดีกรมส่งเสริมการเรียนรู้"], a: 2, ref: "บทเฉพาะกาล/รักษาการ" },
+                { q: "นโยบาย \"Anywhere Anytime\" ของ สกร. มุ่งเน้นการใช้เทคโนโลยีใดเป็นสำคัญ?", options: ["แพลตฟอร์มดิจิทัลและ AI", "วิทยุและโทรทัศน์ดาวเทียม", "รถห้องสมุดเคลื่อนที่", "การจัดตั้งอาสาสมัคร สกร."], a: 0, ref: "นโยบายดิจิทัล" },
+                { q: "เหตุการณ์ปัจจุบัน: \"Thailand Zero Dropout\" มีเป้าหมายสอดคล้องกับดัชนีชี้วัดสากลใดมากที่สุด?", options: ["IMD (การรู้หนังสือ)", "การลดจำนวนเด็กเยาวชนที่ไม่อยู่ในระบบ (NEETs)", "การประเมินผล PISA", "การแข่งขันทางดิจิทัล"], a: 1, ref: "เป้าหมายสากล" },
+                // ชุดที่ 2
+                { q: "\"สำนักงานส่งเสริมการเรียนรู้ประจำจังหวัด\" ทำหน้าที่เป็นหน่วยงานประเภทใดตาม พ.ร.บ. ส่งเสริมการเรียนรู้?", options: ["สถานศึกษา", "หน่วยจัดการเรียนรู้", "หน่วยงานธุรการของคณะกรรมการส่งเสริมการเรียนรู้จังหวัด", "องค์กรอิสระตามกฎหมาย"], a: 2, ref: "โครงสร้างระดับจังหวัด" },
+                { q: "ใครทำหน้าที่เป็น \"เลขานุการ\" ในคณะกรรมการส่งเสริมการเรียนรู้จังหวัด?", options: ["ศึกษาธิการจังหวัด", "ผู้ว่าราชการจังหวัด", "ผู้อำนวยการสำนักงานส่งเสริมการเรียนรู้ประจำจังหวัด", "ปลัดจังหวัด"], a: 2, ref: "คณะกรรมการจังหวัด" },
+                { q: "การทำสัญญาจ้างพนักงานราชการทั่วไปตามประกาศนี้ มีระยะเวลาจ้างครั้งละไม่เกินกี่ปี?", options: ["1 ปี", "2 ปี", "4 ปี", "5 ปี"], a: 2, ref: "ระเบียบจ้างงาน" },
+                { q: "ตราครุฑสำหรับแบบพิมพ์หนังสือราชการมีกี่ขนาด และขนาดมาตรฐาน (ตัวใหญ่) มีความสูงเท่าใด?", options: ["2 ขนาด สูง 3 เซนติเมตร", "2 ขนาด สูง 3.5 เซนติเมตร", "3 ขนาด สูง 3 เซนติเมตร", "3 ขนาด สูง 1.5 เซนติเมตร"], a: 0, ref: "ระเบียบสารบรรณ" },
+                { q: "หนังสือราชการประเภทใดที่ใช้กระดาษ \"บันทึกข้อความ\"?", options: ["หนังสือภายนอก", "หนังสือภายใน", "หนังสือสั่งการ", "หนังสือประทับตรา"], a: 1, ref: "ประเภทหนังสือราชการ" },
+                { q: "ตาม พ.ร.บ. ข้อมูลข่าวสารฯ \"ข้อมูลข่าวสารส่วนบุคคล\" หมายความว่าข้อมูลเกี่ยวกับอะไร?", options: ["สุขภาพและฐานะการเงินของเอกชนเท่านั้น", "สิ่งเฉพาะตัวของบุคคลที่ระบุตัวผู้นั้นได้", "ข้อมูลที่ปกปิดเป็นความลับ", "ข้อมูลติดต่อส่วนตัวของเจ้าหน้าที่"], a: 1, ref: "นิยาม พ.ร.บ.ข้อมูลข่าวสาร" },
+                { q: "\"คนต่างด้าว\" ตาม พ.ร.บ. ข้อมูลข่าวสารฯ หมายถึงบุคคลธรรมดาที่ไม่มีสัญชาติไทยและ...?", options: ["ไม่ได้เสียภาษี", "ไม่มีถิ่นที่อยู่ในประเทศไทย", "ไม่ได้ประกอบอาชีพในไทย", "ไม่ได้จดทะเบียนนิติบุคคล"], a: 1, ref: "นิยาม พ.ร.บ.ข้อมูลข่าวสาร" },
+                { q: "ในกรณีที่เจ้าหน้าที่กระทำละเมิด \"ในการปฏิบัติหน้าที่\" ผู้เสียหายต้องฟ้องใคร?", options: ["ฟ้องเจ้าหน้าที่ผู้กระทำผิดโดยตรง", "ฟ้องหน่วยงานของรัฐที่เจ้าหน้าที่ผู้นั้นสังกัด", "ฟ้องรัฐมนตรีเจ้าสังกัด", "ฟ้องศาลปกครอง"], a: 1, ref: "พ.ร.บ.ละเมิด" },
+                { q: "อายุความในการเรียกให้เจ้าหน้าที่ชดใช้ค่าสินไหมทดแทนกรณีละเมิดต่อหน่วยงานรัฐ มีกำหนดกี่ปี?", options: ["1 ปี", "2 ปี", "5 ปี", "10 ปี"], a: 1, ref: "อายุความละเมิด" },
+                { q: "\"Thailand Zero Dropout\" มีกลุ่มเป้าหมายหลักคือกลุ่มใดตามจุดเน้นปี 2569?", options: ["เด็กนักเรียนอนุบาล", "กลุ่มเยาวชนที่ไม่อยู่ในระบบ (NEETs)", "ผู้สูงอายุ", "ข้าราชการ"], a: 1, ref: "เป้าหมายประชากร" },
+                { q: "ใครเป็นผู้รักษาการตาม พ.ร.บ. วิธีปฏิบัติราชการทางปกครอง พ.ศ. 2539?", options: ["ประธานศาลปกครองสูงสุด", "รัฐมนตรีว่าการกระทรวงมหาดไทย", "นายกรัฐมนตรี", "ปลัดสำนักนายกรัฐมนตรี"], a: 2, ref: "พ.ร.บ.วิธีปฏิบัติฯ" },
+                { q: "การนับระยะเวลาเริ่มต้นเรียน \"การศึกษาภาคบังคับ\" เริ่มตั้งแต่อายุเท่าใด?", options: ["อายุย่างเข้าปีที่หก", "อายุย่างเข้าปีที่เจ็ด", "อายุครบเจ็ดปีบริบูรณ์", "เมื่อเข้า ป.1"], a: 1, ref: "การศึกษาภาคบังคับ" },
+                { q: "หน่วยงานใดมีฐานะเป็น \"นิติบุคคลและเป็นกรม\" ในสังกัดกระทรวงศึกษาธิการ?", options: ["สำนักงานศึกษาธิการจังหวัด", "สำนักงานเขตพื้นที่การศึกษา", "สำนักงานปลัดกระทรวงศึกษาธิการ", "ศูนย์ส่งเสริมการเรียนรู้ระดับอำเภอ"], a: 2, ref: "โครงสร้าง ศธ." },
+                { q: "คำสั่งทางปกครองที่ \"มีข้อผิดพลาดเล็กน้อย\" เจ้าหน้าที่สามารถดำเนินการอย่างไรได้?", options: ["ต้องยกเลิกแล้วออกใหม่", "ปล่อยไว้", "แก้ไขเพิ่มเติมได้เสมอ", "ต้องให้ผู้บังคับบัญชาอนุมัติ"], a: 2, ref: "พ.ร.บ.วิธีปฏิบัติฯ" },
+                { q: "\"Quick Win\" หรือภารกิจเร่งด่วนของ สกร. ในปี 2569 คือข้อใด?", options: ["ก่อสร้างสำนักงานใหม่", "ปรับอัตราเงินอุดหนุนรายหัว", "ยกเลิกหลักสูตรเก่า", "จ้างอาสาสมัครเพิ่ม 2 เท่า"], a: 1, ref: "Quick Win" },
+                { q: "คณะกรรมการบริหารพนักงานราชการ มีชื่อย่อว่าอะไร?", options: ["ก.ค.ศ.", "คพร.", "ก.พ.ร.", "ก.พ."], a: 1, ref: "ระเบียบพนักงานราชการ" },
+                { q: "โทษทางวินัยพนักงานราชการข้อใดที่ \"ไม่มี\" ในระเบียบสำนักนายกรัฐมนตรี?", options: ["ภาคทัณฑ์", "ตัดค่าตอบแทน", "ลดขั้นเงินเดือน", "ไล่ออก"], a: 2, ref: "วินัยพนักงานราชการ" },
+                { q: "หนังสือราชการที่ต้องปฏิบัติให้ \"เร็วกว่าปกติ\" มีกี่ประเภท?", options: ["2 ประเภท", "3 ประเภท (ด่วน, ด่วนมาก, ด่วนที่สุด)", "4 ประเภท", "ไม่มีกำหนด"], a: 1, ref: "ระเบียบสารบรรณ" },
+                { q: "นโยบาย \"Learn to Earn\" มุ่งเน้นการแก้ปัญหาในเรื่องใดเป็นหลัก?", options: ["การเรียนเพื่อสอบแข่งขัน", "การเรียนรู้เพื่อสร้างรายได้และพึ่งพาตนเองได้ยั่งยืน", "เพิ่มผู้จบ ป.ตรี", "ส่งเสริมไปทำงานต่างประเทศ"], a: 1, ref: "นโยบาย" },
+                { q: "\"การศึกษาขั้นพื้นฐาน\" ตาม พ.ร.บ. การศึกษาแห่งชาติ หมายความว่าอย่างไร?", options: ["การศึกษา ป.1 - ม.6", "การศึกษาก่อนระดับอุดมศึกษา", "การศึกษาภาคบังคับ 9 ปี", "การศึกษาสำหรับผู้ด้อยโอกาส"], a: 1, ref: "นิยาม พ.ร.บ.การศึกษาฯ" }
+            ],
+            partB: [
+                // ชุดที่ 1
+                { q: "ตาม พ.ร.บ. ส่งเสริมการเรียนรู้ 2566 การจัดการเรียนรู้ \"เพื่อคุณวุฒิตามระดับ\" มีเป้าหมายหลักสำหรับกลุ่มใด?", options: ["ผู้ที่อยู่ในระบบโรงเรียนปกติ", "ผู้ที่มิได้ศึกษาอยู่ในสถานศึกษาเพื่อให้ได้รับคุณวุฒิ", "ผู้พัฒนาทักษะวิชาชีพชั้นสูง", "ข้าราชการเพิ่มวิทยฐานะ"], a: 1, ref: "รูปแบบการเรียนรู้" },
+                { q: "ปรัชญา \"คิดเป็น\" ของ ดร. โกวิท วรพิพัฒน์ ระบุว่าการตัดสินใจต้องใช้ข้อมูลสำคัญ 3 ประการประกอบกัน ยกเว้นข้อใด?", options: ["ข้อมูลตนเอง", "ข้อมูลทางวิชาการ", "ข้อมูลสังคมและสิ่งแวดล้อม", "ข้อมูลฐานะทางการเงิน"], a: 3, ref: "ปรัชญาคิดเป็น" },
+                { q: "ข้อใดคือ \"สมรรถนะหลัก\" ตามหลักสูตรส่งเสริมการเรียนรู้ พ.ศ. 2567?", options: ["การคิดเป็น การสื่อสาร การจัดการตนเอง และความเป็นพลเมือง", "ทักษะการอ่าน เขียน คำนวณ", "ความรู้ คุณธรรม ทักษะชีวิต", "การใช้เทคโนโลยี การวิจัย การเรียนรู้"], a: 0, ref: "หลักสูตร 2567" },
+                { q: "ผู้เรียนในหลักสูตร สกร. 2567 ต้องปฏิบัติกิจกรรม กพช. ไม่น้อยกว่ากี่ชั่วโมงจึงจะจบหลักสูตร?", options: ["50 ชั่วโมง", "100 ชั่วโมง", "150 ชั่วโมง", "200 ชั่วโมง"], a: 1, ref: "เกณฑ์จบหลักสูตร" },
+                { q: "\"Learn to Earn\" ตามนโยบาย สกร. มุ่งเน้นการยกระดับการศึกษาในลักษณะใด?", options: ["เรียนเพื่อสอบเข้ามหาวิทยาลัย", "เรียนรู้สู่อาชีพ สร้างรายได้ พึ่งพาตนเองได้", "เรียนภาษาไปเมืองนอก", "เรียนเพื่อทำวิจัย"], a: 1, ref: "นโยบาย" },
+                { q: "ระบบที่ใช้สำหรับ \"สะสมหน่วยการเรียนรู้\" จากการเรียนทั้ง 3 รูปแบบเรียกว่าอะไร?", options: ["Big Data System", "Learning T-Map", "ธนาคารหน่วยกิต (Credit Bank)", "E-Portfolio"], a: 2, ref: "Credit Bank" },
+                { q: "ข้อใดคือสัดส่วนการ \"เทียบโอนผลการเรียน\" ที่ทำได้สูงสุดในแต่ละระดับการศึกษา?", options: ["ร้อยละ 25", "ร้อยละ 50", "ร้อยละ 60", "ไม่เกินร้อยละ 75"], a: 3, ref: "ระเบียบเทียบโอน" },
+                { q: "ในกระบวนการประกันคุณภาพ \"การประกันคุณภาพภายใน\" เป็นหน้าที่ของหน่วยงานใด?", options: ["สมศ.", "กระทรวงมหาดไทย", "สถานศึกษาและหน่วยงานต้นสังกัด", "อปท."], a: 2, ref: "ประกันคุณภาพ" },
+                { q: "ขั้นตอนแรกของการระบบประกันคุณภาพภายในของสถานศึกษาสังกัด สกร. คือข้อใด?", options: ["ทำ SAR", "กำหนดมาตรฐานการศึกษาของสถานศึกษา", "รับการประเมินภายนอก", "ประกาศผลการเรียน"], a: 1, ref: "ขั้นตอนประกันคุณภาพ" },
+                { q: "ใครมีหน้าที่พัฒนาเกณฑ์และทำการประเมินผล \"การประกันคุณภาพภายนอก\"?", options: ["สกร.", "สภาการศึกษา", "สมศ.", "คุรุสภา"], a: 2, ref: "สมศ." },
+                { q: "การวิจัยที่มุ่งเน้นแก้ปัญหาและพัฒนาการเรียนรู้ในห้องเรียนโดยตรงเรียกว่าอะไร?", options: ["วิจัยเชิงนโยบาย", "วิจัยในชั้นเรียน", "วิจัยเชิงประวัติศาสตร์", "วิจัยพื้นฐาน"], a: 1, ref: "ประเภทการวิจัย" },
+                { q: "ขั้นตอนแรกของการกระบวนการวิจัยคือข้อใด?", options: ["เก็บข้อมูล", "กำหนดปัญหาการวิจัย", "ออกแบบวิจัย", "วิเคราะห์ข้อมูล"], a: 1, ref: "ระเบียบวิธีวิจัย" },
+                { q: "\"แบบทดสอบที่มีอำนาจจำแนก\" หมายความว่าอย่างไร?", options: ["ยากมากไม่มีใครทำได้", "แยกคนเก่งออกจากคนไม่เก่งได้", "ออกตรงตามเนื้อหา", "มีความคงเส้นคงวา"], a: 1, ref: "การวัดผล" },
+                { q: "เครื่องมือข้อใดที่ \"ไม่ใช่\" เครื่องมือเก็บรวบรวมข้อมูล?", options: ["แบบสอบถาม", "แบบสัมภาษณ์", "โปรแกรม SPSS", "แบบสังเกต"], a: 2, ref: "เครื่องมือวิจัย" },
+                { q: "วงจรการวิจัยเชิงปฏิบัติการ (Action Research) มีขั้นตอนหลักคือข้อใด?", options: ["PAOR (วางแผน-ปฏิบัติ-สังเกต-สะท้อนผล)", "อ่าน-เขียน-คิด-วิเคราะห์", "สำรวจ-ทดลอง-สรุป", "ตั้งปัญหา-ตั้งสมมติฐาน-ทดลอง"], a: 0, ref: "Action Research" },
+                { q: "การจัดการเรียนรู้สำหรับ \"ผู้ใหญ่\" ควรคำนึงถึงปัจจัยใดมากที่สุดเพื่อให้ผู้เรียนมีความสุข?", options: ["การลงโทษเมื่อทำผิด", "ทำแบบฝึกหัดเยอะๆ", "เรียนในเรื่องที่เป็นประโยชน์นำไปใช้ได้ทันที", "จัดห้องเรียนแบบโรงเรียน"], a: 2, ref: "การศึกษาผู้ใหญ่" },
+                { q: "เป้าหมายคุณภาพผู้เรียนในศตวรรษที่ 21 มุ่งเน้นทักษะใด?", options: ["จำเนื้อหาในตำรา", "ทักษะการเรียนรู้/นวัตกรรม, สารสนเทศ, ชีวิต/อาชีพ", "ฟังครูบรรยาย", "ทำตามคำสั่งเคร่งครัด"], a: 1, ref: "ทักษะศตวรรษที่ 21" },
+                { q: "\"Active Learning\" มีลักษณะสำคัญตามข้อใด?", options: ["ผู้เรียนรับฟังอย่างเดียว", "ผู้เรียนมีส่วนร่วมวางแผนและสร้างความรู้ด้วยตนเอง", "เน้นท่องจำ", "ครูบรรยายทั้งหมด"], a: 1, ref: "วิธีสอน" },
+                { q: "ใครมีอำนาจในการอนุมัติประกาศนียบัตรและวุฒิบัตรของสถานศึกษา?", options: ["ผู้อำนวยการสถานศึกษา", "นายก อบต.", "ผู้ปกครอง", "อาสาสมัคร สกร."], a: 0, ref: "งานทะเบียน" },
+                { q: "โครงการสำคัญของ สกร. ปี 2569 ที่มุ่งพัฒนาพื้นที่ต้นแบบ 1 จังหวัด 3 มิติความสำเร็จคือโครงการใด?", options: ["Thailand Zero Dropout", "Career Plus", "Learning 3D", "Co-Reading Space"], a: 2, ref: "โครงการพิเศษ" }
+            ]
+        };
+
+        // ตัวแปรควบคุมสถานะ
+        let currentPool = [];
+        let examQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // คำคมกวนๆ ของสมฉุย
+        const catComments = {
+            correct: [
+                "เฉียบ! เดาเก่งนะเราเนี่ย 😼",
+                "ถูกต้อง! สมองซีกซ้ายทำงานดีเยี่ยม!",
+                "กราบ! นึกว่าหลวงพ่อคูณมาบอกใบ้ 🙏",
+                "เป๊ะเวอร์! อ่านหนังสือมาดี หรือตาดี?",
+                "เก่งงงงง! เอาไป 1 โป้ง! 👍"
+            ],
+            wrong: [
+                "เอ่อ... ไปอ่านโจทย์ใหม่ไหมนุด? 🙀",
+                "ผิด! ข้อนี้กล้วยๆ ทำไมทำไม่ได้!",
+                "สมองไหลหมดแล้ว ไปกินปลาทูบำรุงด่วน! 🐟",
+                "ไหว้พระ 9 วัดด่วน! อาการหนักแล้ว",
+                "โถ... น่าเอ็นดู สู้เค้านะนุด 😿"
+            ]
+        };
+
+        // DOM Elements
+        const appContainer = document.getElementById('main-content');
+
+        // ฟังก์ชันสุ่ม Array (Fisher-Yates)
+        function shuffleArray(array) {
+            let curId = array.length;
+            while (0 !== curId) {
+                let randId = Math.floor(Math.random() * curId);
+                curId -= 1;
+                let tmp = array[curId];
+                array[curId] = array[randId];
+                array[randId] = tmp;
+            }
+            return array;
+        }
+
+        // ฟังก์ชันสุ่มคำคม
+        function getRandomComment(isCorrect) {
+            const arr = isCorrect ? catComments.correct : catComments.wrong;
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function renderHome() {
+            appContainer.innerHTML = `
+                <div class="glass-card p-8 relative mt-16 animate-pop">
+                    <!-- Mascot -->
+                    <div class="cat-avatar bg-gradient-to-t from-yellow-200 to-orange-200">
+                        🐱
+                        <div class="absolute -bottom-4 bg-orange-500 text-white text-sm px-4 py-1 rounded-full font-bold shadow-md border-2 border-white text-center w-[110%] ml-[-5%] whitespace-nowrap">
+                            เจ้าสมฉุย
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-10 mt-6">
+                        <h2 class="text-4xl sm:text-5xl font-black mb-4 text-[#2c3e50] tracking-tight">
+                            ระบบซ้อมสอบจำลอง<br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">สกร. สู้ชีวิต (สุ่มดวล 20 ข้อ)</span>
+                        </h2>
+                        <p class="text-gray-600 text-lg">ยินดีต้อนรับทาสรัก! เก็งข้อสอบอัปเดตล่าสุดของ สกร. ปี 2568-2569<br>ระบบจะทำการสุ่มหยิบมาทีละ 20 ข้อเด็ดๆ เพื่อการทบทวนแบบไร้ขีดจำกัด!</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Mode 1 -->
+                        <div onclick="startExam('partA')" class="mode-card glass-card p-6 pink relative overflow-hidden group">
+                            <div class="absolute top-4 right-4 w-6 h-6 bg-pink-100 rounded-full group-hover:scale-150 transition-transform"></div>
+                            <h3 class="text-2xl font-bold text-pink-600 mb-2">ภาค ก: ความรู้ทั่วไป</h3>
+                            <p class="text-gray-600 text-sm mb-4">สุ่มดึงมา 20 ข้อจากคลัง พ.ร.บ. สกร., ยุทธศาสตร์ชาติ, ระเบียบราชการ ฯลฯ</p>
+                            <span class="inline-block bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-bold">สุ่มดวลพึ่งสิ่งศักดิ์สิทธิ์ 🎲</span>
+                        </div>
+
+                        <!-- Mode 2 -->
+                        <div onclick="startExam('partB')" class="mode-card glass-card p-6 purple relative overflow-hidden group">
+                            <div class="absolute top-4 right-4 w-6 h-6 bg-purple-100 rounded-full group-hover:scale-150 transition-transform"></div>
+                            <h3 class="text-2xl font-bold text-purple-600 mb-2">ภาค ข: นักวิชาการศึกษา</h3>
+                            <p class="text-gray-600 text-sm mb-4">สุ่มทบทวน 20 ข้อ (หลักสูตร 2567, ปรัชญาคิดเป็น, กพช., ประกันคุณภาพ, วิจัย)</p>
+                            <span class="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold">โหมดสมองทาสรับใช้สมฉุย 🧠</span>
+                        </div>
+
+                        <!-- Mode 3 (Full Width) -->
+                        <div onclick="startExam('mixed')" class="mode-card p-6 orange md:col-span-2 relative overflow-hidden group">
+                            <div class="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full group-hover:scale-150 transition-transform"></div>
+                            <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-fire"></i> มัดรวมทุกด่านสกัดวิญญาณ (สุ่ม ภาค ก + ข)
+                            </h3>
+                            <p class="text-white/90 text-sm">สุ่มรวบรวม 20 ข้อจากคลังรวมทั้งหมด วัดผลประเมินศักยภาพอริบดีในฝัน!</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.startExam = function(mode) {
+            playSoundClick();
+            
+            // รวมและสุ่มข้อสอบตามโหมด
+            let pool = [];
+            if (mode === 'partA') pool = [...questionDatabase.partA];
+            else if (mode === 'partB') pool = [...questionDatabase.partB];
+            else pool = [...questionDatabase.partA, ...questionDatabase.partB];
+
+            pool = shuffleArray(pool);
+            examQuestions = pool.slice(0, 20); // เอาแค่ 20 ข้อ
+            
+            // Reset State
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = examQuestions[currentQuestionIndex];
+            const progress = ((currentQuestionIndex) / 20) * 100;
+
+            let optionsHtml = '';
+            q.options.forEach((opt, idx) => {
+                optionsHtml += `
+                    <button onclick="handleAnswer(${idx})" class="btn-choice group flex items-center" id="opt-${idx}">
+                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 font-bold mr-4 group-hover:bg-orange-100 group-hover:text-orange-500 transition-colors shrink-0">
+                            ${String.fromCharCode(3601 + idx)} <!-- ก, ข, ค, ง -->
+                        </span>
+                        <span>${opt}</span>
+                    </button>
+                `;
+            });
+
+            appContainer.innerHTML = `
+                <div class="glass-card p-6 sm:p-8 animate-pop">
+                    
+                    <!-- Progress Bar -->
+                    <div class="flex justify-between items-center mb-6 text-sm font-bold text-gray-500">
+                        <span>ข้อที่ ${currentQuestionIndex + 1} / 20</span>
+                        <span>คะแนน: ${score}</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+                        <div class="bg-gradient-to-r from-orange-400 to-pink-500 h-2 rounded-full transition-all duration-500" style="width: ${progress}%"></div>
+                    </div>
+
+                    <!-- Question Content -->
+                    <div class="flex gap-4 mb-8 flex-col sm:flex-row">
+                        <div class="shrink-0 flex justify-center sm:block">
+                            <div class="text-4xl bg-orange-100 w-16 h-16 rounded-2xl flex items-center justify-center border-2 border-orange-300">
+                                📝
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-semibold leading-relaxed text-gray-800">
+                                ${q.q}
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="space-y-3" id="options-container">
+                        ${optionsHtml}
+                    </div>
+
+                    <!-- Mascot Feedback Area (Hidden by default) -->
+                    <div id="feedback-area" class="hidden mt-8 flex gap-4 items-start">
+                        <div class="text-5xl shrink-0 drop-shadow-md" id="feedback-emoji">🐱</div>
+                        <div class="speech-bubble flex-grow">
+                            <h4 id="feedback-title" class="font-bold text-lg mb-1"></h4>
+                            <p id="feedback-text" class="text-gray-700"></p>
+                            <p class="text-xs text-gray-400 mt-2">อ้างอิง: ${q.ref}</p>
+                            <div class="mt-4 text-right">
+                                <button onclick="nextQuestion()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95">
+                                    ไปต่อลุย! <i class="fa-solid fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+        }
+
+        window.handleAnswer = function(selectedIndex) {
+            // ป้องกันกดซ้ำ
+            const buttons = document.querySelectorAll('.btn-choice');
+            buttons.forEach(btn => btn.disabled = true);
+
+            const q = examQuestions[currentQuestionIndex];
+            const isCorrect = selectedIndex === q.a;
+            
+            if (isCorrect) {
+                score++;
+                playSoundCorrect();
+            } else {
+                playSoundWrong();
+            }
+
+            // แสดงสีที่ปุ่ม
+            buttons.forEach((btn, idx) => {
+                if (idx === q.a) {
+                    btn.classList.add('correct');
+                } else if (idx === selectedIndex && !isCorrect) {
+                    btn.classList.add('wrong');
+                } else {
+                    btn.style.opacity = '0.5';
+                }
+            });
+
+            // แสดงหน้าแมวสมฉุย
+            const feedbackArea = document.getElementById('feedback-area');
+            const feedbackEmoji = document.getElementById('feedback-emoji');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackText = document.getElementById('feedback-text');
+
+            feedbackArea.classList.remove('hidden');
+            feedbackArea.classList.add('animate-pop');
+
+            if (isCorrect) {
+                feedbackEmoji.innerHTML = "😻";
+                feedbackTitle.innerHTML = "<span class='text-green-600'><i class='fa-solid fa-check-circle'></i> ถูกต้องครับนุด!</span>";
+                feedbackText.innerText = getRandomComment(true);
+            } else {
+                feedbackEmoji.innerHTML = "🙀";
+                feedbackTitle.innerHTML = "<span class='text-red-500'><i class='fa-solid fa-times-circle'></i> ผิดเต็มประตู!</span>";
+                const thaiLetter = ['ก', 'ข', 'ค', 'ง'];
+                feedbackText.innerText = getRandomComment(false) + ` (เฉลยที่ถูกคือ: ${thaiLetter[q.a]}. ${q.options[q.a]})`;
+            }
+        }
+
+        window.nextQuestion = function() {
+            playSoundClick();
+            currentQuestionIndex++;
+            if (currentQuestionIndex < examQuestions.length) {
+                renderQuestion();
+            } else {
+                renderResult();
+            }
+        }
+
+        function renderResult() {
+            playSoundVictory();
+
+            let rank = "";
+            let message = "";
+            let emoji = "";
+
+            if (score >= 18) {
+                rank = "เทพเจ้าเกียรตินิยม!";
+                message = "กราบงามๆ 3 ที! ความรู้แน่นปึ้ก สอบติดชัวร์ๆ สมฉุยขอคารวะ";
+                emoji = "👑🐱";
+            } else if (score >= 12) {
+                rank = "นักรบผู้รอดตาย";
+                message = "ทำได้ดี! แต่ยังมีจุดต้องระวัง ไปทบทวนอีกนิด รับรองฉลุย";
+                emoji = "😎🐱";
+            } else {
+                rank = "ศพสีชมพู";
+                message = "โอ๊ยยย นุดดด! คะแนนเท่านี้จะเอาอะไรไปสู้เค้า ไปอ่านหนังสือใหม่ด่วนๆ เดี๋ยวสมฉุยคุมเอง!";
+                emoji = "👻😿";
+            }
+
+            appContainer.innerHTML = `
+                <div class="glass-card p-8 text-center animate-pop">
+                    
+                    <div class="text-7xl mb-4 drop-shadow-lg">${emoji}</div>
+                    
+                    <h2 class="text-3xl font-bold mb-2">สอบเสร็จแล้ววว!</h2>
+                    <p class="text-gray-500 mb-8">ผลประกอบการของนุดในวันนี้คือ...</p>
+
+                    <div class="inline-block bg-white border-4 border-orange-200 rounded-3xl p-8 mb-8 shadow-inner">
+                        <div class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500">
+                            ${score} / 20
+                        </div>
+                        <div class="text-sm font-bold text-gray-400 mt-2 uppercase tracking-widest">Score</div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-orange-600 mb-2">ฉายา: ${rank}</h3>
+                    <p class="text-gray-700 text-lg mb-10 max-w-md mx-auto">"${message}"</p>
+
+                    <button onclick="renderHome(); playSoundClick();" class="bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 text-white font-bold py-4 px-10 rounded-full shadow-xl transition-all transform hover:scale-105 active:scale-95 text-lg">
+                        <i class="fa-solid fa-rotate-right mr-2"></i> เล่นอีกรอบ ขอแก้แค้น!
+                    </button>
+                </div>
+            `;
+            
+            // Throw some basic confetti effect (CSS based for simplicity in 1 file)
+            createConfetti();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'fixed';
+                conf.style.width = '10px';
+                conf.style.height = '10px';
+                conf.style.backgroundColor = ['#fca311', '#ffb703', '#fde2e4', '#e2ece9', '#e0fbfc'][Math.floor(Math.random() * 5)];
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.top = '-10px';
+                conf.style.borderRadius = '50%';
+                conf.style.zIndex = '9999';
+                conf.style.pointerEvents = 'none';
+                
+                const animDuration = Math.random() * 3 + 2;
+                conf.animate([
+                    { transform: `translate3d(0,0,0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate3d(${Math.random()*200 - 100}px, 100vh, 0) rotate(${Math.random()*720}deg)`, opacity: 0 }
+                ], {
+                    duration: animDuration * 1000,
+                    easing: 'cubic-bezier(.37,0,.63,1)',
+                    fill: 'forwards'
+                });
+
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), animDuration * 1000);
+            }
+        }
+
+        window.onload = () => {
+            renderHome();
+        };
+
+    </script>
+</body>
+</html>
