@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PromptCraft TH</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    body{
+      font-family:'Kanit',sans-serif;
+      background:
+      radial-gradient(circle at top left,#7c3aed 0%,transparent 30%),
+      radial-gradient(circle at bottom right,#f5b700 0%,transparent 25%),
+      #f7f5ff;
+      overflow-x:hidden;
+    }
+
+    .glass{
+      background:rgba(255,255,255,.68);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.4);
+    }
+
+    .chip{
+      transition:.25s;
+    }
+
+    .chip:hover{
+      transform:translateY(-2px);
+    }
+
+    .chip.active{
+      background:#6d28d9;
+      color:white;
+      box-shadow:0 10px 20px rgba(109,40,217,.25);
+    }
+
+    .prompt-box{
+      background:#111;
+      color:#8effb2;
+      font-family:monospace;
+      white-space:pre-wrap;
+    }
+
+    textarea{
+      resize:none;
+    }
+
+    .glow{
+      box-shadow:0 0 30px rgba(124,58,237,.25);
+    }
+
+  </style>
+
+</head>
+
+<body class="min-h-screen text-gray-800">
+
+  <!-- WRAPPER -->
+  <div class="max-w-7xl mx-auto p-6 lg:p-10">
+
+    <!-- HERO -->
+    <section class="glass rounded-[36px] p-8 lg:p-12 mb-10 glow">
+
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+        <!-- LEFT -->
+        <div>
+
+          <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm mb-5">
+            ✨ AI Prompt Generator
+          </div>
+
+          <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            PromptCraft TH
+          </h1>
+
+          <p class="text-lg text-gray-600 leading-relaxed mb-8">
+            สร้าง Prompt สำหรับ ChatGPT Image,
+            Midjourney, SDXL และ DALL·E
+            พร้อมสไตล์ Typography แบบงานราชการสมัยใหม่
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+
+            <div class="bg-white rounded-2xl px-5 py-3 shadow-sm">
+              🎨 Government PR
+            </div>
+
+            <div class="bg-white rounded-2xl px-5 py-3 shadow-sm">
+              🪄 Editorial
+            </div>
+
+            <div class="bg-white rounded-2xl px-5 py-3 shadow-sm">
+              ✍️ Handwritten Typography
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="glass rounded-[30px] p-6">
+
+          <div class="aspect-video rounded-3xl bg-gradient-to-br from-purple-200 to-yellow-100 flex items-center justify-center">
+
+            <div class="text-center">
+
+              <div class="text-6xl mb-4">
+                🧠
+              </div>
+
+              <h3 class="text-3xl font-bold text-purple-800">
+                Smart Prompt Studio
+              </h3>
+
+              <p class="text-gray-700 mt-2">
+                Cinematic • Infographic • Premium
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MAIN -->
+    <section class="grid lg:grid-cols-2 gap-8">
+
+      <!-- LEFT -->
+      <div class="space-y-8">
+
+        <!-- BUILDER -->
+        <div class="glass rounded-[36px] p-8 glow">
+
+          <h2 class="text-3xl font-bold mb-8">
+            🧠 Prompt Builder
+          </h2>
+
+          <!-- TITLE -->
+          <div class="mb-6">
+
+            <label class="block mb-3 font-medium text-lg">
+              หัวข้อ
+            </label>
+
+            <input
+              id="titleInput"
+              type="text"
+              placeholder="เช่น สกร.ระดับอำเภอเมืองนครศรีธรรมราช"
+              class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+
+          </div>
+
+          <!-- DETAIL -->
+          <div class="mb-6">
+
+            <label class="block mb-3 font-medium text-lg">
+              รายละเอียด
+            </label>
+
+            <textarea
+              id="detailInput"
+              rows="6"
+              placeholder="เช่น การเรียนรู้ตลอดชีวิต การสร้างอาชีพ การวิจัยชุมชน"
+              class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+            ></textarea>
+
+          </div>
+
+          <!-- STYLE -->
+          <div class="mb-6">
+
+            <label class="block mb-4 font-medium text-lg">
+              🎨 Style Presets
+            </label>
+
+            <div class="flex flex-wrap gap-3">
+
+              <button class="chip active px-5 py-3 rounded-2xl bg-white">
+                Government PR
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Cinematic
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Editorial
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Infographic
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Premium
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Educational
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- TYPO -->
+          <div class="mb-6">
+
+            <label class="block mb-4 font-medium text-lg">
+              ✍️ Typography Effects
+            </label>
+
+            <div class="flex flex-wrap gap-3">
+
+              <button class="chip active px-5 py-3 rounded-2xl bg-white">
+                Handwritten Quote
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Highlighted Text
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Marker Notes
+              </button>
+
+              <button class="chip px-5 py-3 rounded-2xl bg-white">
+                Magazine Layout
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- LOGO -->
+          <div class="mb-6">
+
+            <label class="block mb-4 font-medium text-lg">
+              🏛️ Logo Layout
+            </label>
+
+            <select
+              id="logoPosition"
+              class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+              <option value="top-left clean logo area">
+                Top Left Logo Area
+              </option>
+
+              <option value="top-right branding area">
+                Top Right Logo Area
+              </option>
+
+              <option value="clean header for logo overlay">
+                Clean Header Area
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- COLOR -->
+          <div class="mb-6">
+
+            <label class="block mb-4 font-medium text-lg">
+              🌈 Color Theme
+            </label>
+
+            <select
+              id="colorTheme"
+              class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+              <option>Purple Gold Cream</option>
+              <option>Modern Government Blue</option>
+              <option>Dark Luxury Black Gold</option>
+              <option>Pastel Education Theme</option>
+            </select>
+
+          </div>
+
+          <!-- PLATFORM -->
+          <div class="mb-8">
+
+            <label class="block mb-4 font-medium text-lg">
+              ⚙️ Platform
+            </label>
+
+            <select
+              id="platform"
+              class="w-full p-5 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+              <option>ChatGPT Image</option>
+              <option>Midjourney</option>
+              <option>DALL·E</option>
+              <option>SDXL</option>
+            </select>
+
+          </div>
+
+          <!-- BUTTON -->
+          <button
+            id="generateBtn"
+            class="w-full py-5 rounded-3xl bg-gradient-to-r from-purple-700 to-purple-500 text-white text-xl font-semibold hover:scale-[1.02] transition glow"
+          >
+            ✨ Generate Smart Prompt
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="space-y-8">
+
+        <!-- INFO -->
+        <div class="glass rounded-[36px] p-8">
+
+          <h2 class="text-3xl font-bold mb-6">
+            🎨 Smart Analysis
+          </h2>
+
+          <div class="grid grid-cols-2 gap-4">
+
+            <div class="bg-white rounded-2xl p-5">
+              <p class="text-sm text-gray-500 mb-2">Theme</p>
+              <h3 class="font-semibold text-purple-700">
+                Government PR
+              </h3>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5">
+              <p class="text-sm text-gray-500 mb-2">Mood</p>
+              <h3 class="font-semibold text-purple-700">
+                Inspirational
+              </h3>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5">
+              <p class="text-sm text-gray-500 mb-2">Typography</p>
+              <h3 class="font-semibold text-purple-700">
+                Editorial
+              </h3>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5">
+              <p class="text-sm text-gray-500 mb-2">Layout</p>
+              <h3 class="font-semibold text-purple-700">
+                Poster Design
+              </h3>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RESULT -->
+        <div class="glass rounded-[36px] p-8 glow">
+
+          <div class="flex items-center justify-between mb-6">
+
+            <h2 class="text-3xl font-bold">
+              🪄 Generated Prompt
+            </h2>
+
+            <button
+              id="copyBtn"
+              class="px-5 py-3 rounded-2xl bg-purple-600 text-white hover:bg-purple-700 transition"
+            >
+              Copy
+            </button>
+
+          </div>
+
+          <div
+            id="result"
+            class="prompt-box rounded-3xl p-6 min-h-[550px] overflow-auto text-sm leading-8"
+          >
+Your generated prompt will appear here...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+
+    // CHIP ACTIVE
+    const chips = document.querySelectorAll('.chip');
+
+    chips.forEach(chip => {
+
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('active');
+      });
+
+    });
+
+    // GENERATE PROMPT
+    document.getElementById('generateBtn').addEventListener('click', () => {
+
+      const title = document.getElementById('titleInput').value;
+      const detail = document.getElementById('detailInput').value;
+      const logo = document.getElementById('logoPosition').value;
+      const color = document.getElementById('colorTheme').value;
+      const platform = document.getElementById('platform').value;
+
+      let styles = [];
+
+      document.querySelectorAll('.chip.active').forEach(chip => {
+        styles.push(chip.innerText);
+      });
+
+      const finalPrompt = `
+${title}
+
+${detail}
+
+Create a premium Thai government educational campaign poster.
+
+Style:
+${styles.join(', ')}
+
+Color Theme:
+${color}
+
+Logo Layout:
+${logo}
+
+Include:
+- leave clean space for official logo placement
+- designed for post-edit logo overlay
+- clean negative space for typography
+- elegant handwritten Thai-style typography
+- highlighted quote sections
+- marker pen annotations
+- premium editorial magazine layout
+- infographic storytelling
+- motivational quote callouts
+- mixed typography hierarchy
+- clean headline area
+- stylish text overlay
+
+Visual Style:
+cinematic lighting,
+soft golden glow,
+ultra realistic,
+warm emotional storytelling,
+realistic Thai educators and community,
+lifelong learning atmosphere,
+modern government PR artwork,
+high detail,
+8k quality
+
+Platform Optimization:
+optimized for ${platform}
+      `;
+
+      document.getElementById('result').innerText = finalPrompt;
+
+    });
+
+    // COPY
+    document.getElementById('copyBtn').addEventListener('click', () => {
+
+      const text = document.getElementById('result').innerText;
+
+      navigator.clipboard.writeText(text);
+
+      const btn = document.getElementById('copyBtn');
+
+      btn.innerText = '✓ Copied';
+
+      setTimeout(() => {
+        btn.innerText = 'Copy';
+      },1500);
+
+    });
+
+  </script>
+
+</body>
+</html>
