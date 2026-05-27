@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สกร. วัดดวงวัดใจ สไตล์สายฮา (เก็งข้อสอบ ภาค ก & ข) โดยสมฉุยและ อ.กล้วย</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.383.0/umd/lucide.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+        .comic-font {
+            font-family: 'Mali', cursive;
+        }
+        /* Custom Keyframe Animations */
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 3.5s infinite ease-in-out;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .custom-dashed-border {
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='24' ry='24' stroke='%23F472B6FF' stroke-width='3' stroke-dasharray='10%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+            border-radius: 24px;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-slate-800 flex flex-col justify-between selection:bg-pink-300">
+
+    <!-- Header Section -->
+    <header class="w-full bg-white/80 backdrop-blur-md border-b border-pink-100 py-3.5 px-4 sticky top-0 z-50 transition-all">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="resetToHome()">
+                <div class="bg-gradient-to-tr from-pink-500 to-amber-400 p-2.5 rounded-2xl text-white shadow-md hover:scale-105 transition-all duration-300">
+                    <i data-lucide="sparkles" class="w-6 h-6 animate-pulse"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-amber-500 bg-clip-text text-transparent comic-font">สกร. สายฮาพารอด!</h1>
+                    <p class="text-xs text-slate-500 hidden sm:block">เก็งข้อสอบ ภาค ก & ข สู้ชีวิต โดย อ.กล้วย และเจ้าแมวสมฉุย 🐱</p>
+                </div>
+            </div>
+            
+            <!-- Tools panel in header -->
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleSound()" id="soundBtn" class="bg-slate-100 hover:bg-slate-200 text-slate-600 p-2.5 rounded-full transition-all shadow-sm" title="เปิด/ปิดเสียง">
+                    <i data-lucide="volume-2" class="w-5 h-5" id="soundIcon"></i>
+                </button>
+                <div class="hidden md:flex items-center space-x-1.5 bg-amber-100 text-amber-800 px-3 py-1.5 rounded-full text-xs font-semibold">
+                    <i data-lucide="flame" class="w-4 h-4 text-orange-500 animate-pulse"></i>
+                    <span>ฟีลลิ่งกำลังเดือด!</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 md:py-8 flex flex-col justify-center">
+        
+        <!-- ================= HOME SCREEN ================= -->
+        <div id="home-screen" class="space-y-6 transition-all duration-300">
+            <div class="bg-white/95 p-6 md:p-10 rounded-3xl card-shadow border border-white/50 text-center space-y-6">
+                <!-- Mascot Area (Only Orange Cat Somchui) -->
+                <div class="flex justify-center items-center">
+                    <!-- Cat Somchui -->
+                    <div class="relative w-36 h-36 sm:w-40 sm:h-40">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-400 to-orange-400 rounded-full blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative w-full h-full rounded-2xl bg-gradient-to-br from-orange-100 to-amber-100 border-2 border-white flex items-center justify-center shadow-md animate-bounce-slow overflow-hidden">
+                            <span class="text-6xl sm:text-7xl">🐱</span>
+                            <div class="absolute bottom-1 bg-amber-500 text-white text-[10px] font-bold px-3 py-0.5 rounded-full">เจ้าส้มสมฉุย</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 comic-font leading-tight">
+                        ระบบซ้อมสอบจำลอง <br><span class="bg-gradient-to-r from-pink-600 via-purple-600 to-amber-500 bg-clip-text text-transparent">สกร. สู้ชีวิต (สุ่มดวล 20 ข้อ)</span>
+                    </h2>
+                    <p class="text-slate-600 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+                        ยินดีต้อนรับทาสรัก! เก็งข้อสอบสุดอัปเดตของ ภาค ก (40 ข้อ) และ ภาค ข (20 ข้อ) จาก อ.กล้วย และเจ้าแมวสมฉุย <br>
+                        <span class="font-semibold text-pink-600">ระบบจะทำการสุ่มหยิบมาทีละ 20 ข้อเด็ดๆ ต่อการสอบหนึ่งรอบเพื่อการทบทวนแบบไร้ขีดจำกัด!</span>
+                    </p>
+                </div>
+
+                <!-- Game Mode Options -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto pt-4">
+                    <button onclick="startExam('partA')" class="group relative bg-white hover:bg-pink-50 text-slate-800 border-2 border-pink-200 hover:border-pink-500 p-5 rounded-2xl text-left transition-all duration-300 shadow-md hover:-translate-y-1">
+                        <div class="absolute top-4 right-4 bg-pink-100 text-pink-600 rounded-full p-2 group-hover:scale-110 transition-transform">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-pink-600 comic-font">ภาค ก: ความรู้ทั่วไป</h3>
+                        <p class="text-xs text-slate-500 mt-1">สุ่มดึงมา 20 ข้อจากคลัง 40 ข้อ (พ.ร.บ. สกร. 2566, ยุทธศาสตร์ชาติ, ระเบียบราชการ, วิธีปฏิบัติราชการปกครอง, ข้อมูลข่าวสาร)</p>
+                        <span class="inline-block mt-3 text-xs bg-pink-100 text-pink-700 font-bold px-2 py-0.5 rounded">สุ่มดวลพึ่งสิ่งศักดิ์สิทธิ์</span>
+                    </button>
+
+                    <button onclick="startExam('partB')" class="group relative bg-white hover:bg-purple-50 text-slate-800 border-2 border-purple-200 hover:border-purple-500 p-5 rounded-2xl text-left transition-all duration-300 shadow-md hover:-translate-y-1">
+                        <div class="absolute top-4 right-4 bg-purple-100 text-purple-600 rounded-full p-2 group-hover:scale-110 transition-transform">
+                            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-purple-600 comic-font">ภาค ข: นักวิชาการศึกษา</h3>
+                        <p class="text-xs text-slate-500 mt-1">สุ่มทบทวน 20 ข้อ (หลักสูตร 2567, ปรัชญาคิดเป็น, กพช., ประกันคุณภาพ สมศ., classroom research)</p>
+                        <span class="inline-block mt-3 text-xs bg-purple-100 text-purple-700 font-bold px-2 py-0.5 rounded">โหมดสมองทาสรับใช้สมฉุย</span>
+                    </button>
+
+                    <button onclick="startExam('both')" class="sm:col-span-2 group relative bg-gradient-to-r from-pink-500 via-purple-600 to-amber-500 hover:from-pink-600 hover:to-amber-600 text-white p-5 rounded-2xl text-left transition-all duration-300 shadow-lg hover:-translate-y-1">
+                        <div class="absolute top-4 right-4 bg-white/20 text-white rounded-full p-2 group-hover:rotate-12 transition-transform">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold comic-font">🔥 มัดรวมทุกด่านสกัดวิญญาณ (สุ่ม ภาค ก + ข)</h3>
+                        <p class="text-xs text-white/80 mt-1">สุ่มรวบรวม 20 ข้อจากคลังรวมทั้งสิ้น 60 ข้อ วัดผลประเมินศักยภาพอธิบดีในฝัน!</p>
+                        <span class="inline-block mt-3 text-xs bg-amber-400 text-slate-900 font-bold px-2 py-0.5 rounded">โหมดลุยดงข้อสอบสมฉุยซ่า</span>
+                    </button>
+                </div>
+
+                <!-- Sub settings/Disclaimer -->
+                <div class="flex flex-wrap justify-center gap-6 text-xs text-slate-400 pt-4 border-t border-slate-100">
+                    <span class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-1 text-green-500"></i> อัปเดตล่าความรู้ 2569</span>
+                    <span class="flex items-center"><i data-lucide="heart" class="w-4 h-4 mr-1 text-pink-500"></i> สู้ชีวิตเคียงข้างโดย อ.กล้วย และสมฉุย</span>
+                    <span class="flex items-center"><i data-lucide="smile" class="w-4 h-4 mr-1 text-purple-500"></i> ลิขสิทธิ์ฮาสั่นคลายหนาว</span>
+                </div>
+            </div>
+
+            <!-- Funny Wisdom Card -->
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-start space-x-3 text-amber-800 shadow-sm">
+                <span class="text-2xl mt-0.5">🐾</span>
+                <div>
+                    <h4 class="font-bold text-sm">โอวาทธรรมจากเจ้าส้มสมฉุย:</h4>
+                    <p class="text-xs text-amber-700 mt-0.5">"ถึงข้อสอบจะยากแค่ไหน ขอแค่พกสติและอาหารเปียกมาให้ฉัน... นายผ่านแน่นอนมนุษย์!"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= QUIZ PLAY SCREEN ================= -->
+        <div id="quiz-screen" class="hidden space-y-4 transition-all duration-300">
+            
+            <!-- Progress & Stats Area -->
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-2xl card-shadow border border-white/50 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <div class="w-full sm:w-auto">
+                    <div class="flex justify-between sm:justify-start items-center space-x-3 mb-1.5">
+                        <span id="current-badge" class="bg-pink-100 text-pink-700 text-xs font-bold px-2.5 py-1 rounded-full"></span>
+                        <span class="text-xs text-slate-500 font-semibold" id="question-index-text">ข้อที่ 1 จาก 20</span>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="w-full sm:w-64 bg-slate-200 h-2 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-gradient-to-r from-pink-500 to-amber-400 h-full transition-all duration-300" style="width: 5%"></div>
+                    </div>
+                </div>
+
+                <!-- Helper buttons (Funny Lifelines) -->
+                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                    <button onclick="useFiftyFifty()" id="lifeline-50" class="flex items-center space-x-1 bg-amber-100 hover:bg-amber-200 text-amber-800 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border border-amber-200 shadow-sm disabled:opacity-50">
+                        <span>🪄 ตัวช่วย 50:50</span>
+                        <span id="lifeline-50-count" class="bg-amber-700 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">3</span>
+                    </button>
+                    <button onclick="useRandomGuess()" id="lifeline-magic" class="flex items-center space-x-1 bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border border-purple-200 shadow-sm disabled:opacity-50">
+                        <span>🔮 มนต์สมฉุยชี้ช่อง</span>
+                        <span id="lifeline-magic-count" class="bg-purple-700 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">3</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Question Card -->
+            <div class="bg-white p-6 md:p-8 rounded-3xl card-shadow border border-slate-100 relative overflow-hidden">
+                <!-- Watermark background deco -->
+                <div class="absolute -right-10 -bottom-10 text-9xl opacity-5 select-none font-bold">สกร.</div>
+                
+                <!-- Topic Category -->
+                <span id="quiz-cat" class="text-xs font-bold tracking-wider text-pink-500 uppercase">วิชาความรู้ทั่วไป</span>
+
+                <!-- Question Title -->
+                <h3 id="quiz-question" class="text-lg md:text-xl font-bold text-slate-800 mt-2 mb-6 leading-relaxed">
+                    คำถามข้อนี้มีปริศนาซ่อนอยู่...
+                </h3>
+
+                <!-- Answer Options (Grid) -->
+                <div id="quiz-options" class="space-y-3">
+                    <!-- Options will be rendered here dynamically -->
+                </div>
+
+                <!-- Instant feedback area (Initially hidden) -->
+                <div id="instant-feedback" class="hidden mt-6 p-4 rounded-2xl border transition-all duration-300">
+                    <div class="flex items-start space-x-3">
+                        <div id="feedback-icon-container" class="rounded-full p-2.5 text-white shadow-inner flex-shrink-0">
+                            <!-- Icon inside -->
+                        </div>
+                        <div class="flex-grow">
+                            <h4 id="feedback-title" class="font-bold text-base">ความเห็นผลการทดสอบ</h4>
+                            <p id="feedback-desc" class="text-sm mt-1 leading-relaxed">ข้อมูลประกอบความรู้</p>
+                            
+                            <!-- Teacher's Funny Comment -->
+                            <div class="mt-2.5 pt-2 border-t border-black/10 text-xs italic flex items-center gap-2 text-slate-600">
+                                <span class="text-lg">🐱</span>
+                                <span id="feedback-funny">"สมฉุยวิเคราะห์ว่า: ...."</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Button Container -->
+                <div class="mt-6 flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="promptQuitQuiz()" class="text-slate-400 hover:text-slate-600 text-sm font-semibold flex items-center space-x-1.5 transition-all">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                        <span>ยอมแพ้บ๊ายบาย</span>
+                    </button>
+                    
+                    <!-- BULLETPROOF BUTTON: Calls a reliable global dispatcher function -->
+                    <button type="button" onclick="handleNextClick()" id="next-btn" class="bg-gradient-to-r from-pink-500 to-amber-500 text-white font-bold px-6 py-2.5 rounded-full transition-all shadow-md hover:brightness-110 active:scale-95 flex items-center space-x-2">
+                        <span id="next-btn-text">ข้ามไปเถอะ</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dialogue box representing the mascot speaking -->
+            <div id="mascot-box" class="bg-white/90 p-4 rounded-2xl card-shadow border border-pink-50 flex items-center space-x-3">
+                <span class="text-3xl animate-bounce">🐱</span>
+                <div>
+                    <h5 class="font-bold text-xs text-amber-600 comic-font">แมวส้มสมฉุย:</h5>
+                    <p class="text-xs text-slate-600 italic leading-relaxed" id="mascot-comment">
+                        "ค่อยๆ คิดนะมนุษย์ ท่องจำสูตรแล้วลองหลับตาจิ้มเอา คล้ายๆ ตอนฉันวิ่งไล่จับของกินเลย!"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= RESULTS SCREEN ================= -->
+        <div id="results-screen" class="hidden space-y-6 transition-all duration-300">
+            <div class="bg-white p-6 md:p-10 rounded-3xl card-shadow border border-slate-100 text-center space-y-6">
+                
+                <div class="space-y-2">
+                    <span class="text-6xl" id="result-emoji">🏆</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 comic-font">สรุปผลสอบแบบสู้ชีวิต</h2>
+                    <p class="text-sm text-slate-500">มาดูกันว่าฝีมือหรือดวงของ อ.กล้วย ที่ช่วยแผ่เมตตาให้คุณในรอบนี้!</p>
+                </div>
+
+                <!-- Big Score Counter -->
+                <div class="relative w-48 h-48 mx-auto flex flex-col justify-center items-center bg-gradient-to-br from-pink-50 to-amber-50 rounded-full border-4 border-dashed border-pink-300 shadow-inner">
+                    <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">คะแนนสอบ</span>
+                    <span class="text-5xl font-black text-pink-600 comic-font my-1.5" id="result-score">xx/xx</span>
+                    <span class="text-xs bg-pink-100 text-pink-800 font-bold px-3 py-0.5 rounded-full" id="result-percent">0%</span>
+                </div>
+
+                <!-- Verdict Box -->
+                <div class="bg-gradient-to-r from-slate-50 to-slate-100 p-5 rounded-2xl border border-slate-200 max-w-lg mx-auto text-center shadow-inner">
+                    <h3 class="font-bold text-slate-800 comic-font text-lg" id="verdict-title">ฉายาของคุณ</h3>
+                    <p class="text-sm text-slate-600 mt-2 leading-relaxed" id="verdict-desc">
+                        คำอธิบายประเมินผล
+                    </p>
+                </div>
+
+                <!-- Funny Shareable Certificate Area -->
+                <div class="custom-dashed-border p-6 text-center max-w-lg mx-auto space-y-4">
+                    <h4 class="font-bold text-pink-700 text-sm">🎖️ แดเนรมิตเกียรติบัตรเกียรติยศกวนประสาท</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">พิมพ์ชื่อ-นามสกุลของคุณ หรือชื่อกวนๆ เพื่อให้แมวสมฉุยตบอุ้งมือวาดเกียรติบัตรให้ได้เลย!</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
+                        <input type="text" id="cert-name" placeholder="ใส่ชื่อแสนเท่ของคุณ..." class="bg-white border border-pink-300 rounded-xl px-4 py-2.5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-pink-400 text-center" value="ผู้กองยอดรักพิทักษ์ สกร.">
+                        <button onclick="generateCertificate()" class="bg-gradient-to-r from-pink-500 to-amber-500 hover:from-pink-600 hover:to-amber-600 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-all whitespace-nowrap active:scale-95 shadow">
+                            วาดใบประกาศเล้ย!
+                        </button>
+                    </div>
+
+                    <!-- Rendered Certificate Wrapper -->
+                    <div id="cert-canvas-container" class="hidden border-8 border-double border-amber-500/30 bg-amber-50/20 p-6 rounded-2xl shadow-lg text-center space-y-4 relative overflow-hidden bg-white">
+                        <!-- Watermarks & BG lines -->
+                        <div class="absolute inset-2 border border-amber-500/10 rounded-lg pointer-events-none"></div>
+                        <span class="absolute right-2 top-2 text-6xl opacity-10 select-none">🐾</span>
+                        <span class="absolute left-2 bottom-2 text-6xl opacity-10 select-none">📜</span>
+
+                        <div class="text-center space-y-3 relative z-10">
+                            <span class="text-4xl">📜</span>
+                            <h5 class="text-xl font-bold text-amber-900 comic-font">ใบรับรองความกล้าหาญและความบันเทิง</h5>
+                            <p class="text-[9px] uppercase text-slate-400 tracking-widest font-bold">สถาบันส่งเสริมความฮาและพึ่งสิ่งศักดิ์สิทธิ์แห่งชาติ</p>
+                            <p class="text-xs text-slate-500">เกียรติบัตรล้อเลียนฉบับนี้ให้ไว้เพื่อแสดงว่า</p>
+                            
+                            <p class="text-2xl font-black text-pink-600 italic underline decoration-wavy decoration-amber-400 my-2.5" id="cert-display-name">คุณผู้กล้าหาญ</p>
+                            
+                            <p class="text-xs text-slate-600 leading-relaxed px-4">
+                                ได้ผ่านการประเมินทักษะซ้อมสอบ สกร. ยุค 2569 <br>
+                                ด้วยคะแนนสอบทั้งสิ้น <span class="font-black text-pink-600 text-base" id="cert-display-score">xx</span> คะแนน <br>
+                                คณะกรรมการเห็นควรสถาปนาแต่งตั้งให้ได้ฉายาศักดิ์สิทธิ์ประจำเขตคือ:
+                            </p>
+                            
+                            <div class="my-3 inline-block">
+                                <p class="text-sm md:text-base font-black text-amber-950 bg-amber-100/80 px-6 py-2 rounded-full border border-amber-200 shadow-sm" id="cert-display-title">
+                                    "ร่างทรงเทพเจ้าติวเตอร์"
+                                </p>
+                            </div>
+                            
+                            <p class="text-[10px] text-slate-400 font-semibold text-slate-500">ให้อุ้งเท้าเซ็นรับรองโดยเจ้าส้มสมฉุยและติวเตอร์ อ.กล้วย ผู้คุมสอบสุดต๊าช</p>
+                            
+                            <div class="pt-4 flex justify-around items-center text-center border-t border-dashed border-slate-200">
+                                <div class="text-[10px] text-slate-500 w-1/2 border-r border-dashed border-slate-200">
+                                    <div class="font-bold">🐱 เจ้าส้มสมฉุย</div>
+                                    <div class="text-slate-400">(ประธานฝ่ายพิธีกรรมอาหารเปียก)</div>
+                                </div>
+                                <div class="text-[10px] text-slate-500 w-1/2">
+                                    <div class="font-bold">👨‍🏫 อ.กล้วย</div>
+                                    <div class="text-slate-400">(ผู้ชี้แนะทางสกัดวิญญาณข้อสอบ)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Section -->
+                <div class="text-left space-y-4 max-w-xl mx-auto pt-6 border-t border-slate-100">
+                    <h4 class="font-bold text-slate-800 flex items-center space-x-2">
+                        <i data-lucide="eye" class="w-5 h-5 text-blue-500"></i>
+                        <span>เฉลยข้อสอบและคติธรรมเตือนใจโดยทีมงาน:</span>
+                    </h4>
+                    
+                    <div id="results-review-list" class="space-y-4">
+                        <!-- Individual question review will be put here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Footer buttons for results -->
+                <div class="pt-6 flex flex-col sm:flex-row justify-center gap-4">
+                    <button onclick="resetToHome()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-6 py-3.5 rounded-full transition-all shadow-md active:scale-95 flex items-center justify-center space-x-2">
+                        <i data-lucide="rotate-ccw" class="w-5 h-5"></i>
+                        <span>กลับไปสอบใหม่รอบแก้ตัว</span>
+                    </button>
+                    <button onclick="shareApp()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3.5 rounded-full transition-all shadow-md active:scale-95 flex items-center justify-center space-x-2">
+                        <i data-lucide="share-2" class="w-5 h-5"></i>
+                        <span>บอกต่อเพื่อนมาฮาด้วยกัน!</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Global Alert Toast -->
+    <div id="custom-toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-slate-900/95 text-white px-5 py-3 rounded-2xl shadow-xl text-xs sm:text-sm font-semibold flex items-center space-x-2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform translate-y-2">
+        <i data-lucide="sparkles" class="w-5 h-5 text-pink-400 animate-spin"></i>
+        <span id="toast-message">แจ้งเตือน</span>
+    </div>
+
+    <!-- Custom Modal for Quit Confirmation (Replaces confirm()) -->
+    <div id="quit-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white p-6 md:p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center space-y-4 transform scale-95 transition-transform duration-300" id="quit-modal-content">
+            <span class="text-6xl inline-block mb-1 animate-bounce">🐱</span>
+            <h3 class="text-xl md:text-2xl font-bold text-slate-800 comic-font">สมฉุยขอเตือน!</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">แน่ใจเหรอทาสรักของ อ.กล้วย ที่จะยอมแพ้กลางคันและทิ้งความรู้ไป โดนสมฉุยล้อเลียนแง๊วๆ แน่ๆ นะ!</p>
+            <div class="flex justify-center gap-3 pt-3">
+                <button onclick="closeQuitModal()" class="flex-1 px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-sm hover:bg-slate-200 transition-all">ฮึบสู้ต่อ!</button>
+                <button onclick="executeQuit()" class="flex-1 px-4 py-2.5 rounded-xl bg-red-500 text-white font-bold text-sm hover:bg-red-600 transition-all shadow-md">ยอมแพ้จ้า</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Area -->
+    <footer class="w-full bg-slate-900 text-slate-400 py-6 px-4 text-center text-xs space-y-2 mt-8">
+        <div class="max-w-4xl mx-auto">
+            <p class="comic-font text-pink-400 font-bold text-sm">ติวสอบ สกร. ไม่เน้นเคร่งเครียด แต่เน้นเรียกพละกำลังและความสุขสูงสุด</p>
+            <p class="mt-1">© 2026 เก็งข้อสอบวิชาการศึกษานักวิชาการศึกษาพนักงานราชการ สกร. ภาค ก และ ข</p>
+            <p class="text-slate-600 text-[10px]">หมายเหตุ: เนื้อหาอ้างอิงหลักสูตรเกณฑ์จริงตาม พ.ร.บ.ส่งเสริมการเรียนรู้ พ.ศ. 2566 และหลักสูตร พ.ศ. 2567 ความปั่นความบันเทิงสร้างขึ้นเพื่อความลื่นไหลผ่อนคลาย</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Database of Questions (Part A has 40 questions, Part B has 20 questions)
+        const database = {
+            partA: [
+                {
+                    q: "วิสัยทัศน์ของกระทรวงศึกษาธิการภายใต้การนำของ พล.ต.อ.เพิ่มพูน ชิดชอบ คือข้อใด?",
+                    options: [
+                        "เรียนดี มีความสุข",
+                        "สร้างคนฉลาดเรียนรู้",
+                        "เรียนทุกที่ รู้ทุกเวลา",
+                        "Thailand Zero Dropout"
+                    ],
+                    correct: 0,
+                    explanation: "วิสัยทัศน์สูงสุดคือ 'เรียนดี มีความสุข' ท่องไว้ให้ขึ้นใจ สอบไม่ติดไม่เป็นไร ขอแค่ตอนเรียนมีความสุขก็พอแล้วจ้า!",
+                    funny: "กระทรวงเขาอยากให้เราเรียนอย่างมีความสุข แต่ตอนสอบบรรจุนี่หน้าดำคร่ำเครียดกันหมดเลยนะแม่!"
+                },
+                {
+                    q: "ตาม พ.ร.บ. ส่งเสริมการเรียนรู้ พ.ศ. 2566 กรมส่งเสริมการเรียนรู้ (สกร.) มีหน้าที่จัดกิจกรรมการเรียนรู้กี่รูปแบบ?",
+                    options: [
+                        "2 รูปแบบ",
+                        "3 รูปแบบ",
+                        "4 รูปแบบ",
+                        "5 รูปแบบ"
+                    ],
+                    correct: 1,
+                    explanation: "ตอบ 3 รูปแบบหลัก ได้แก่ (1) เรียนรู้ตลอดชีวิต (2) เพื่อการพัฒนาตนเอง และ (3) เพื่อคุณวุฒิตามระดับ",
+                    funny: "จำง่ายๆ ว่า 3 รูปแบบ ถ้าจำไม่ได้แสดงว่าสติเราเริ่มหลุดไปรูปแบบที่ 4 แล้ว"
+                },
+                {
+                    q: '"Learn to Earn" เป็นแนวทางหลักในจุดเน้นการดำเนินงาน สกร. ปีงบประมาณ 2568-2569 ในด้านใด?',
+                    options: [
+                        "การลดความเหลื่อมล้ำ",
+                        "การเพิ่มอัตราการรู้หนังสือ",
+                        "การขับเคลื่อนการเรียนรู้สู่อาชีพและมีรายได้",
+                        "การปฏิรูประบบ Credit Bank"
+                    ],
+                    correct: 2,
+                    explanation: "Learn to Earn คือเรียนรู้เพื่อสร้างรายได้และหางานทำ มุ่งเน้นการมีอาชีพอย่างมั่นคง มีตังค์ใช้นั่นแหละ",
+                    funny: "ก็คือเรียนไปหาเงินน่ะแหละน้องๆ ไม่ใช่เรียนเอาโล่แล้วสุดท้ายไม่มีข้าวกินนะจ๊ะ!"
+                },
+                {
+                    q: "ภารกิจสำคัญ (Flagship) ของ สกร. ที่มุ่งเน้นการแก้ปัญหาประชาชนที่หลุดออกนอกระบบการศึกษาคือโครงการใด?",
+                    options: [
+                        "Thailand Zero Dropout",
+                        "Career Plus",
+                        "Learning T-Map",
+                        "Smart Digital Library"
+                    ],
+                    correct: 0,
+                    explanation: "โครงการ Thailand Zero Dropout มุ่งมั่นตั้งใจไม่ให้เด็กคนไหนหลุดขอบระบบการศึกษาไปอย่างไร้ความหวัง",
+                    funny: "Zero Dropout คือเด็กไม่หลุดจากระบบ แต่ถ้าหัวหน้างานบ่นมากๆ ตัวฉันนี่แหละจะดรอปเอ้าท์ออกไปขายกล้วยทอดก่อน"
+                },
+                {
+                    q: '"การศึกษาที่เกิดจากการผสมผสานระหว่างการศึกษาในระบบ นอกระบบ และตามอัธยาศัย" ตรงกับนิยามในข้อใด?',
+                    options: [
+                        "การศึกษาขั้นพื้นฐาน",
+                        "การศึกษาตลอดชีวิต",
+                        "การศึกษาเพื่อการทำงาน",
+                        "การศึกษาภาคบังคับ"
+                    ],
+                    correct: 1,
+                    explanation: "นิยามของการศึกษาตลอดชีวิต (Life-long Education) คือสามประสานใน นอก อัธยาศัย ผสมกันจนกลมกล่อม",
+                    funny: "เรียนไปเรื่อยๆ จนสิ้นอายุขัย เรียนตั้งแต่อยู่ในครรภ์ยันเข้าโลงกันไปข้างเลย!"
+                },
+                {
+                    q: "ยุทธศาสตร์ชาติ 20 ปี (พ.ศ. 2561 - 2580) กำหนดวิสัยทัศน์ประเทศไทยไว้อย่างไร?",
+                    options: [
+                        "มั่นคง มั่งคั่ง ยั่งยืน",
+                        "เรียนดี มีความสุข มีรายได้",
+                        "สังคมแห่งการเรียนรู้ที่ยั่งยืน",
+                        "ประเทศพัฒนาแล้วด้วยนวัตกรรม"
+                    ],
+                    correct: 0,
+                    explanation: "คีย์เวิร์ดระดับชาติ 'มั่นคง มั่งคั่ง ยั่งยืน' ต้องท่องให้ได้ตั้งแต่ประถมยันสอบวัยเกษียณ!",
+                    funny: "มั่นคง มั่งคั่ง ยั่งยืน... แต่คนสอบเน้น 'มึนงง มั่งมี(หนี้) มุ่งนอน' แทนแล้วตอนนี้"
+                },
+                {
+                    q: '"สถิติพยากรณ์" หรือ "Big Data" ถูกระบุในจุดเน้นปี 2569 เพื่อนำมาใช้ประโยชน์ในเรื่องใด?',
+                    options: [
+                        "การจัดทำงบประมาณรายหัว",
+                        "การประเมินวิทยฐานะครู",
+                        "การออกแบบการเรียนรู้ที่แม่นยำและตอบโจทย์พื้นที่",
+                        "การจัดตั้งศูนย์ส่งเสริมการเรียนรู้ระดับตำบล"
+                    ],
+                    correct: 2,
+                    explanation: "นำสถิติและข้อมูลขนาดใหญ่มาเพื่อวิเคราะห์และออกแบบโปรแกรมการเรียนรู้ให้เหมาะกับแต่ละพื้นที่อย่างมีประสิทธิภาพ",
+                    funny: "หมอดูอาจจะพยากรณ์ความรัก แต่พยากรณ์พื้นที่ต้องพึ่ง Big Data สกร. เท่านั้นจ้า!"
+                },
+                {
+                    q: "คณะกรรมการส่งเสริมการเรียนรู้จังหวัด มีใครเป็นประธานกรรมการ?",
+                    options: [
+                        "ศึกษาธิการจังหวัด",
+                        "ผู้อำนวยการ สกร. จังหวัด",
+                        "ผู้ว่าราชการจังหวัด",
+                        "นายกองค์การบริหารส่วนจังหวัด"
+                    ],
+                    correct: 2,
+                    explanation: "ผู้ว่าราชการจังหวัดนั่งหัวโต๊ะเป็นประธานคณะกรรมการ สกร.ระดับจังหวัด เพื่อความยิ่งใหญ่เป็นเอกภาพ",
+                    funny: "พ่อเมืองงานยุ่งมาก แต่ก็ต้องมาเป็นประธานให้พวกเราด้วยนะ ห้ามจำสับสนกับศึกษาธิการเด็ดขาด!"
+                },
+                {
+                    q: "ตาม พ.ร.บ. การศึกษาแห่งชาติ รัฐต้องจัดให้บุคคลมีสิทธิและโอกาสเสมอกันในการรับการศึกษาขั้นพื้นฐานไม่น้อยกว่ากี่ปี?",
+                    options: [
+                        "9 ปี",
+                        "12 ปี",
+                        "15 ปี",
+                        "ตลอดชีวิต"
+                    ],
+                    correct: 1,
+                    explanation: "ตามรัฐธรรมนูญและกฎหมายกำหนด 'ไม่น้อยกว่าสิบสองปี' (12 ปี) โดยรัฐต้องจัดให้อย่างมีคุณภาพโดยไม่เก็บค่าใช้จ่าย",
+                    funny: "12 ปีนะพวกเธอ อย่าสับสนกับ 15 ปีที่มีโครงการขยายเพิ่มเติมนั่นล่ะ ดูคีย์เวิร์ดกฎหมายดีๆ"
+                },
+                {
+                    q: 'หน่วยงานใดมีหน้าที่ "พัฒนาเกณฑ์และทำการประเมินผลการประกันคุณภาพภายนอก"?',
+                    options: [
+                        "กรมส่งเสริมการเรียนรู้",
+                        "สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน",
+                        "สมศ. (สำนักงานรับรองมาตรฐานและประเมินคุณภาพการศึกษา)",
+                        "สภาการศึกษา"
+                    ],
+                    correct: 2,
+                    explanation: "ภายนอกต้องเป็น สมศ. (สำนักงานรับรองมาตรฐานและประเมินคุณภาพการศึกษา) ซึ่งเป็นองค์การมหาชนเป็นผู้ตรวจ",
+                    funny: "ได้ยินชื่อ สมศ. ทีไร โรงเรียนและคุณครูพากันสะดุ้งตัวโยน จัดเอกสารกองท่วมหัวทันที!"
+                },
+                {
+                    q: 'ข้อมูลข่าวสารตามข้อใดที่หน่วยงานของรัฐ "อาจมีคำสั่งมิให้เปิดเผยก็ได้"?',
+                    options: [
+                        "ข้อมูลที่อาจก่อให้เกิดความเสียหายต่อสถาบันพระมหากษัตริย์",
+                        "การเปิดเผยจะทำให้การบังคับใช้กฎหมายเสื่อมประสิทธิภาพ",
+                        "โครงสร้างและการจัดองค์กรของหน่วยงาน",
+                        "แผนงานและงบประมาณประจำปี"
+                    ],
+                    correct: 1,
+                    explanation: "ตาม พ.ร.บ. ข้อมูลข่าวสารฯ มาตรา 15 ข้อมูลที่หากเปิดเผยแล้วทำให้การบังคับใช้กฎหมายเสื่อมประสิทธิภาพ 'อาจ' สั่งไม่เปิดเผยได้ ส่วนข้อ ก. นั้น 'ห้ามเปิดเผยเด็ดขาด' ตามมาตรา 14",
+                    funny: "ข้อมูลบางอย่างปิดไว้ดีแล้ว เผยออกมาคนแถวนี้อาจจะลนลานกันหมดน่ะสิ ฮ่าๆ"
+                },
+                {
+                    q: "หากเจ้าหน้าที่มีคำสั่งมิให้เปิดเผยข้อมูลข่าวสาร ผู้ขอข้อมูลสามารถอุทธรณ์ได้ภายในกี่วัน?",
+                    options: [
+                        "7 วัน",
+                        "15 วัน",
+                        "30 วัน",
+                        "60 วัน"
+                    ],
+                    correct: 1,
+                    explanation: "สามารถอุทธรณ์ต่อคณะกรรมการวินิจฉัยการเปิดเผยข้อมูลข่าวสารภายใน 15 วัน นับแต่วันที่ได้รับแจ้งคำสั่งปฏิเสธ",
+                    funny: "จำเลข 15 ไว้ให้แม่น อย่ามัวแต่นอนอืดจนเลย 15 วัน ไม่งั้นสิทธิ์อุทธรณ์ปลิวหายไปกับสายลมนะจ๊ะ"
+                },
+                {
+                    q: 'การกระทำละเมิดของเจ้าหน้าที่ "ที่มิใช่การกระทำในการปฏิบัติหน้าที่" ผู้เสียหายต้องฟ้องใคร?',
+                    options: [
+                        "หน่วยงานของรัฐที่เจ้าหน้าที่สังกัด",
+                        "ฟ้องเจ้าหน้าที่เป็นการเฉพาะตัว",
+                        "ฟ้องกระทรวงการคลัง",
+                        "ฟ้องศาลปกครองเท่านั้น"
+                    ],
+                    correct: 1,
+                    explanation: "ถ้าทำละเมิดส่วนตัว (นอกเหนือหน้าที่ราชการ) ผู้เสียหายต้องฟ้องตัวเจ้าหน้าที่คนนั้นโดยตรง จะไปโบ้ยให้หน่วยงานรับผิดชอบไม่ได้",
+                    funny: "เช่น ไปขับรถชนชาวบ้านตอนลาพักร้อนไปหาหนูพุก แบบนี้ต้องรับผิดชอบเองนะ อ.กล้วย ช่วยไม่ได้เหมียว!"
+                },
+                {
+                    q: '"บรรดาข้อความที่ผู้มีอำนาจหน้าที่วางไว้ โดยจะอาศัยอำนาจของกฎหมายหรือไม่ก็ได้" คือหนังสือสั่งการประเภทใด?',
+                    options: [
+                        "คำสั่ง",
+                        "ระเบียบ",
+                        "ข้อบังคับ",
+                        "ประกาศ"
+                    ],
+                    correct: 1,
+                    explanation: "คำจำกัดความของ 'ระเบียบ' คือ ข้อความที่ผู้มีอำนาจวางไว้เพื่อใช้ปฏิบัติประจำ โดยจะอาศัยอำนาจกฎหมายหรือไม่ก็ได้",
+                    funny: "ระเบียบมักจะมาพร้อมความสับสน แต่ในการทำงานมันคือเสาหลักแห่งวิญญาณ!"
+                },
+                {
+                    q: 'หนังสือประชาสัมพันธ์ประเภทใดที่ "ไม่ต้องใช้กระดาษตราครุฑ"?',
+                    options: [
+                        "ประกาศ",
+                        "แถลงการณ์",
+                        "ข่าว",
+                        "ถูกถูกทุกข้อ"
+                    ],
+                    correct: 2,
+                    explanation: "หนังสือประชาสัมพันธ์มี 3 ชนิด คือ ประกาศ แถลงการณ์ และข่าว โดย 'ข่าว' จะไม่ใช้กระดาษตราครุฑในการออกประชาสัมพันธ์ทั่วไป",
+                    funny: "ถ้าข่าวก็ใช้ตราครุฑ นกครุฑในคลังหลวงคงบินเหนื่อยแย่เลยพวกเธอ"
+                },
+                {
+                    q: "ผู้สมัครสอบพนักงานราชการต้องมีอายุไม่ต่ำกว่ากี่ปี?",
+                    options: [
+                        "15 ปีบริบูรณ์",
+                        "18 ปีบริบูรณ์",
+                        "20 ปีบริบูรณ์",
+                        "22 ปีบริบูรณ์"
+                    ],
+                    correct: 1,
+                    explanation: "ตามกฎหมายพนักงานราชการและข้าราชการส่วนใหญ่ กำหนดอายุขั้นต่ำในการเริ่มทำงานไว้ที่ 18 ปีบริบูรณ์",
+                    funny: "18 ปีก็ทำงานหาเงินเลี้ยงชีพได้แล้ว ไม่ต้องรอให้โตจนหนวดขึ้นนะมนุษย์!"
+                },
+                {
+                    q: "ข้อใดคือโทษทางวินัยของพนักงานราชการตามระเบียบที่เกี่ยวข้อง?",
+                    options: [
+                        "ภาคทัณฑ์ ตัดเงินเดือน ลดขั้นเงินเดือน",
+                        "ภาคทัณฑ์ ตัดค่าตอบแทน ไล่ออก",
+                        "ว่ากล่าวตักเตือน ภาคทัณฑ์ ตัดค่าตอบแทน",
+                        "พนักงานราชการไม่มีโทษทางวินัย มีเพียงการเลิกสัญญา"
+                    ],
+                    correct: 1,
+                    explanation: "โทษทางวินัยพนักงานราชการมีเพียง 3 สถาน ได้แก่ ภาคทัณฑ์, ตัดค่าตอบแทน และไล่ออก (ไม่มีการลดขั้นเงินเดือนหรือลดขั้นสะสม)",
+                    funny: "ไม่มีลดขั้นเงินเดือนนะเหมียว ทำผิดแรงๆ ปุ๊บสมฉุยไล่กระเจิงทันที!"
+                },
+                {
+                    q: 'ใครคือ "ผู้รักษาการ" ตาม พ.ร.บ. ส่งเสริมการเรียนรู้ พ.ศ. 2566?',
+                    options: [
+                        "นายกรัฐมนตรี",
+                        "ปลัดกระทรวงศึกษาธิการ",
+                        "รัฐมนตรีว่าการกระทรวงศึกษาธิการ",
+                        "อธิบดีกรมส่งเสริมการเรียนรู้"
+                    ],
+                    correct: 2,
+                    explanation: "รัฐมนตรีว่าการกระทรวงศึกษาธิการ เป็นผู้รักษาการตาม พ.ร.บ.ส่งเสริมการเรียนรู้ พ.ศ. 2566 เป็นหลัก",
+                    funny: "ใครออกกฎหมายกระทรวงศธ. รมว.ศธ. ก็ต้องรักษาการอยู่แล้วจ้า อย่ากาไปถึงนายกฯ นะเธอ"
+                },
+                {
+                    q: 'นโยบาย "Anywhere Anytime" ของ สกร. มุ่งเน้นการใช้เทคโนโลยีใดเป็นสำคัญ?',
+                    options: [
+                        "แพลตฟอร์มดิจิทัลและ AI",
+                        "วิทยุและโทรทัศน์ดาวเทียม",
+                        "รถห้องสมุดเคลื่อนที่",
+                        "การจัดตั้งอาสาสมัคร สกร."
+                    ],
+                    correct: 0,
+                    explanation: "Anywhere Anytime เรียนรู้ได้ทุกที่ทุกเวลา ย่อมหนีไม่พ้นการขับเคลื่อนผ่านแพลตฟอร์มดิจิทัลที่ก้าวไกลและเทคโนโลยีปัญญาประดิษฐ์ (AI)",
+                    funny: "เรียนได้ทุกที่ ทุกเวลา แม้กระทั่งตอนกำลังป้อนอาหารเม็ดให้สมฉุยก็เรียนได้เหมียว!"
+                },
+                {
+                    q: 'เหตุการณ์ปัจจุบัน: "Thailand Zero Dropout" มีเป้าหมายสอดคล้องกับดัชนีชี้วัดสากลใดมากที่สุด?',
+                    options: [
+                        "IMD (การรู้หนังสือ)",
+                        "การลดจำนวนเด็กเยาวชนที่ไม่อยู่ในระบบการศึกษา (NEETs)",
+                        "การประเมินผล PISA",
+                        "การแข่งขันทางดิจิทัล"
+                    ],
+                    correct: 1,
+                    explanation: "กลุ่ม NEETs คือเยาวชนที่ไม่ได้อยู่ในการศึกษา การทำงาน หรือการฝึกอบรม ซึ่งโครงการ Zero Dropout มุ่งหวังลดกลุ่มนี้ให้ต่ำลง",
+                    funny: "เยาวชนที่หาทางไปต่อไม่เจอ สมฉุยและ อ.กล้วย จะกระโดดเข้าไปช่วยอุ้มพากลับมาเรียนจ้า"
+                },
+                // --- Part A Additions ---
+                {
+                    q: '"สำนักงานส่งเสริมการเรียนรู้ประจำจังหวัด" ทำหน้าที่เป็นหน่วยงานประเภทใดตาม พ.ร.บ. ส่งเสริมการเรียนรู้ พ.ศ. 2566?',
+                    options: [
+                        "สถานศึกษา",
+                        "หน่วยจัดการเรียนรู้",
+                        "หน่วยงานธุรการของคณะกรรมการส่งเสริมการเรียนรู้จังหวัด",
+                        "องค์กรอิสระตามกฎหมาย"
+                    ],
+                    correct: 2,
+                    explanation: "ทำหน้าที่เป็นหน่วยงานธุรการของคณะกรรมการส่งเสริมการเรียนรู้จังหวัด ตาม พ.ร.บ. ส่งเสริมการเรียนรู้ พ.ศ. 2566",
+                    funny: "เป็นหน่วยงานหลักคอยประสานงาน เป็นธุรการทำงานงกๆ ต้อนรับ อ.กล้วย มาเยือนเหมียว!"
+                },
+                {
+                    q: "ใครทำหน้าที่เป็น \"เลขานุการ\" ในคณะกรรมการส่งเสริมการเรียนรู้จังหวัด?",
+                    options: [
+                        "ศึกษาธิการจังหวัด",
+                        "ผู้ว่าราชการจังหวัด",
+                        "ผู้อำนวยการสำนักงานส่งเสริมการเรียนรู้ประจำจังหวัด",
+                        "ปลัดจังหวัด"
+                    ],
+                    correct: 2,
+                    explanation: "ผู้อำนวยการสำนักงานส่งเสริมการเรียนรู้ประจำจังหวัด ทำหน้าที่เป็นเลขานุการ โดยมีผู้ว่าฯ เป็นประธานจังหวัด",
+                    funny: "จำคู่นี้ไว้เลยนะ! ผู้ว่าฯ คือบิ๊กบอส ส่วน ผอ.สกร. จังหวัดคือมือประสานทิศทางเลขานุการ"
+                },
+                {
+                    q: "การทำสัญญาจ้างพนักงานราชการทั่วไปตามประกาศรับสมัครนี้ มีระยะเวลาจ้างครั้งละไม่เกินกี่ปี?",
+                    options: [
+                        "1 ปี",
+                        "2 ปี",
+                        "4 ปี",
+                        "5 ปี"
+                    ],
+                    correct: 2,
+                    explanation: "ตามกฎหมายพนักงานราชการ การทำสัญญาจ้างจะมีกำหนดจ้างได้ครั้งละไม่เกิน 4 ปี (และไม่เกินรอบวงเงินงบประมาณ)",
+                    funny: "สัญญา 4 ปี ทำดีๆ ก็ต่อสัญญายาวๆ ได้ อย่าเพิ่งถูกส่งกลับบ้านซะก่อนล่ะมนุษย์!"
+                },
+                {
+                    q: "ตราครุฑสำหรับแบบพิมพ์หนังสือราชการมีกี่ขนาด และขนาดมาตรฐาน (ตัวใหญ่) มีความสูงเท่าใด?",
+                    options: [
+                        "2 ขนาด สูง 3 เซนติเมตร",
+                        "2 ขนาด สูง 3.5 เซนติเมตร",
+                        "3 ขนาด สูง 3 เซนติเมตร",
+                        "3 ขนาด สูง 1.5 เซนติเมตร"
+                    ],
+                    correct: 0,
+                    explanation: "ตราครุฑมาตรฐานมี 2 ขนาด คือ ขนาดใหญ่สูง 3 เซนติเมตร และขนาดเล็กสูง 1.5 เซนติเมตร",
+                    funny: "ขนาด 3 เซนเน้นๆ ห้ามพกไม้บรรทัดผิดขนาดไปวาดตอนสอบนะเออ!"
+                },
+                {
+                    q: "หนังสือราชการประเภทใดที่ใช้กระดาษ \"บันทึกข้อความ\"?",
+                    options: [
+                        "หนังสือภายนอก",
+                        "หนังสือภายใน",
+                        "หนังสือสั่งการ",
+                        "หนังสือประทับตรา"
+                    ],
+                    correct: 1,
+                    explanation: "หนังสือภายใน คือหนังสือติดต่อสื่อสารภายในกระทรวงเดียวกันหรือหน่วยงานเดียวกัน โดยจะใช้กระดาษบันทึกข้อความ",
+                    funny: "จำง่ายๆ สื่อสารคนกันเองหลังบ้านก็ใช้กระดาษบันทึกข้อความสั้นๆ ไม่ยุ่งยาก"
+                },
+                {
+                    q: "ตาม พ.ร.บ. ข้อมูลข่าวสารฯ \"ข้อมูลข่าวสารส่วนบุคคล\" หมายความว่าข้อมูลเกี่ยวกับอะไร?",
+                    options: [
+                        "ข้อมูลที่เกี่ยวกับสุขภาพและฐานะการเงินของเอกชนเท่านั้น",
+                        "ข้อมูลข่าวสารเกี่ยวกับสิ่งเฉพาะตัวของบุคคลที่ระบุตัวผู้นั้นได้",
+                        "ข้อมูลที่หน่วยงานรัฐปกปิดไว้เป็นความลับ",
+                        "ข้อมูลที่เจ้าหน้าที่ใช้ติดต่อกันเป็นการส่วนตัว"
+                    ],
+                    correct: 1,
+                    explanation: "นิยามของข้อมูลข่าวสารส่วนบุคคลคือสิ่งเฉพาะตัวที่ทำให้ระบุตัวตนบุคคลนั้นได้ เช่น ประวัติการศึกษา ฐานะการเงิน สุขภาพ ลายพิมพ์นิ้วมือ",
+                    funny: "ข้อมูลทุกอย่างที่ทำให้รู้ว่าคุณคือคุณ รวมถึงข้อมูลการแอบขโมยปลาทูของสมฉุยด้วยเหมียว!"
+                },
+                {
+                    q: "\"คนต่างด้าว\" ตาม พ.ร.บ. ข้อมูลข่าวสารฯ หมายถึงบุคคลธรรมดาที่ไม่มีสัญชาติไทยและ...?",
+                    options: [
+                        "ไม่ได้เสียภาษีให้ประเทศไทย",
+                        "ไม่มีถิ่นที่อยู่ในประเทศไทย",
+                        "ไม่ได้ประกอบอาชีพในประเทศไทย",
+                        "ไม่ได้จดทะเบียนนิติบุคคล"
+                    ],
+                    correct: 1,
+                    explanation: "ต่างด้าวตาม พ.ร.บ.ข้อมูลข่าวสารฯ คือ บุคคลธรรมดาที่ไม่มีสัญชาติไทย และไม่มีถิ่นที่อยู่ในประเทศไทย",
+                    funny: "ไม่มีถิ่นที่อยู่ด้วยนะ ดูทริกกฎหมายคำว่า 'และ' ดีๆ อย่าให้ข้อสอบหลอกเอาล่ะ"
+                },
+                {
+                    q: "ในกรณีที่เจ้าหน้าที่กระทำละเมิด \"ในการปฏิบัติหน้าที่\" ผู้เสียหายต้องฟ้องใคร?",
+                    options: [
+                        "ฟ้องเจ้าหน้าที่ผู้กระทำผิดโดยตรง",
+                        "ฟ้องหน่วยงานของรัฐที่เจ้าหน้าที่ผู้นั้นสังกัด",
+                        "ฟ้องรัฐมนตรีเจ้าสังกัด",
+                        "ฟ้องศาลปกครองเพื่อเอาผิดทางวินัย"
+                    ],
+                    correct: 1,
+                    explanation: "หากกระทำละเมิด 'ในหน้าที่' ผู้เสียหายต้องฟ้องหน่วยงานรัฐ จะฟ้องตัวเจ้าหน้าที่โดยตรงไม่ได้ (ตาม พ.ร.บ. ความรับผิดทางละเมิดของเจ้าหน้าที่ พ.ศ. 2539)",
+                    funny: "หลวงรับเคลมฟ้องหน่วยงานไปก่อน แล้วหลวงค่อยมาไล่เบี้ยเก็บตังค์กับเจ้าหน้าที่ทีหลังเจ็บจี๊ด!"
+                },
+                {
+                    q: "อายุความในการเรียกให้เจ้าหน้าที่ชดใช้ค่าสินไหมทดแทนกรณีละเมิดต่อหน่วยงานรัฐ มีกำหนดกี่ปี?",
+                    options: [
+                        "1 ปี นับแต่วันที่รู้ถึงการละเมิดและรู้ตัวเจ้าหน้าที่",
+                        "2 ปี นับแต่วันที่รู้ถึงการละเมิดและรู้ตัวเจ้าหน้าที่",
+                        "5 ปี นับแต่วันทำละเมิด",
+                        "10 ปี นับแต่วันทำละเมิด"
+                    ],
+                    correct: 1,
+                    explanation: "อายุความสะสางกรณีละเมิดต่อรัฐมีกำหนด 2 ปี นับแต่วันที่รู้ถึงการละเมิดและรู้ตัวเจ้าหน้าที่ผู้ต้องชดใช้",
+                    funny: "เลข 2 นำชัยท่องไว้ให้ขึ้นใจ สอบผ่านสบายแบบไม่มีข้อกังขาเหมียว"
+                },
+                {
+                    q: "\"Thailand Zero Dropout\" มีกลุ่มเป้าหมายหลักคือกลุ่มใดตามจุดเน้นปี 2569?",
+                    options: [
+                        "เด็กนักเรียนในระดับอนุบาล",
+                        "กลุ่มเยาวชนที่ไม่อยู่ในระบบการศึกษา การทำงาน หรือการฝึกอบรม (NEETs)",
+                        "ผู้สูงอายุที่ต้องการเรียนรู้อาชีพใหม่",
+                        "ข้าราชการที่ต้องการลาศึกษาต่อ"
+                    ],
+                    correct: 1,
+                    explanation: "เน้นเยาวชนกลุ่ม NEETs (Not in Education, Employment, or Training) เพื่อพาหลุดพ้นวัฏจักรอับทิศทาง",
+                    funny: "สมฉุยและ อ.กล้วย คอนเฟิร์ม! เด็กกลุ่มนี้สำคัญมาก ต้องได้รับการสนับสนุนเร่งด่วนที่สุด!"
+                },
+                {
+                    q: "ใครเป็นผู้รักษาการตาม พ.ร.บ. วิธีปฏิบัติราชการทางปกครอง พ.ศ. 2539?",
+                    options: [
+                        "ประธานศาลปกครองสูงสุด",
+                        "รัฐมนตรีว่าการกระทรวงมหาดไทย",
+                        "นายกรัฐมนตรี",
+                        "ปลัดสำนักนายกรัฐมนตรี"
+                    ],
+                    correct: 2,
+                    explanation: "นายกรัฐมนตรี เป็นผู้รักษาการตาม พ.ร.บ. วิธีปฏิบัติราชการทางปกครอง พ.ศ. 2539",
+                    funny: "กฎหมายแม่บทเกี่ยวกับการปกครอง ย่อมต้องเป็นนายกรัฐมนตรีคุมบังเหียนอยู่แล้ว!"
+                },
+                {
+                    q: "การนับระยะเวลาเริ่มต้นเรียน \"การศึกษาภาคบังคับ\" เริ่มตั้งแต่อายุเท่าใด?",
+                    options: [
+                        "อายุย่างเข้าปีที่หก",
+                        "อายุย่างเข้าปีที่เจ็ด",
+                        "อายุครบเจ็ดปีบริบูรณ์",
+                        "เมื่อเข้าเรียนชั้นประถมศึกษาปีที่ 1"
+                    ],
+                    correct: 1,
+                    explanation: "พ.ร.บ. การศึกษาภาคบังคับ กำหนดให้เด็กเข้าเรียนเมื่ออายุย่างเข้าปีที่เจ็ด จนถึงอายุย่างเข้าปีที่สิบหก",
+                    funny: "ย่างเข้าปีที่เจ็ดนะจำไว้ให้ดี ไม่ใช่เจ็ดปีบริบูรณ์เป๊ะๆ ระวังโดนหลอกจุดเล็กๆ นี้!"
+                },
+                {
+                    q: "หน่วยงานใดมีฐานะเป็น \"นิติบุคคลและเป็นกรม\" ในสังกัดกระทรวงศึกษาธิการ?",
+                    options: [
+                        "สำนักงานศึกษาธิการจังหวัด",
+                        "สำนักงานเขตพื้นที่การศึกษา",
+                        "สำนักงานปลัดกระทรวงศึกษาธิการ",
+                        "ศูนย์ส่งเสริมการเรียนรู้ระดับอำเภอ"
+                    ],
+                    correct: 2,
+                    explanation: "สำนักงานปลัดกระทรวงศึกษาธิการ (สป.) มีฐานะเป็นนิติบุคคลและเป็นกรม สังกัดกระทรวงศึกษาธิการ",
+                    funny: "สป. มีความใหญ่โตและกว้างขวางมาก ดำรงฐานะเป็นกรมและนิติบุคคลตัวจริง!"
+                },
+                {
+                    q: "คำสั่งทางปกครองที่ \"มีข้อผิดพลาดเล็กน้อย\" เจ้าหน้าที่สามารถดำเนินการอย่างไรได้?",
+                    options: [
+                        "ต้องยกเลิกคำสั่งนั้นแล้วออกใหม่",
+                        "ปล่อยไว้หากไม่กระทบสาระสำคัญ",
+                        "แก้ไขเพิ่มเติมได้เสมอ",
+                        "ต้องให้ผู้บังคับบัญชาเหนือขึ้นไปเป็นผู้อนุมัติแก้ไข"
+                    ],
+                    correct: 2,
+                    explanation: "ตามกฎหมาย ข้อผิดพลาดเล็กน้อยในคำสั่งทางปกครอง (เช่น พิมพ์ผิดคำ สะกดผิด) เจ้าหน้าที่แก้ไขเพิ่มเติมได้เสมอ",
+                    funny: "ผิดนิดพิมพ์เบลอเหมือนสมฉุยจำชื่อตัวเองไม่ได้ ก็แค่หยิบปากกามาแก้เลย ไม่ต้องฉีกทิ้งหรอกมนุษย์!"
+                },
+                {
+                    q: "\"Quick Win\" หรือภารกิจเร่งด่วนของ สกร. ในปี 2569 คือข้อใด?",
+                    options: [
+                        "การก่อสร้างสำนักงานใหม่ทุกจังหวัด",
+                        "การปรับอัตราเงินอุดหนุนรายหัวการจัดการศึกษาขั้นพื้นฐาน",
+                        "การยกเลิกหลักสูตรเก่าทั้งหมด",
+                        "การจ้างงานอาสาสมัครเพิ่มขึ้น 2 เท่า"
+                    ],
+                    correct: 1,
+                    explanation: "การปรับอัตราเงินอุดหนุนรายหัว ถือเป็น Quick Win ที่ช่วยยกระดับคุณภาพชีวิตผู้เรียน สกร. ได้รวดเร็วและตรงจุด",
+                    funny: "เติมพลังงบประมาณรายหัว ให้ผู้เรียนสู้ชีวิตมีอุปกรณ์และอาหารสมองเพียบ!"
+                },
+                {
+                    q: "คณะกรรมการบริหารพนักงานราชการ มีชื่อย่อว่าอะไร?",
+                    options: [
+                        "ก.ค.ศ.",
+                        "คพร.",
+                        "ก.พ.ร.",
+                        "ก.พ."
+                    ],
+                    correct: 1,
+                    explanation: "คพร. ย่อมาจาก คณะกรรมการบริหารพนักงานราชการ ดูแลนโยบายพนักงานราชการทั้งประเทศ",
+                    funny: "คพร. ท่องสะกดไว้ให้ดี อย่าจำสับสนไปตีกับ ก.พ.ร. หรือ ก.พ. สองหน่วยงานนั้นดูแลข้าราชการเป็นหลัก"
+                },
+                {
+                    q: "โทษทางวินัยพนักงานราชการข้อใดที่ \"ไม่มี\" ในระเบียบสำนักนายกรัฐมนตรี?",
+                    options: [
+                        "ภาคทัณฑ์",
+                        "ตัดค่าตอบแทน",
+                        "ลดขั้นเงินเดือน",
+                        "ไล่ออก"
+                    ],
+                    correct: 2,
+                    explanation: "พนักงานราชการมีโทษวินัย 3 สถานคือ ภาคทัณฑ์, ตัดค่าตอบแทน และไล่ออก ไม่มีโทษ 'ลดขั้นเงินเดือน' (ไม่มีขั้นให้ลด ใช้เป็นค่าตอบแทนตามสัญญา)",
+                    funny: "ถ้าทำผิดวินัยขั้นร้ายแรงก็โบกมือลากันเลยเหมียว ไม่มีการลดขั้นใจเย็นๆ หรอกนะ!"
+                },
+                {
+                    q: "หนังสือราชการที่ต้องปฏิบัติให้ \"เร็วกว่าปกติ\" มีกี่ประเภท?",
+                    options: [
+                        "2 ประเภท (ด่วน, ด่วนที่สุด)",
+                        "3 ประเภท (ด่วน, ด่วนมาก, ด่วนที่สุด)",
+                        "4 ประเภท (ด่วน, ด่วนมาก, ด่วนที่สุด, ด่วนภายใน)",
+                        "ไม่มีกำหนดตายตัว ขึ้นอยู่กับดุลยพินิจ"
+                    ],
+                    correct: 1,
+                    explanation: "ระเบียบงานสารบรรณระบุชัดเจน มี 3 ประเภท ได้แก่ ด่วนที่สุด ด่วนมาก และด่วน",
+                    funny: "ด่วนที่สุด=ทำทันที, ด่วนมาก=ทำโดยเร็ว, ด่วน=ทำเร็วกว่าปกติ จำไว้สอบปังแน่!"
+                },
+                {
+                    q: "นโยบาย \"Learn to Earn\" มุ่งเน้นการแก้ปัญหาในเรื่องใดเป็นหลัก?",
+                    options: [
+                        "การเรียนเพื่อสอบแข่งขัน",
+                        "การเรียนรู้เพื่อสร้างรายได้และพึ่งพาตนเองได้ยั่งยืน",
+                        "การเพิ่มจำนวนผู้จบปริญญาตรี",
+                        "การส่งเสริมการไปทำงานต่างประเทศ"
+                    ],
+                    correct: 1,
+                    explanation: "เน้นการเรียนรู้สายอาชีพ ทำมาหากิน ยืนด้วยลำแข้งตนเองได้อย่างทระนงและมีรายได้เข้ามาจริง",
+                    funny: "เรียนเพื่อมีข้าวกิน มีเงินซื้ออาหารเปียกเปย์สมฉุยนี่แหละโดนใจที่สุด!"
+                },
+                {
+                    q: "\"การศึกษาขั้นพื้นฐาน\" ตาม พ.ร.บ. การศึกษาแห่งชาติ หมายความว่าอย่างไร?",
+                    options: [
+                        "การศึกษาระดับประถมศึกษาและมัธยมศึกษา",
+                        "การศึกษาก่อนระดับอุดมศึกษา",
+                        "การศึกษาภาคบังคับ 9 ปี",
+                        "การศึกษาสำหรับเด็กและเยาวชนที่ด้อยโอกาส"
+                    ],
+                    correct: 1,
+                    explanation: "นิยามกฎหมาย: การศึกษาขั้นพื้นฐาน หมายความว่า การศึกษาก่อนระดับอุดมศึกษา",
+                    funny: "อย่าเพิ่งมโนไปถึงประถมมัธยมนั่นเฉยๆ นิยามรวมทั้งหมดคือก่อนระดับมหาลัยหรืออุดมศึกษานั่นเองเหมียว!"
+                }
+            ],
+            partB: [
+                {
+                    q: 'ตาม พ.ร.บ. ส่งเสริมการเรียนรู้ พ.ศ. 2566 การจัดการเรียนรู้ "เพื่อคุณวุฒิตามระดับ" มีเป้าหมายหลักสำหรับกลุ่มใด?',
+                    options: [
+                        "ผู้ที่อยู่ในระบบโรงเรียนปกติ",
+                        "ผู้ที่มิได้ศึกษาอยู่ในสถานศึกษาเพื่อให้ได้รับคุณวุฒิระดับพื้นฐาน",
+                        "ผู้ที่ต้องการพัฒนาทักษะวิชาชีพชั้นสูงในมหาวิทยาลัย",
+                        "ข้าราชการที่ต้องการเพิ่มวิทยฐานะ"
+                    ],
+                    correct: 1,
+                    explanation: "มุ่งเน้นกลุ่มผู้ที่ไม่ได้เรียนในโรงเรียนปกติ แต่อยากได้วุฒิประถม ม.ต้น ม.ปลาย เพื่อไปประกอบอาชีพต่อไป",
+                    funny: "สำหรับคนที่สู้ชีวิตอยู่นอกโรงเรียน แต่อยากได้วุฒิไปสมัครงาน สกร. อ้าแขนรับโอบอุ้มทุกคนเสมอ!"
+                },
+                {
+                    q: 'ปรัชญา "คิดเป็น" ของ ดร. โกวิท วรพิพัฒน์ ระบุว่าการตัดสินใจต้องใช้ข้อมูลสำคัญ 3 ประการประกอบกัน ยกเว้นข้อใด?',
+                    options: [
+                        "ข้อมูลตนเอง",
+                        "ข้อมูลทางวิชาการ",
+                        "ข้อมูลสังคมและสิ่งแวดล้อม",
+                        "ข้อมูลฐานะทางการเงิน"
+                    ],
+                    correct: 3,
+                    explanation: "ปรัชญาคิดเป็น มีเสาหลัก 3 ข้อมูล คือ ตนเอง, วิชาการ, สังคมสิ่งแวดล้อม ไม่มีข้อ 'ฐานะทางการเงิน' (แม้เงินจะสำคัญมากต่อชีวิตเราก็ตาม)",
+                    funny: "ถึงไม่มีตังค์ในกระเป๋า แต่มีข้อมูลตนเอง วิชาการ สังคมก็นับเป็นคน 'คิดเป็น' ตามทฤษฎีแล้วล่ะ!"
+                },
+                {
+                    q: 'ข้อใดคือ "สมรรถนะหลัก" ตามหลักสูตรส่งเสริมการเรียนรู้เพื่อคุณวุฒิตามระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2567?',
+                    options: [
+                        "การคิดเป็น การสื่อสาร การจัดการตนเอง และความเป็นพลเมือง",
+                        "ทักษะการอ่าน การเขียน และการคำนวณ",
+                        "ความรู้ คุณธรรม และทักษะชีวิต",
+                        "การใช้เทคโนโลยี การวิจัย และการเรียนรู้ตลอดชีวิต"
+                    ],
+                    correct: 0,
+                    explanation: "หลักสูตรใหม่เน้นสมรรถนะหลัก: การคิดเป็น การสื่อสาร การจัดการตนเอง และความเป็นพลเมืองที่มีคุณภาพ",
+                    funny: "คิดเป็น จัดการตัวเองให้รอดจากงานกองท่วมหัว และมีชีวิตรอดอย่างเป็นพลเมืองชั้นดีก็สุดยอดแล้วคุณโยม"
+                },
+                {
+                    q: "ผู้เรียนในหลักสูตร สกร. 2567 ต้องปฏิบัติกิจกรรมพัฒนาคุณภาพชีวิต (กพช.) ไม่น้อยกว่ากี่ชั่วโมงจึงจะจบหลักสูตร?",
+                    options: [
+                        "50 ชั่วโมง",
+                        "100 ชั่วโมง",
+                        "150 ชั่วโมง",
+                        "200 ชั่วโมง"
+                    ],
+                    correct: 1,
+                    explanation: "ผู้เรียนทุกคนต้องทำกิจกรรมพัฒนาคุณภาพชีวิต (กพช.) ไม่น้อยกว่า 100 ชั่วโมง สะสมความดีกันยาวๆ ไป",
+                    funny: "100 ชั่วโมงทำกิจกรรมเพื่อสังคมปัดกวาดเช็ดถูสร้างสรรค์ ห้ามแอบไปนอนกลางวันนะ!"
+                },
+                {
+                    q: '"Learn to Earn" ตามนโยบาย สกร. มุ่งเน้นการยกระดับการศึกษา in ลักษณะใด?',
+                    options: [
+                        "การเรียนเพื่อสอบเข้ามหาวิทยาลัยชื่อดัง",
+                        "การเรียนรู้สู่อาชีพ สร้างรายได้ และพึ่งพาตนเองได้",
+                        "การเรียนรู้ภาษาต่างประเทศเพื่อไปทำงานต่างประเทศ",
+                        "การเรียนรู้เพื่อทำวิจัยระดับปริญญาเอก"
+                    ],
+                    correct: 1,
+                    explanation: "เน้นการสร้างช่องทางเรียนเพื่อทำงาน มีงานทำ มีเงินใช้ พึ่งพาตนเองได้ในสังคมยุคฝืดเคือง",
+                    funny: "เรียนแล้วไม่ได้เงินจะเอาแรงที่ไหนไปเคี้ยวข้าวล่ะจ๊ะ เน้นหาเงินนี่แหละโดนใจวัยรุ่น!"
+                },
+                {
+                    q: 'ระบบที่ใช้สำหรับ "สะสมหน่วยการเรียนรู้" จากการเรียนทั้ง 3 รูปแบบเพื่อเทียบรับคุณวุฒิเรียกว่าอะไร?',
+                    options: [
+                        "Big Data System",
+                        "Learning T-Map",
+                        "ธนาคารหน่วยกิต (Credit Bank)",
+                        "E-Portfolio"
+                    ],
+                    correct: 2,
+                    explanation: "ระบบธนาคารหน่วยกิต (Credit Bank) เป็นกลไกหลักในการสะสมและเทียบโอนหน่วยการเรียนรู้จากทุกช่องทาง",
+                    funny: "สะสมหน่วยกิตเก๋ๆ เหมือนสะสมแต้มบัตรเครดิต ครบปุ๊บแลกวุฒิบัตรเอาไปอวด อ.กล้วย ได้ทันที"
+                },
+                {
+                    q: 'ข้อใดคือสัดส่วนการ "เทียบโอนผลการเรียน" ที่ทำได้สูงสุดในแต่ละระดับการศึกษา?',
+                    options: [
+                        "ไม่เกินร้อยละ 25",
+                        "ไม่เกินร้อยละ 50",
+                        "ไม่เกินร้อยละ 60",
+                        "ไม่เกินร้อยละ 75"
+                    ],
+                    correct: 3,
+                    explanation: "ระเบียบอนุญาตให้เทียบโอนผลการเรียนรู้เดิมได้สูงสุดไม่เกินร้อยละ 75 ของโครงสร้างหลักสูตรทั้งหมด",
+                    funny: "โอนไปแล้ว 75% ที่เหลืออีก 25% ก็ต้องมาเรียนให้เจอกันหน่อยนะ ไม่ใช่หายไปหมดเล้ย!"
+                },
+                {
+                    q: 'ในกระบวนการประกันคุณภาพการศึกษา "การประกันคุณภาพภายใน" เป็นหน้าที่ของหน่วยงานใด?',
+                    options: [
+                        "สำนักงานรับรองมาตรฐานและประเมินคุณภาพการศึกษา (สมศ.)",
+                        "กระทรวงมหาดไทย",
+                        "สถานศึกษาและหน่วยงานต้นสังกัด",
+                        "องค์กรปกครองส่วนท้องถิ่น"
+                    ],
+                    correct: 2,
+                    explanation: "การประกันคุณภาพภายในเป็นเรื่อง 'ของเรา' สถานศึกษาร่วมกับหน่วยงานต้นสังกัดช่วยกันดูแลปรับปรุงตนเอง",
+                    funny: "ของภายในบ้านเรา เราต้องกวาดเอง อย่าเพิ่งให้แขกนอกบ้าน (สมศ.) เข้ามาช่วยชี้เป้าหยากไย่เลยนะ"
+                },
+                {
+                    q: "ขั้นตอนแรกของการระบบประกันคุณภาพภายในของสถานศึกษาสังกัด สกร. คือข้อใด?",
+                    options: [
+                        "การจัดทำรายงานประจำปี (SAR)",
+                        "การกำหนดมาตรฐานการศึกษาของสถานศึกษา",
+                        "การประเมินผลจากหน่วยงานภายนอก",
+                        "การประกาศผลการเรียนของผู้เรียน"
+                    ],
+                    correct: 1,
+                    explanation: "จุดเริ่มต้นที่ดีต้องเริ่มจากการ 'กำหนดมาตรฐานการศึกษาของสถานศึกษา' ก่อน เพื่อใช้เป็นบรรทัดฐานในการวัดตัวเอง",
+                    funny: "ถ้าไม่มีเป้าหมายมาตรฐานปักไว้ แล้วจะเอาอะไรไปบอกว่าพวกเราทำงานเทพจริงมั้ย?"
+                },
+                {
+                    q: 'ใครมีหน้าที่พัฒนาเกณฑ์และทำการประเมินผล "การประกันคุณภาพภายนอก"?',
+                    options: [
+                        "กรมส่งเสริมการเรียนรู้",
+                        "สภาการศึกษา",
+                        "สมศ. (องค์การมหาชน)",
+                        "คุรุสภา"
+                    ],
+                    correct: 2,
+                    explanation: "สมศ. (สำนักงานรับรองมาตรฐานและประเมินคุณภาพการศึกษา) เจ้าเก่าเจ้าเดิม ตรวจสอบภายนอกเพื่อยกระดับมาตรฐานสากล",
+                    funny: "ท่องจำให้ดี มีออกสอบแน่ สมศ. ยืนหนึ่งเรื่องภายนอก ใครกาคุรุสภาไปตีมือหักนะ!"
+                },
+                {
+                    q: "การวิจัยประเภทใดที่มุ่งเน้นการแก้ปัญหาและพัฒนาการเรียนรู้ที่เกิดขึ้นในห้องเรียนโดยตรง?",
+                    options: [
+                        "การวิจัยเชิงนโยบาย",
+                        "การวิจัยในชั้นเรียน",
+                        "การวิจัยเชิงประวัติศาสตร์",
+                        "การวิจัยพื้นฐาน"
+                    ],
+                    correct: 1,
+                    explanation: "การวิจัยในชั้นเรียน (Classroom Action Research) แก้ไขปัญหานักเรียนหรือผู้เรียนมีปัญหารายคนรายกลุ่มได้ทันท่วงที",
+                    funny: "เด็กคนไหนไม่สู้เรียน แอบนอน หรือทำข้อสอบไม่ได้ ครูต้องทำวิจัยในชั้นเรียนมาช่วยดันหลังด่วน!"
+                },
+                {
+                    q: "ขั้นตอนแรกของการกระบวนการวิจัยคือข้อใด?",
+                    options: [
+                        "การเก็บรวบรวมข้อมูล",
+                        "การกำหนดปัญหาการวิจัย",
+                        "การออกแบบการวิจัย",
+                        "การวิเคราะห์ข้อมูล"
+                    ],
+                    correct: 1,
+                    explanation: "ก่อนจะวิ่งไปทำอย่างอื่น ต้องรู้ก่อนว่าหัวข้อหรือ 'ปัญหาของการวิจัย' คืออะไร ไม่งั้นจะไปวิจัยเรื่องอะไรล่ะจ๊ะพ่อคู๊ณ!",
+                    funny: "หาปัญหาก่อน เหมือนชีวิตที่มีปัญหารุมล้อมทุกวันนี้แหละ ค่อยๆ หาทางแก้นะจ๊ะ"
+                },
+                {
+                    q: '"แบบทดสอบที่มีอำนาจจำแนก" (Discrimination) หมายความว่าอย่างไร?',
+                    options: [
+                        "เป็นข้อสอบที่ยากมากจนไม่มีใครทำได้",
+                        "เป็นข้อสอบที่สามารถแยกคนเก่งออกจากคนไม่เก่งได้",
+                        "เป็นข้อสอบที่ออกตรงตามเนื้อหาที่สอน",
+                        "เป็นข้อสอบที่มีความคงเส้นคงวาในการวัด"
+                    ],
+                    correct: 1,
+                    explanation: "อำนาจจำแนก (ค่า r) คือตัวชี้วัดว่าข้อสอบสามารถกรองแยกแยะระหว่างคนที่มีความรู้ดี (กลุ่มเก่ง) และผู้เรียนที่ยังไม่เข้าใจ (กลุ่มอ่อน) ได้",
+                    funny: "ไม่ใช่ข้อสอบเหยียดผิวเหยียดเพศนะแม่! มันคือการ 'แยกคนเก่ง' กับ 'คนงง' ออกจากกันจ้า"
+                },
+                {
+                    q: 'เครื่องมือวิจัยข้อใดที่ "ไม่ใช่" เครื่องมือในการเก็บรวบรวมข้อมูล?',
+                    options: [
+                        "แบบสอบถาม",
+                        "แบบสัมภาษณ์",
+                        "โปรแกรมสถิติ SPSS",
+                        "แบบสังเกตพฤติกรรม"
+                    ],
+                    correct: 2,
+                    explanation: "SPSS เป็นเพียงซอฟต์แวร์คอมพิวเตอร์ที่ใช้ในการคำนวณและวิเคราะห์ผลสถิติหลังจากการเก็บข้อมูลเสร็จแล้ว ไม่ใช่เครื่องมือกระดาษหรือสื่อที่เอาไปใช้เก็บข้อมูลโดยตรง",
+                    funny: "อย่าหลงกลชื่อภาษาอังกฤษดูหรูหราล่ะ SPSS มีไว้กดคลิกวิเคราะห์จ้า ไม่ได้เอาไปแจกให้คนทำสักหน่อย!"
+                },
+                {
+                    q: "วงจรการวิจัยเชิงปฏิบัติการ (Action Research) มีขั้นตอนหลักคือข้อใด?",
+                    options: [
+                        "วางแผน - ปฏิบัติ - สังเกต - สะท้อนผล (PAOR)",
+                        "อ่าน - เขียน - คิด - วิเคราะห์",
+                        "สำรวจ - ทดลอง - สรุป - รายงาน",
+                        "ตั้งปัญหา - ตั้งสมมติฐาน - ทดลอง - วิเคราะห์"
+                    ],
+                    correct: 0,
+                    explanation: "PAOR มาจาก: Plan (วางแผน) -> Act (ปฏิบัติ) -> Observe (สังเกต) -> Reflect (สะท้อนผล) วนลูปการทำงานไปเรื่อยๆ",
+                    funny: "ท่องจำสูตร อ.กล้วย พารอด: พี-เอ-โอ-อาร์ (PAOR) ท่องสิลูกศิษย์ แต่อย่าท่องสลับเป็น POAR ละกัน"
+                },
+                {
+                    q: 'การจัดการเรียนรู้สำหรับ "ผู้ใหญ่" ครูควรคำนึงถึงปัจจัยใดมากที่สุดเพื่อให้ผู้เรียนมีความสุข?',
+                    options: [
+                        "การลงโทษเมื่อทำผิด",
+                        "การให้ทำแบบฝึกหัดจำนวนมาก",
+                        "การให้เรียนรู้ในเรื่องที่เป็นประโยชน์และนำไปใช้ได้ทันที",
+                        "การจัดห้องเรียนให้เหมือนโรงเรียนในระบบ"
+                    ],
+                    correct: 2,
+                    explanation: "จิตวิทยาผู้ใหญ่ (Andragogy) เน้นการเรียนรู้แบบมีส่วนร่วมและนำไปใช้แก้ปัญหาหรือสร้างอาชีพได้จริงในชีวิตปัจจุบันทันด่วน",
+                    funny: "ผู้ใหญ่เขาผ่านชีวิตมาเยอะ ไปสั่งทำรายงานร้อยหน้า หรือเอาไม้เรียวหวดก้นระวัง อ.กล้วย เคืองนะจ๊ะครู!"
+                },
+                {
+                    q: "เป้าหมายของคุณภาพผู้เรียนในศตวรรษที่ 21 มุ่งเน้นทักษะในข้อใด?",
+                    options: [
+                        "ทักษะการจำเนื้อหาในตำราได้ทั้งหมด",
+                        "ทักษะการเรียนรู้และนวัตกรรม ทักษะสารสนเทศ ทักษะชีวิตและอาชีพ",
+                        "ทักษะการฟังครูบรรยายเพียงอย่างเดียว",
+                        "ทักษะการทำตามคำสั่งโดยเคร่งครัด"
+                    ],
+                    correct: 1,
+                    explanation: "ทักษะยุคใหม่ประกอบด้วย 3 กลุ่มหลัก (3R 8C) ได้แก่ นวัตกรรม ไอที และการยืดหยุ่นใช้ชีวิตร่วมกับผู้อื่น",
+                    funny: "หมดยุคนั่งท่องจำตำรานกแก้วนกขุนทองแล้ว ยุคนี้ต้องทักษะชีวิต คล่องไอที และใจพร้อมลุย!"
+                },
+                {
+                    q: '"Active Learning" หรือการจัดการเรียนรู้เชิงรุก มีลักษณะสำคัญตามข้อใด?',
+                    options: [
+                        "ผู้เรียนเป็นฝ่ายรับฟังครูเพียงอย่างเดียว",
+                        "ผู้เรียนมีส่วนร่วมในการวางแผนและสร้างองค์ความรู้ด้วยตนเอง",
+                        "เน้นการท่องจำเพื่อไปสอบแข่งขัน",
+                        "ครูเป็นผู้บรรยายเนื้อหาทั้งหมดตามหลักสูตร"
+                    ],
+                    correct: 1,
+                    explanation: "Active Learning คือส่งเสริมให้ผู้เรียนคิด วิเคราะห์ ลงมือทำ เพื่อสร้างองค์ความรู้ขึ้นมาด้วยตัวเอง",
+                    funny: "ครูเป็นผู้ช่วยอำนวยความสะดวก ส่วนเด็กๆ ต้องขยับขยันลุยทำเอง ไม่ใช่สลบคาจอนอนหลับเหมียว!"
+                },
+                {
+                    q: "ใครมีอำนาจในการอนุมัติประกาศนียบัตรและวุฒิบัตรของสถานศึกษา?",
+                    options: [
+                        "ผู้อำนวยการสถานศึกษา (ตามระเบียบที่คณะกรรมการกำหนด)",
+                        "นายกองค์การบริหารส่วนตำบล",
+                        "ผู้ปกครองนักเรียน",
+                        "อาสาสมัคร สกร."
+                    ],
+                    correct: 0,
+                    explanation: "เป็นหน้าที่และอำนาจของ ผู้อำนวยการสถานศึกษา ในการลงนามอนุมัติใบประกาศและรับรองวิทยฐานะตามระเบียบที่เกี่ยวข้อง",
+                    funny: "ผอ.โรงเรียน หรือ ผอ.สกร.อำเภอ นั่นแหละเป็นคนเซ็นอนุมัติ สมฉุยก็ช่วยลงอุ้งเท้าให้ด้วยเหมียว!"
+                },
+                {
+                    q: "โครงการสำคัญ (Flagship) ของ สกร. ปี 2569 ที่มุ่งเน้นการพัฒนาพื้นที่ต้นแบบการเรียนรู้ 1 จังหวัด 3 มิติความสำเร็จคือโครงการใด?",
+                    options: [
+                        "Thailand Zero Dropout",
+                        "Career Plus",
+                        "Learning 3D",
+                        "Co-Reading Space"
+                    ],
+                    correct: 2,
+                    explanation: "โครงการ Learning 3D มุ่งสร้างพื้นที่ต้นแบบ 3 มิติความสำเร็จในจังหวัดต่างๆ ทั่วประเทศเพื่อบูรณาการการศึกษาตลอดชีวิต",
+                    funny: "3D ไม่ใช่แว่นสามมิตินะจ๊ะหนูๆ มันคือ 3 มิติความสำเร็จเพื่อสังคมการเรียนรู้ขั้นเทพ!"
+                }
+            ]
+        };
+
+        // Sound Synthesizer Utility (Web Audio API)
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'correct') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                } else if (type === 'incorrect') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, now);
+                    osc.frequency.linearRampToValueAtTime(80, now + 0.3);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(450, now);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'magic') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(250, now);
+                    osc.frequency.exponentialRampToValueAtTime(1300, now + 0.55);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.55);
+                    osc.start(now);
+                    osc.stop(now + 0.55);
+                } else if (type === 'applause') {
+                    osc.type = 'square';
+                    const scale = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+                    scale.forEach((freq, index) => {
+                        osc.frequency.setValueAtTime(freq, now + index * 0.08);
+                    });
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+                    osc.start(now);
+                    osc.stop(now + 0.8);
+                }
+            } catch (err) {
+                console.warn('Audio synthesis issue:', err);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('soundIcon');
+            const btn = document.getElementById('soundBtn');
+            if (soundEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                btn.className = "bg-slate-100 hover:bg-slate-200 text-slate-600 p-2.5 rounded-full transition-all shadow-sm";
+                showToast("🔊 เปิดเสียงจำลองแล้วจ้า!");
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                btn.className = "bg-red-100 hover:bg-red-200 text-red-600 p-2.5 rounded-full transition-all shadow-sm";
+                showToast("🔇 ปิดเสียงบรรยากาศ");
+            }
+            try { lucide.createIcons(); } catch(e) {}
+        }
+
+        // Funny Comments by Mascot
+        const idleComments = [
+            "พ.ร.บ. สกร. ใหม่มี 3 รูปแบบ อย่าสับสนกับรูปแบบขโมยปลาทูของสมฉุยนะ!",
+            "ข้อไหนไม่แน่ใจ ลองถามใจตัวเองดู หรือไม่ก็ก้มหัวเคารพ อ.กล้วย สุดสตรอง",
+            "การเดาข้อสอบก็คือศิลปะของการใช้ชีวิตในศตวรรษที่ 21 นะมนุษย์!",
+            "ดร. โกวิท ท่านสอนคิดเป็น แต่ถ้าตอบผิดรอบนี้สมองเฉื่อยเป็นคิดไม่ออกแน่ๆ",
+            "สมศ. มาตรวจไม่ต้องกลัวนะ วิ่งมาหลบหลังสมฉุยแล้วพรางตัวเป็นแมวส้มเลย!",
+            "มีใจรัก สกร. ต้องรู้จักประยุกต์ใช้สิ่งศักดิ์สิทธิ์และไอทีคู่กันจ้า"
+        ];
+
+        // State Management
+        let currentMode = 'partA'; 
+        let activeQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answersHistory = []; 
+        let lifeline50Used = 0;
+        let lifelineMagicUsed = 0;
+        const maxLifelines = 3;
+
+        // ** CRITICAL FIX **: Clean State Tracking variables
+        let hasAnsweredCurrentQuestion = false;
+        let currentSelectedOptionIndex = -1;
+
+        // Custom Toast feedback
+        function showToast(message) {
+            const toast = document.getElementById('custom-toast');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('opacity-0', 'translate-y-2');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-2');
+            }, 2500);
+        }
+
+        // Custom Modal Logic for Quitting
+        function promptQuitQuiz() {
+            playSound('incorrect');
+            const modal = document.getElementById('quit-modal');
+            const content = document.getElementById('quit-modal-content');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            void modal.offsetWidth; // Trigger reflow
+            modal.classList.remove('opacity-0');
+            content.classList.remove('scale-95');
+        }
+
+        function closeQuitModal() {
+            playSound('click');
+            const modal = document.getElementById('quit-modal');
+            const content = document.getElementById('quit-modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        function executeQuit() {
+            closeQuitModal();
+            setTimeout(() => {
+                resetToHome();
+            }, 300);
+        }
+
+        // Initialize App on load
+        window.onload = function() {
+            try { lucide.createIcons(); } catch(e) {}
+            // Start randomized idle comment updater
+            setInterval(() => {
+                const quizScreen = document.getElementById('quiz-screen');
+                if (quizScreen && !quizScreen.classList.contains('hidden')) {
+                    const randomComment = idleComments[Math.floor(Math.random() * idleComments.length)];
+                    document.getElementById('mascot-comment').innerText = `"${randomComment}"`;
+                }
+            }, 8000);
+        };
+
+        // Home Reset
+        function resetToHome() {
+            playSound('click');
+            document.getElementById('home-screen').classList.remove('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('results-screen').classList.add('hidden');
+        }
+
+        // Helper function: Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Start Exam Logic with Random Pool of 20
+        function startExam(mode) {
+            playSound('click');
+            currentMode = mode;
+            currentIndex = 0;
+            score = 0;
+            answersHistory = [];
+            lifeline50Used = 0;
+            lifelineMagicUsed = 0;
+
+            let pool = [];
+
+            // 1. Gather all questions based on selected mode
+            if (mode === 'partA') {
+                pool = JSON.parse(JSON.stringify(database.partA));
+            } else if (mode === 'partB') {
+                pool = JSON.parse(JSON.stringify(database.partB));
+            } else {
+                // Combine both pools
+                pool = JSON.parse(JSON.stringify([...database.partA, ...database.partB]));
+            }
+
+            // 2. Shuffle the entire collected pool
+            shuffleArray(pool);
+
+            // 3. Slice exactly 20 questions for this attempt
+            activeQuestions = pool.slice(0, 20);
+
+            // Update Lifeline UI
+            document.getElementById('lifeline-50-count').innerText = maxLifelines - lifeline50Used;
+            document.getElementById('lifeline-magic-count').innerText = maxLifelines - lifelineMagicUsed;
+            document.getElementById('lifeline-50').disabled = false;
+            document.getElementById('lifeline-magic').disabled = false;
+
+            // Transition Screen
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('results-screen').classList.add('hidden');
+
+            loadQuestion();
+        }
+
+        // Load Single Question
+        function loadQuestion() {
+            // Reset question-level state tracking
+            hasAnsweredCurrentQuestion = false;
+            currentSelectedOptionIndex = -1;
+
+            const currentQ = activeQuestions[currentIndex];
+            
+            // Set Categories Badge
+            const badge = document.getElementById('current-badge');
+            if (currentMode === 'partA') {
+                badge.innerText = "ภาค ก: ความรู้ทั่วไป";
+                badge.className = "bg-pink-100 text-pink-700 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm";
+            } else if (currentMode === 'partB') {
+                badge.innerText = "ภาค ข: วิชาเฉพาะ";
+                badge.className = "bg-purple-100 text-purple-700 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm";
+            } else {
+                badge.innerText = "โหมดสุ่มมหากาฬ (ก + ข)";
+                badge.className = "bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm";
+            }
+
+            // Index Info
+            document.getElementById('question-index-text').innerText = `ข้อที่ ${currentIndex + 1} จาก ${activeQuestions.length}`;
+            
+            // Progress Bar Width
+            const progressPercent = ((currentIndex + 1) / activeQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // Question Details
+            document.getElementById('quiz-question').innerText = currentQ.q;
+            document.getElementById('quiz-cat').innerText = currentMode === 'partA' ? "วิชาความรู้ทั่วไปและกฎหมายปกครอง" : "วิชาทฤษฎีและวิทยาการศึกษาสกร.";
+
+            // Render Options
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            const labels = ['ก.', 'ข.', 'ค.', 'ง.'];
+
+            currentQ.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.id = `option-${index}`;
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-200 hover:border-pink-300 hover:bg-pink-50/20 transition-all flex items-center space-x-3 group relative overflow-hidden";
+                
+                // Securely bind selecting an option
+                btn.onclick = function() {
+                    selectOption(index);
+                };
+                
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 font-bold flex items-center justify-center border group-hover:bg-pink-500 group-hover:text-white transition-all text-sm flex-shrink-0">${labels[index]}</span>
+                    <span class="text-sm md:text-base font-semibold text-slate-700 leading-relaxed">${option}</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+
+            // Hide instant feedback area
+            document.getElementById('instant-feedback').classList.add('hidden');
+
+            // Reset stable next button text state to "Skip" since question is brand new
+            document.getElementById('next-btn-text').innerText = "ข้ามไปเถอะ";
+
+            // Custom mascot remarks
+            const welcomeRemarks = [
+                "เจ้าสมฉุยฝันเห็นเลขท้ายสามตัว แต่ขออุบไว้ก่อนนะ อ.กล้วย สั่งไว้!",
+                "ข้อนี้ถ้าลองสังเกตคีย์เวิร์ดเด่นๆ จะเข้าใจทันทีเลยจ้า",
+                "อย่ามัวจ้องหน้าอันหล่อเหลาของสมฉุยสิ ตั้งใจทำโจทย์ก่อนเร็ว!",
+                "อ.กล้วยกระซิบว่า ข้อ ค. แอบมีรังสีนำโชคอยู่นะ... หรืออาจจะเป็นข้ออื่น?",
+                "ลองจับตาดูคำกวนใจดีๆ แล้วเลือกคำตอบที่ดีที่สุดกันนะทาสรัก"
+            ];
+            document.getElementById('mascot-comment').innerText = `"${welcomeRemarks[currentIndex % welcomeRemarks.length]}"`;
+        }
+
+        // Selection Process
+        function selectOption(selectedIndex) {
+            if (hasAnsweredCurrentQuestion) return; // Prevent double clicking options
+
+            hasAnsweredCurrentQuestion = true;
+            currentSelectedOptionIndex = selectedIndex;
+
+            const currentQ = activeQuestions[currentIndex];
+            const correctIndex = currentQ.correct;
+            const isCorrect = selectedIndex === correctIndex;
+
+            // Highlight chosen options
+            const optionsContainer = document.getElementById('quiz-options');
+            const buttons = optionsContainer.getElementsByTagName('button');
+
+            // Freeze further selection on this question
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+                buttons[i].onclick = null; 
+                if (i === correctIndex) {
+                    buttons[i].classList.remove('border-slate-200');
+                    buttons[i].classList.add('border-green-500', 'bg-green-50');
+                    const spanLabel = buttons[i].querySelector('span');
+                    spanLabel.className = "w-8 h-8 rounded-lg bg-green-500 text-white font-bold flex items-center justify-center border text-sm flex-shrink-0";
+                } else if (i === selectedIndex && !isCorrect) {
+                    buttons[i].classList.remove('border-slate-200');
+                    buttons[i].classList.add('border-red-500', 'bg-red-50');
+                    const spanLabel = buttons[i].querySelector('span');
+                    spanLabel.className = "w-8 h-8 rounded-lg bg-red-500 text-white font-bold flex items-center justify-center border text-sm flex-shrink-0";
+                }
+            }
+
+            // Audio & Play state
+            if (isCorrect) {
+                playSound('correct');
+                score++;
+                showToast("🎯 ถูกต้องแล้วจ้า สกิลเทพเกินต้าน!");
+            } else {
+                playSound('incorrect');
+                showToast("❌ แง๊ววว... พลาดเป้าไปเฉยเลย!");
+            }
+
+            // Render instant feedback
+            const feedbackBox = document.getElementById('instant-feedback');
+            const feedbackIconContainer = document.getElementById('feedback-icon-container');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackDesc = document.getElementById('feedback-desc');
+            const feedbackFunny = document.getElementById('feedback-funny');
+
+            feedbackBox.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedbackBox.className = "mt-6 p-4 rounded-2xl border border-green-200 bg-green-50/60 transition-all duration-300";
+                feedbackIconContainer.className = "rounded-full p-2.5 text-white bg-green-500";
+                feedbackIconContainer.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
+                feedbackTitle.innerText = "ถูกต้องตรงประเด็น!";
+                feedbackTitle.className = "font-bold text-green-800";
+                feedbackDesc.className = "text-sm mt-1 text-green-700 leading-relaxed";
+            } else {
+                feedbackBox.className = "mt-6 p-4 rounded-2xl border border-red-200 bg-red-50/60 transition-all duration-300";
+                feedbackIconContainer.className = "rounded-full p-2.5 text-white bg-red-500";
+                feedbackIconContainer.innerHTML = `<i data-lucide="x" class="w-5 h-5"></i>`;
+                feedbackTitle.innerText = "เกือบไปแล้ว ยืดหยุ่นใจไว้นะมนุษย์!";
+                feedbackTitle.className = "font-bold text-red-800";
+                feedbackDesc.className = "text-sm mt-1 text-red-700 leading-relaxed";
+            }
+
+            feedbackDesc.innerText = currentQ.explanation;
+            feedbackFunny.innerText = `อ.กล้วย แอบวิเคราะห์เสริม: ${currentQ.funny}`;
+            try { lucide.createIcons(); } catch(e) {}
+
+            // Update Next Button text now that user answered
+            const nextBtnText = document.getElementById('next-btn-text');
+            if (currentIndex + 1 < activeQuestions.length) {
+                nextBtnText.innerText = "ทำข้อถัดไปโลด!";
+            } else {
+                nextBtnText.innerText = "คลิกดูรางวัลเกียรติยศ";
+            }
+        }
+
+        // ** UNIFIED BULLETPROOF BUTTON CONTROLLER **
+        // This function handles both SKIPPING and SUBMITTING answers reliably!
+        let isTransitioning = false;
+        function handleNextClick() {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            setTimeout(() => { isTransitioning = false; }, 400);
+
+            playSound('click');
+            
+            const currentQ = activeQuestions[currentIndex];
+            
+            if (!hasAnsweredCurrentQuestion) {
+                // Scenario A: User did not select any answer and clicked "ข้ามไปเถอะ" (Skip)
+                recordAnswer(-1, currentQ.correct, false);
+            } else {
+                // Scenario B: User answered and clicked "ทำข้อถัดไปโลด!" / "ดูเกียรติบัตร"
+                const isCorrect = (currentSelectedOptionIndex === currentQ.correct);
+                recordAnswer(currentSelectedOptionIndex, currentQ.correct, isCorrect);
+            }
+        }
+
+        // Lifeline 50:50
+        function useFiftyFifty() {
+            if (hasAnsweredCurrentQuestion) {
+                showToast("⚠️ ข้อนี้แกตอบไปแล้วเหมียว!");
+                return;
+            }
+            if (lifeline50Used >= maxLifelines) {
+                showToast("🚫 โควตาตัวช่วย 50:50 หมดเกลี้ยงแล้ว!");
+                return;
+            }
+
+            const currentQ = activeQuestions[currentIndex];
+            const correctIndex = currentQ.correct;
+
+            // Generate indices to hide (excluding correct one)
+            let wrongIndices = [];
+            currentQ.options.forEach((_, idx) => {
+                if (idx !== correctIndex) wrongIndices.push(idx);
+            });
+
+            // Shuffle wrong indices and keep only 1
+            shuffleArray(wrongIndices);
+            const toHide = wrongIndices.slice(0, 2);
+
+            toHide.forEach(idx => {
+                const btn = document.getElementById(`option-${idx}`);
+                if (btn && !btn.disabled) {
+                    btn.style.opacity = '0.35';
+                    btn.disabled = true;
+                    btn.onclick = null;
+                    const labelSpan = btn.querySelector('span');
+                    if (labelSpan) labelSpan.innerText = "💤";
+                }
+            });
+
+            lifeline50Used++;
+            document.getElementById('lifeline-50-count').innerText = maxLifelines - lifeline50Used;
+            if (lifeline50Used === maxLifelines) {
+                document.getElementById('lifeline-50').disabled = true;
+            }
+
+            playSound('magic');
+            showToast("🪄 อุ้งอุ้ง! ปัดช้อยส์ขยะหลุดวงโคจรไปสองข้อ!");
+        }
+
+        // Lifeline Magic Guess (สมฉุยช่วยสุ่มให้)
+        function useRandomGuess() {
+            if (hasAnsweredCurrentQuestion) {
+                showToast("⚠️ ข้อนี้แกตอบไปแล้วเหมียว!");
+                return;
+            }
+            if (lifelineMagicUsed >= maxLifelines) {
+                showToast("🚫 ปาฏิหาริย์แห่งแมวส้มหมดโควตาแล้ว!");
+                return;
+            }
+
+            const currentQ = activeQuestions[currentIndex];
+            const randomPick = Math.floor(Math.random() * currentQ.options.length);
+            
+            playSound('magic');
+            showToast("🔮 สมฉุยสะบัดหางกวาดกล่องสุ่มกาให้ข้อนี้!");
+            
+            // Automatically select the random pick
+            selectOption(randomPick);
+
+            lifelineMagicUsed++;
+            document.getElementById('lifeline-magic-count').innerText = maxLifelines - lifelineMagicUsed;
+            if (lifelineMagicUsed === maxLifelines) {
+                document.getElementById('lifeline-magic').disabled = true;
+            }
+        }
+
+        // Store Answer and Navigate
+        function recordAnswer(selectedIdx, correctIdx, isCorrect) {
+            const currentQ = activeQuestions[currentIndex];
+
+            answersHistory.push({
+                question: currentQ.q,
+                options: currentQ.options,
+                selectedIdx: selectedIdx,
+                correctIdx: correctIdx,
+                isCorrect: isCorrect,
+                explanation: currentQ.explanation,
+                funny: currentQ.funny
+            });
+
+            currentIndex++;
+            if (currentIndex < activeQuestions.length) {
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        // Complete Quiz & Show Results
+        function finishQuiz() {
+            playSound('applause');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('results-screen').classList.remove('hidden');
+
+            const scoreDisplay = `${score}/${activeQuestions.length}`;
+            document.getElementById('result-score').innerText = scoreDisplay;
+
+            const percentage = Math.round((score / activeQuestions.length) * 100);
+            document.getElementById('result-percent').innerText = `${percentage}%`;
+
+            // Verdict and titles determination
+            let verdictTitle = "";
+            let verdictDesc = "";
+            let emoji = "🧠";
+
+            if (percentage <= 30) {
+                emoji = "🐱💔";
+                verdictTitle = 'ฉายา: "เศษฝุ่นอาหารเปียกของสมฉุย"';
+                verdictDesc = 'สกร. สู้กลับจนสลบคาคีย์บอร์ด! ไม่เป็นไรนะมนุษย์ วันนี้โชคอาจยังไม่ดี ลองป้อนอาหารเปียกให้เจ้าส้มสมฉุย แล้วให้ อ.กล้วย ช่วยติวเพิ่ม และมาเริ่มทำโจทย์จำลองรอบแก้ตัวกันด่วนๆ';
+            } else if (percentage <= 65) {
+                emoji = "😅🐾";
+                verdictTitle = 'ฉายา: "นักวิชาการยอดกัลยาณมิตร(สายเดา)"';
+                verdictDesc = 'ผ่านเกณฑ์คาบเส้นแบบน่าตื่นเต้นหวาดเสียว มีความรู้ติดหัวแต่ดวงดียิ่งกว่า! สมฉุยและ อ.กล้วย ประเมินว่ากลับมาทบทวนข้อที่ผิดอีกนิดก็จ๊าบแล้ว!';
+            } else if (percentage <= 85) {
+                emoji = "✨⭐";
+                verdictTitle = 'ฉายา: "ปราชญ์เปรื่องส่งเสริมการเรียนรู้วัยรุ่นสร้างตัว"';
+                verdictDesc = 'เก่งมากมนุษย์! ความรอบรู้เป๊ะปังระดับแถวหน้า มีแววได้สวมชุดกากีพนักงานราชการ สกร. ค่อนข้างสูงมากๆ ไปเตรียมตัวสอบจริงอย่างมั่นใจร้อยเปอร์เซ็นต์!';
+            } else {
+                emoji = "👑🦁";
+                verdictTitle = 'ฉายา: "ร่างอวตารอธิบดีกรมส่งเสริมการเรียนรู้"';
+                verdictDesc = 'สุดยอดเหนือมนุษย์! ข้อสอบจำลองสกัดวิญญาณก็ยังสยบคุณไม่ได้ ความรู้แน่นเอี้ยด สมฉุยขอยกปลาทูให้ทั้งคลัง และ อ.กล้วย พร้อมปูพรมแดงคารวะ!';
+            }
+
+            document.getElementById('result-emoji').innerText = emoji;
+            document.getElementById('verdict-title').innerText = verdictTitle;
+            document.getElementById('verdict-desc').innerText = verdictDesc;
+
+            // Generate default certificate values
+            document.getElementById('cert-display-score').innerText = scoreDisplay;
+            document.getElementById('cert-display-title').innerText = verdictTitle.replace('ฉายา: ', '');
+
+            // Render Answers Review
+            const reviewContainer = document.getElementById('results-review-list');
+            reviewContainer.innerHTML = '';
+
+            const alphabet = ['ก', 'ข', 'ค', 'ง'];
+
+            answersHistory.forEach((ans, index) => {
+                const reviewCard = document.createElement('div');
+                const borderClass = ans.isCorrect ? 'border-green-200 bg-green-50/20' : 'border-red-200 bg-red-50/20';
+                const statusBadge = ans.isCorrect 
+                    ? '<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full">ถูกต้องนะคุณโยม</span>'
+                    : '<span class="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-0.5 rounded-full">พลาดไปนิด</span>';
+
+                let selectedText = ans.selectedIdx === -1 ? 'ข้ามไม่ได้ระบุ' : `${alphabet[ans.selectedIdx]}. ${ans.options[ans.selectedIdx]}`;
+                let correctText = `${alphabet[ans.correctIdx]}. ${ans.options[ans.correctIdx]}`;
+
+                reviewCard.className = `p-4 rounded-2xl border ${borderClass} space-y-2`;
+                reviewCard.innerHTML = `
+                    <div class="flex justify-between items-start gap-2">
+                        <h5 class="text-sm font-bold text-slate-800">${index + 1}. ${ans.question}</h5>
+                        ${statusBadge}
+                    </div>
+                    <div class="text-xs space-y-1">
+                        <p class="${ans.isCorrect ? 'text-green-700 font-semibold' : 'text-red-700'}">● คำตอบที่คุณเลือก: ${selectedText}</p>
+                        ${!ans.isCorrect ? `<p class="text-green-700 font-bold">✔ คำตอบที่ถูกต้องแท้จริง: ${correctText}</p>` : ''}
+                    </div>
+                    <div class="bg-white/80 p-3 rounded-xl text-[11px] text-slate-600 border border-slate-100 shadow-sm leading-relaxed">
+                        <p class="font-bold text-slate-700">📖 สรุปหลักความรู้:</p>
+                        <p class="mt-0.5">${ans.explanation}</p>
+                        <p class="mt-1.5 italic text-slate-500 border-t border-slate-100 pt-1.5 flex items-center gap-1">🐾 แมวสมฉุยแซว: ${ans.funny}</p>
+                    </div>
+                `;
+                reviewContainer.appendChild(reviewCard);
+            });
+
+            // Automatically render preview cert
+            generateCertificate();
+        }
+
+        // Generate Certificate
+        function generateCertificate() {
+            playSound('magic');
+            const name = document.getElementById('cert-name').value.trim() || "ผู้ไร้นามประคองฝัน";
+            document.getElementById('cert-display-name').innerText = name;
+            
+            // Show certificate card
+            const container = document.getElementById('cert-canvas-container');
+            container.classList.remove('hidden');
+            container.scrollIntoView({ behavior: 'smooth' });
+            showToast("🎨 เนรมิตเกียรติบัตรล้อเลียนเซ็นชื่อสมฉุยและ อ.กล้วย เรียบร้อย!");
+        }
+
+        // Mock Share App Link
+        function shareApp() {
+            playSound('click');
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            showToast("📋 คัดลอกลิงก์แอปแล้ว! ส่งต่อกลุ่มแชตติวสู้ชีวิตเล้ย!");
+        }
+    </script>
+</body>
+</html>
