@@ -31,6 +31,7 @@
 
     .chip{
       transition:.25s;
+      cursor:pointer;
     }
 
     .chip:hover{
@@ -73,6 +74,19 @@
       padding:10px;
     }
 
+    .footer-preview{
+      height:55px;
+      border-radius:16px;
+      background:linear-gradient(to right,#ede9fe,#fff);
+      border:2px dashed #c4b5fd;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#7c3aed;
+      font-size:12px;
+      margin-top:12px;
+    }
+
   </style>
 
 </head>
@@ -99,9 +113,10 @@
           </h1>
 
           <p class="text-lg text-gray-600 leading-relaxed mb-8">
-            สร้าง Prompt ระดับมืออาชีพ
-            สำหรับ ChatGPT Image, Midjourney,
-            DALL·E และ SDXL
+            สร้าง Prompt สำหรับ ChatGPT Image,
+            Midjourney, DALL·E และ SDXL
+            พร้อม Typography และ Layout
+            แนว Government PR ระดับมืออาชีพ
           </p>
 
           <div class="flex flex-wrap gap-3">
@@ -138,7 +153,7 @@
               </h3>
 
               <p class="text-gray-700 mt-3">
-                Cinematic • Infographic • Premium
+                Cinematic • Editorial • Premium
               </p>
 
             </div>
@@ -271,7 +286,7 @@
 
             <div class="grid md:grid-cols-3 gap-4">
 
-              <!-- TOP LEFT -->
+              <!-- LEFT -->
               <label class="cursor-pointer">
 
                 <input
@@ -298,7 +313,7 @@
 
               </label>
 
-              <!-- TOP RIGHT -->
+              <!-- RIGHT -->
               <label class="cursor-pointer">
 
                 <input
@@ -324,7 +339,7 @@
 
               </label>
 
-              <!-- HEADER -->
+              <!-- CENTER -->
               <label class="cursor-pointer">
 
                 <input
@@ -349,6 +364,66 @@
                 </div>
 
               </label>
+
+            </div>
+
+          </div>
+
+          <!-- FOOTER -->
+          <div class="mb-6">
+
+            <label class="block mb-4 font-medium text-lg">
+              📌 Footer Information
+            </label>
+
+            <div class="bg-white rounded-3xl p-5">
+
+              <div class="space-y-4">
+
+                <div>
+                  <label class="block text-sm mb-2 text-gray-600">
+                    Facebook
+                  </label>
+
+                  <input
+                    type="text"
+                    id="facebookInput"
+                    value="สกร.ระดับอำเภอเมืองนครศรีธรรมราช"
+                    class="w-full p-4 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  >
+                </div>
+
+                <div>
+                  <label class="block text-sm mb-2 text-gray-600">
+                    Website Search
+                  </label>
+
+                  <input
+                    type="text"
+                    id="websiteInput"
+                    value="สกร.ระดับอำเภอเมืองนครศรีธรรมราช"
+                    class="w-full p-4 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  >
+                </div>
+
+                <div>
+                  <label class="block text-sm mb-2 text-gray-600">
+                    Telephone
+                  </label>
+
+                  <input
+                    type="text"
+                    id="phoneInput"
+                    value="075 378 328"
+                    class="w-full p-4 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  >
+                </div>
+
+              </div>
+
+              <div class="footer-preview">
+                Footer Contact Area Preview
+              </div>
 
             </div>
 
@@ -407,47 +482,6 @@
       <!-- RIGHT -->
       <div class="space-y-8">
 
-        <!-- ANALYSIS -->
-        <div class="glass rounded-[36px] p-8">
-
-          <h2 class="text-3xl font-bold mb-6">
-            🎨 Smart Analysis
-          </h2>
-
-          <div class="grid grid-cols-2 gap-4">
-
-            <div class="bg-white rounded-2xl p-5">
-              <p class="text-sm text-gray-500 mb-2">Theme</p>
-              <h3 class="font-semibold text-purple-700">
-                Government PR
-              </h3>
-            </div>
-
-            <div class="bg-white rounded-2xl p-5">
-              <p class="text-sm text-gray-500 mb-2">Mood</p>
-              <h3 class="font-semibold text-purple-700">
-                Inspirational
-              </h3>
-            </div>
-
-            <div class="bg-white rounded-2xl p-5">
-              <p class="text-sm text-gray-500 mb-2">Typography</p>
-              <h3 class="font-semibold text-purple-700">
-                Editorial
-              </h3>
-            </div>
-
-            <div class="bg-white rounded-2xl p-5">
-              <p class="text-sm text-gray-500 mb-2">Layout</p>
-              <h3 class="font-semibold text-purple-700">
-                Poster Design
-              </h3>
-            </div>
-
-          </div>
-
-        </div>
-
         <!-- RESULT -->
         <div class="glass rounded-[36px] p-8 glow">
 
@@ -468,7 +502,7 @@
 
           <div
             id="result"
-            class="prompt-box rounded-3xl p-6 min-h-[600px] overflow-auto text-sm leading-8"
+            class="prompt-box rounded-3xl p-6 min-h-[700px] overflow-auto text-sm leading-8"
           >
 Your generated prompt will appear here...
           </div>
@@ -503,10 +537,14 @@ Your generated prompt will appear here...
       const color = document.getElementById('colorTheme').value;
       const platform = document.getElementById('platform').value;
 
-      // GET LOGO POSITION
+      const facebook = document.getElementById('facebookInput').value;
+      const website = document.getElementById('websiteInput').value;
+      const phone = document.getElementById('phoneInput').value;
+
+      // LOGO
       const logo = document.querySelector('input[name="logoLayout"]:checked').value;
 
-      // GET STYLE
+      // STYLES
       let styles = [];
 
       document.querySelectorAll('.chip.active').forEach(chip => {
@@ -533,20 +571,30 @@ ${logo}
 Include:
 - clean circular space reserved for official logo
 - circular emblem placeholder
-- empty round logo area
 - designed for official logo overlay
-- clean header composition
-- leave clean space for official logo placement
 - elegant handwritten Thai-style typography
 - highlighted quote sections
 - marker pen annotations
-- editorial magazine composition
-- premium infographic layout
-- mixed typography hierarchy
+- premium editorial magazine layout
+- infographic storytelling
 - motivational quote callouts
+- mixed typography hierarchy
 - stylish text overlay
 - clean negative space for typography
 - designed for Canva post-editing
+
+Footer Design:
+- clean footer information section
+- modern government footer bar
+- elegant contact information layout
+- premium editorial footer composition
+- stylized contact information area
+- clean bottom information section
+
+Footer Information:
+Facebook: ${facebook}
+Website Search: ${website}
+Telephone: ${phone}
 
 Visual Style:
 cinematic lighting,
