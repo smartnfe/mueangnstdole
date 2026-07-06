@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-gray-50 text-gray-800 antialiased;
+    font-family: 'Prompt', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-white 
+           bg-gradient-to-r from-blue-500 to-blue-700 
+           hover:from-blue-600 hover:to-blue-800 
+           shadow-lg shadow-blue-500/25 
+           transform hover:scale-[1.02] active:scale-[0.98] 
+           transition-all duration-200 ease-out;
+  }
+
+  .btn-success {
+    @apply px-6 py-3 rounded-xl font-semibold text-white 
+           bg-gradient-to-r from-emerald-500 to-emerald-700 
+           hover:from-emerald-600 hover:to-emerald-800 
+           shadow-lg shadow-emerald-500/25 
+           transform hover:scale-[1.02] active:scale-[0.98] 
+           transition-all duration-200 ease-out;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-xl font-semibold 
+           border-2 border-gray-200 text-gray-600 
+           hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 
+           transform hover:scale-[1.02] active:scale-[0.98] 
+           transition-all duration-200 ease-out;
+  }
+
+  .btn-danger {
+    @apply px-6 py-3 rounded-xl font-semibold text-white 
+           bg-gradient-to-r from-red-500 to-red-600 
+           hover:from-red-600 hover:to-red-700 
+           shadow-lg shadow-red-500/25 
+           transform hover:scale-[1.02] active:scale-[0.98] 
+           transition-all duration-200 ease-out;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 
+           hover:shadow-md transition-shadow duration-300;
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 
+           bg-white text-gray-800 placeholder-gray-400
+           focus:border-blue-400 focus:ring-4 focus:ring-blue-100 
+           outline-none transition-all duration-200;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-lg rounded-2xl 
+           shadow-lg border border-white/50;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}
+
+/* Confetti animation */
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  opacity: 0;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+/* Progress bar animation */
+.progress-bar-fill {
+  transition: width 0.5s ease-out;
+}
+
+/* Choice option hover effect */
+.choice-option {
+  @apply relative overflow-hidden;
+}
+
+.choice-option::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent 
+         transform -translate-x-full transition-transform duration-300;
+}
+
+.choice-option:hover::before {
+  @apply translate-x-0;
+}
