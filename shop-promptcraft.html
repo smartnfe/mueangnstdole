@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop PromptCraft — Smart Prompt Generator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&family=Kanit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-2:#132a4d;
+    --orange:#FF6B1A;
+    --orange-2:#FF8A3D;
+    --paper:#F6F7FB;
+    --line:#E2E5EE;
+  }
+  body{ font-family:'Sora', sans-serif; background:var(--paper); }
+  .font-display{ font-family:'Space Grotesk', sans-serif; }
+  .font-th{ font-family:'Kanit', sans-serif; }
+
+  .chip{
+    border:1.5px solid var(--line);
+    background:#fff;
+    transition: all .15s ease;
+    cursor:pointer;
+  }
+  .chip:hover{ border-color: var(--orange-2); }
+  .chip.active{
+    border-color: var(--orange);
+    background: linear-gradient(135deg, rgba(255,107,26,0.08), rgba(255,107,26,0.02));
+    box-shadow: 0 0 0 1px var(--orange) inset;
+  }
+  .chip.active .chip-dot{ background: var(--orange); }
+  .chip-dot{
+    width:8px;height:8px;border-radius:9999px;background:var(--line);
+    transition: background .15s ease;
+  }
+
+  .navy-panel{
+    background: radial-gradient(120% 140% at 0% 0%, var(--navy-2) 0%, var(--navy) 55%, #081729 100%);
+  }
+
+  textarea, input[type=text], input[type=tel]{
+    background:#fff;
+    border:1.5px solid var(--line);
+  }
+  textarea:focus, input:focus{
+    outline:none;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(255,107,26,0.15);
+  }
+
+  .section-eyebrow{
+    letter-spacing:.14em;
+    font-size:11px;
+    font-weight:700;
+    color:var(--orange);
+  }
+
+  /* Poster skeleton preview */
+  .poster{
+    aspect-ratio: 4/5;
+    background:
+      linear-gradient(180deg, rgba(11,31,58,0.04), rgba(11,31,58,0.01)),
+      repeating-linear-gradient(45deg, rgba(11,31,58,0.03) 0 2px, transparent 2px 14px);
+    border:1.5px dashed #C7CCDA;
+  }
+  .skeleton-block{
+    background: linear-gradient(100deg, #e9ecf3 0%, #f4f5f9 40%, #e9ecf3 80%);
+    background-size: 200% 100%;
+    animation: shimmer 2.4s infinite;
+    border-radius: 6px;
+  }
+  @keyframes shimmer{
+    0%{ background-position: 200% 0; }
+    100%{ background-position: -200% 0; }
+  }
+  .logo-badge{
+    width:44px;height:44px;border-radius:9999px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-2));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-size:11px;
+    flex-shrink:0;
+  }
+
+  .btn-generate{
+    background: linear-gradient(100deg, var(--orange), var(--orange-2));
+    box-shadow: 0 8px 24px -8px rgba(255,107,26,0.55);
+  }
+  .btn-generate:hover{ filter: brightness(1.05); transform: translateY(-1px); }
+  .btn-generate:active{ transform: translateY(0px); }
+
+  .scrollbar-thin::-webkit-scrollbar{ width:6px; height:6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb{ background:#C7CCDA; border-radius:99px; }
+
+  ::selection{ background: rgba(255,107,26,0.25); }
+</style>
+</head>
+<body class="text-[var(--navy)]">
+
+<!-- HEADER -->
+<header class="navy-panel text-white">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--orange)] to-[var(--orange-2)] flex items-center justify-center font-display font-bold text-lg">P</div>
+      <div>
+        <h1 class="font-display font-bold text-lg leading-tight">Shop PromptCraft</h1>
+        <p class="text-[11px] text-white/50 font-th">ตัวช่วยสร้าง Prompt โปสเตอร์โปรโมชั่นร้านค้า</p>
+      </div>
+    </div>
+    <div class="hidden sm:flex items-center gap-2 text-[11px] text-white/60 font-th">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      พร้อมสร้าง Prompt สำหรับ Midjourney / DALL·E / ChatGPT
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-5 md:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+  <!-- LEFT: FORM -->
+  <section class="lg:col-span-7 space-y-5">
+
+    <!-- Basic info -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-3">01 — CAMPAIGN</p>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold mb-1.5">Promotion Title / Campaign Name</label>
+          <input id="titleInput" type="text" placeholder="e.g. End of Year Sale"
+            class="w-full rounded-xl px-4 py-3 text-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1.5">Promotion Details / Product Highlights</label>
+          <textarea id="detailsInput" rows="3" placeholder="e.g. 50% off all items, buy 1 get 1 free, new arrivals"
+            class="w-full rounded-xl px-4 py-3 text-sm resize-none"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Style Presets -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-3">02 — STYLE PRESET</p>
+      <div id="styleGroup" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+    </div>
+
+    <!-- Typography -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-3">03 — TYPOGRAPHY EFFECT <span class="text-[var(--navy)]/40 font-normal normal-case tracking-normal">(multi-select)</span></p>
+      <div id="typoGroup" class="grid grid-cols-2 gap-2.5"></div>
+    </div>
+
+    <!-- Logo placement -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-3">04 — LOGO PLACEMENT</p>
+      <div id="logoGroup" class="grid grid-cols-3 gap-2.5"></div>
+    </div>
+
+    <!-- Color theme: category -> palette -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-1">05 — COLOR THEME</p>
+      <p class="text-xs text-[var(--navy)]/45 font-th mb-3">เลือกหมวดหมู่ร้านค้าก่อน แล้วเลือกชุดสีที่เหมาะกับหมวดนั้น</p>
+
+      <p class="text-[11px] font-semibold text-[var(--navy)]/60 mb-2 font-th">หมวดหมู่ร้านค้า</p>
+      <div id="colorCategoryGroup" class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4"></div>
+
+      <p class="text-[11px] font-semibold text-[var(--navy)]/60 mb-2 font-th">ชุดสีในหมวดนี้</p>
+      <div id="colorGroup" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+    </div>
+
+    <!-- Footer info -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-3">06 — FOOTER INFORMATION</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div>
+          <label class="block text-xs font-semibold mb-1.5 text-[var(--navy)]/70">Facebook Page</label>
+          <input id="fbInput" type="text" placeholder="facebook.com/yourshop" class="w-full rounded-xl px-3.5 py-2.5 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold mb-1.5 text-[var(--navy)]/70">Website / LINE ID</label>
+          <input id="lineInput" type="text" placeholder="@yourshop" class="w-full rounded-xl px-3.5 py-2.5 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold mb-1.5 text-[var(--navy)]/70">Telephone Number</label>
+          <input id="telInput" type="tel" placeholder="02-123-4567" class="w-full rounded-xl px-3.5 py-2.5 text-sm">
+        </div>
+      </div>
+    </div>
+
+    <!-- Image size -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-1">07 — IMAGE SIZE / ASPECT RATIO</p>
+      <p class="text-xs text-[var(--navy)]/45 font-th mb-3">เลือกสัดส่วนภาพให้เหมาะกับการใช้งาน เช่น โพสต์, สตอรี่ หรือโปสเตอร์พิมพ์</p>
+      <div id="sizeGroup" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+    </div>
+
+  </section>
+
+  <!-- RIGHT: PREVIEW + OUTPUT -->
+  <section class="lg:col-span-5 space-y-5 lg:sticky lg:top-6 self-start">
+
+    <!-- Live preview -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <p class="section-eyebrow mb-3">LIVE LAYOUT PREVIEW</p>
+      <div class="poster rounded-xl p-4 flex flex-col" id="posterPreview">
+        <!-- header row (logo zone) -->
+        <div id="logoRow" class="flex items-center mb-3 h-11"></div>
+        <!-- title block -->
+        <div class="skeleton-block h-7 w-3/4 mb-2"></div>
+        <div class="skeleton-block h-4 w-1/2 mb-4"></div>
+        <!-- image area -->
+        <div class="skeleton-block flex-1 mb-4"></div>
+        <!-- details -->
+        <div class="skeleton-block h-3 w-5/6 mb-1.5"></div>
+        <div class="skeleton-block h-3 w-2/3 mb-4"></div>
+        <!-- footer -->
+        <div class="border-t border-dashed border-[#C7CCDA] pt-2.5 flex items-center justify-between text-[9px] font-th text-[var(--navy)]/50">
+          <span id="footFb">Facebook —</span>
+          <span id="footLine">Line/Web —</span>
+          <span id="footTel">Tel —</span>
+        </div>
+      </div>
+      <p class="text-[11px] text-[var(--navy)]/40 mt-3 font-th">* กรอบนี้เป็นเพียงผังคร่าวๆ แสดงตำแหน่งโลโก้และข้อมูลท้ายภาพเท่านั้น</p>
+    </div>
+
+    <!-- Generate button -->
+    <button id="generateBtn" class="btn-generate w-full text-white font-display font-bold text-base py-4 rounded-2xl transition-all">
+      ✨ Generate Smart Prompt
+    </button>
+
+    <!-- Output -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
+      <div class="flex items-center justify-between mb-3">
+        <p class="section-eyebrow">GENERATED PROMPT (EN)</p>
+        <button id="copyBtn" class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-[var(--line)] hover:border-[var(--orange)] hover:text-[var(--orange)] transition-colors flex items-center gap-1.5">
+          <svg id="copyIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copyLabel">Copy</span>
+        </button>
+      </div>
+      <textarea id="outputArea" readonly rows="9"
+        class="w-full rounded-xl px-4 py-3 text-sm resize-none text-[var(--navy)]/80 leading-relaxed scrollbar-thin"
+        placeholder="Your generated prompt will appear here..."></textarea>
+    </div>
+
+  </section>
+</main>
+
+<footer class="max-w-7xl mx-auto px-5 md:px-8 pb-8">
+  <p class="text-center text-[11px] text-[var(--navy)]/35 font-th">Shop PromptCraft — สร้าง Prompt แล้วนำไปวางใน ChatGPT, Midjourney หรือ DALL·E เพื่อสร้างภาพโปสเตอร์ได้ทันที</p>
+</footer>
+
+<script>
+// ---------- DATA ----------
+const STYLE_PRESETS = [
+  { id:'premium', label:'Premium Modern', desc:'sleek premium modern commercial' },
+  { id:'vibrant', label:'Vibrant Retail', desc:'vibrant energetic retail' },
+  { id:'minimal', label:'Minimalist Store', desc:'clean minimalist storefront' },
+  { id:'cyber', label:'Cyber Punk Sale', desc:'cyberpunk neon futuristic sale' },
+  { id:'festive', label:'Festive Holiday', desc:'festive warm holiday-themed' },
+];
+
+const TYPO_EFFECTS = [
+  { id:'hand', label:'Handwritten Discount', desc:'handwritten script style discount callouts' },
+  { id:'bold', label:'Bold Impact Title', desc:'bold heavy impact-style title typography' },
+  { id:'neon', label:'Neon Glow Text', desc:'glowing neon-lit text effect' },
+  { id:'mag', label:'Clean Magazine Style', desc:'clean editorial magazine-style typesetting' },
+];
+
+const LOGO_POS = [
+  { id:'tl', label:'Top Left', desc:'top-left corner' },
+  { id:'tr', label:'Top Right', desc:'top-right corner' },
+  { id:'center', label:'Center Header', desc:'centered header' },
+];
+
+const COLOR_CATEGORIES = [
+  {
+    id:'restaurant', label:'ร้านอาหาร',
+    themes: [
+      { id:'appetite', label:'Warm Appetite', desc:'warm appetite-inducing tones — tomato red, char orange, cream', hex:['#C1391F','#E08A2E','#F6E8D3'] },
+      { id:'garden', label:'Fresh Garden', desc:'fresh garden palette — herb green, earthy brown, cream white', hex:['#4A7043','#8A5A34','#F4F1E6'] },
+      { id:'finedine', label:'Fine Dining Dark', desc:'fine-dining dark palette — deep maroon, aged gold, charcoal', hex:['#5A1A24','#C9A24B','#231F1F'] },
+      { id:'streetfood', label:'Street Food Vibrant', desc:'vibrant street-food palette — chili red, mustard yellow, black', hex:['#E4351C','#F2B705','#161616'] },
+    ]
+  },
+  {
+    id:'cafe', label:'คาเฟ่',
+    themes: [
+      { id:'latte', label:'Latte Cream', desc:'soft latte palette — milky beige, coffee brown, cream', hex:['#D8BFA0','#6F4A2F','#FBF6EE'] },
+      { id:'matcha', label:'Matcha Fresh', desc:'fresh matcha palette — matcha green, cream, soft brown', hex:['#7C9A5B','#F6F1E3','#A9784F'] },
+      { id:'cozy', label:'Cozy Autumn', desc:'cozy autumn cafe palette — rust, cinnamon brown, warm cream', hex:['#B0562C','#6B3E26','#F1E3CF'] },
+      { id:'monomin', label:'Minimal Mono', desc:'minimal monochrome cafe palette — black, white, warm grey', hex:['#1A1A1A','#FFFFFF','#B5AFA6'] },
+    ]
+  },
+  {
+    id:'clothing', label:'เสื้อผ้า / แฟชั่น',
+    themes: [
+      { id:'luxury', label:'Luxury Black & Gold', desc:'luxurious black and gold fashion palette', hex:['#0A0A0A','#D4AF37','#3A3A3A'] },
+      { id:'pastelchic', label:'Pastel Chic', desc:'soft pastel fashion palette — blush pink, mint, cream', hex:['#F7C9CE','#B8E3D6','#FFF6E9'] },
+      { id:'streetneon', label:'Street Style Neon', desc:'bold street-style neon palette — electric purple, hot pink, black', hex:['#8A2BE2','#FF2E92','#0E0E0E'] },
+      { id:'boho', label:'Boho Earth', desc:'boho earth-tone fashion palette — terracotta, sand, olive', hex:['#B5651D','#E4C99B','#6B7A4D'] },
+    ]
+  },
+  {
+    id:'tech', label:'เทคโนโลยี',
+    themes: [
+      { id:'cyberneon', label:'Cyber Neon', desc:'cyber neon tech palette — electric blue, violet, deep black', hex:['#00C2FF','#7A2FF7','#0B0B14'] },
+      { id:'corporate', label:'Corporate Blue', desc:'trustworthy corporate tech palette — navy blue, sky blue, white', hex:['#0B3D91','#4FA8E8','#FFFFFF'] },
+      { id:'chrome', label:'Futuristic Chrome', desc:'futuristic chrome palette — silver, steel blue, black', hex:['#C7CCD1','#3E6E8E','#101214'] },
+      { id:'darkgrad', label:'Dark Mode Gradient', desc:'dark-mode gradient tech palette — deep purple, indigo, black', hex:['#4C1D95','#312E81','#0A0A0F'] },
+    ]
+  },
+];
+
+const IMAGE_SIZES = [
+  { id:'square', label:'Square Post (1:1)', ar:'1:1', ratioCss:'1 / 1', desc:'square format optimized for social media feed post', use:'Instagram/Facebook Feed' },
+  { id:'portrait45', label:'Portrait Poster (4:5)', ar:'4:5', ratioCss:'4 / 5', desc:'tall portrait poster format optimized for feed post and printed poster', use:'Feed Post / Poster' },
+  { id:'story', label:'Story / Reel (9:16)', ar:'9:16', ratioCss:'9 / 16', desc:'full vertical story format optimized for mobile stories and reels', use:'IG/FB/TikTok Story' },
+  { id:'landscape', label:'Landscape Banner (16:9)', ar:'16:9', ratioCss:'16 / 9', desc:'wide landscape banner format optimized for cover images and website banners', use:'Cover / Web Banner' },
+  { id:'a4', label:'A4 Print Poster (3:4)', ar:'3:4', ratioCss:'3 / 4', desc:'standard print poster proportions close to A4, optimized for physical printing', use:'Printed A4 Poster' },
+  { id:'widecard', label:'Wide Promo Card (5:4)', ar:'5:4', ratioCss:'5 / 4', desc:'slightly wide promo card format optimized for LINE broadcast and email banners', use:'LINE / Email Banner' },
+];
+
+// ---------- STATE ----------
+const state = {
+  style: 'vibrant',
+  typo: new Set(['bold']),
+  logo: 'tl',
+  colorCategory: 'restaurant',
+  color: 'appetite',
+  imageSize: 'portrait45',
+};
+
+function getThemesForCategory(catId){
+  const cat = COLOR_CATEGORIES.find(c => c.id === catId);
+  return cat ? cat.themes : [];
+}
+
+function findThemeById(themeId){
+  for(const cat of COLOR_CATEGORIES){
+    const found = cat.themes.find(t => t.id === themeId);
+    if(found) return found;
+  }
+  return null;
+}
+
+// ---------- RENDER SELECTORS ----------
+function renderChipGroup(container, items, opts){
+  const { multi=false, selectedGetter, onSelect, showSwatch=false } = opts;
+  container.innerHTML = '';
+  items.forEach(item => {
+    const isActive = multi ? selectedGetter().has(item.id) : selectedGetter() === item.id;
+    const chip = document.createElement('div');
+    chip.className = `chip rounded-xl px-3.5 py-2.5 flex items-center gap-2.5 ${isActive ? 'active' : ''}`;
+    chip.innerHTML = `
+      ${showSwatch ? `<span class="flex -space-x-1 flex-shrink-0">${item.hex.map(h=>`<span style="background:${h};width:14px;height:14px;border-radius:9999px;border:1.5px solid white;"></span>`).join('')}</span>` : `<span class="chip-dot flex-shrink-0"></span>`}
+      <span class="flex flex-col min-w-0">
+        <span class="text-sm font-medium font-th leading-tight">${item.label}</span>
+        ${item.use ? `<span class="text-[10px] text-[var(--navy)]/40 font-th leading-tight">${item.use}</span>` : ''}
+      </span>
+    `;
+    chip.addEventListener('click', () => {
+      onSelect(item.id);
+      renderAll();
+    });
+    container.appendChild(chip);
+  });
+}
+
+function renderAll(){
+  renderChipGroup(document.getElementById('styleGroup'), STYLE_PRESETS, {
+    selectedGetter: () => state.style,
+    onSelect: (id) => { state.style = id; }
+  });
+  renderChipGroup(document.getElementById('typoGroup'), TYPO_EFFECTS, {
+    multi:true,
+    selectedGetter: () => state.typo,
+    onSelect: (id) => { state.typo.has(id) ? state.typo.delete(id) : state.typo.add(id); }
+  });
+  renderChipGroup(document.getElementById('logoGroup'), LOGO_POS, {
+    selectedGetter: () => state.logo,
+    onSelect: (id) => { state.logo = id; }
+  });
+  renderChipGroup(document.getElementById('colorCategoryGroup'), COLOR_CATEGORIES, {
+    selectedGetter: () => state.colorCategory,
+    onSelect: (id) => {
+      state.colorCategory = id;
+      const themes = getThemesForCategory(id);
+      if(themes.length) state.color = themes[0].id;
+    }
+  });
+  renderChipGroup(document.getElementById('colorGroup'), getThemesForCategory(state.colorCategory), {
+    selectedGetter: () => state.color,
+    onSelect: (id) => { state.color = id; },
+    showSwatch: true
+  });
+  renderChipGroup(document.getElementById('sizeGroup'), IMAGE_SIZES, {
+    selectedGetter: () => state.imageSize,
+    onSelect: (id) => { state.imageSize = id; }
+  });
+  renderPreview();
+}
+
+// ---------- LIVE PREVIEW ----------
+function renderPreview(){
+  const posterEl = document.getElementById('posterPreview');
+  const sizeInfo = IMAGE_SIZES.find(s => s.id === state.imageSize);
+  if(sizeInfo){ posterEl.style.aspectRatio = sizeInfo.ratioCss; }
+
+  const logoRow = document.getElementById('logoRow');
+  const badge = `<div class="logo-badge">LOGO</div>`;
+  if(state.logo === 'tl'){
+    logoRow.className = 'flex items-center mb-3 h-11 justify-start';
+    logoRow.innerHTML = badge;
+  } else if(state.logo === 'tr'){
+    logoRow.className = 'flex items-center mb-3 h-11 justify-end';
+    logoRow.innerHTML = badge;
+  } else {
+    logoRow.className = 'flex items-center mb-3 h-11 justify-center';
+    logoRow.innerHTML = badge;
+  }
+
+  const fb = document.getElementById('fbInput').value.trim();
+  const line = document.getElementById('lineInput').value.trim();
+  const tel = document.getElementById('telInput').value.trim();
+
+  document.getElementById('footFb').textContent = fb ? `FB: ${fb}` : 'Facebook —';
+  document.getElementById('footLine').textContent = line ? `Line/Web: ${line}` : 'Line/Web —';
+  document.getElementById('footTel').textContent = tel ? `Tel: ${tel}` : 'Tel —';
+}
+
+['fbInput','lineInput','telInput'].forEach(id => {
+  document.getElementById(id).addEventListener('input', renderPreview);
+});
+
+// ---------- PROMPT GENERATION ----------
+function generatePrompt(){
+  const title = document.getElementById('titleInput').value.trim() || 'Special Promotion';
+  const details = document.getElementById('detailsInput').value.trim() || 'exciting seasonal offers and product highlights';
+  const stylePreset = STYLE_PRESETS.find(s => s.id === state.style);
+  const logo = LOGO_POS.find(l => l.id === state.logo);
+  const colorTheme = findThemeById(state.color);
+  const imageSize = IMAGE_SIZES.find(s => s.id === state.imageSize) || IMAGE_SIZES[1];
+
+  const typoIds = Array.from(state.typo);
+  const typoDescs = typoIds.length
+    ? typoIds.map(id => TYPO_EFFECTS.find(t => t.id === id).desc).join(', ')
+    : 'clean bold retail typography';
+
+  const fb = document.getElementById('fbInput').value.trim();
+  const line = document.getElementById('lineInput').value.trim();
+  const tel = document.getElementById('telInput').value.trim();
+
+  const footerParts = [];
+  if(fb) footerParts.push(`Facebook page "${fb}"`);
+  if(line) footerParts.push(`website/LINE contact "${line}"`);
+  if(tel) footerParts.push(`phone number "${tel}"`);
+  const footerText = footerParts.length
+    ? footerParts.join(', ')
+    : 'placeholder space for store contact details';
+
+  const prompt = `A professional commercial ${stylePreset.desc} promotion poster for "${title}", graphic design layout, retail marketing style. Featuring the message: ${details}, styled with ${typoDescs}. Color palette: ${colorTheme.desc}. Layout: store logo placed at the ${logo.desc}, clear visual hierarchy with a central product/image focal area. Footer includes ${footerText}, small clean sans-serif contact bar. Composed in ${imageSize.desc}. High-quality commercial marketing material, well-balanced grid composition, professional lighting, print-ready poster design, space reserved for text overlay, sharp details, 4k, --ar ${imageSize.ar}`;
+
+  return prompt;
+}
+
+document.getElementById('generateBtn').addEventListener('click', () => {
+  const btn = document.getElementById('generateBtn');
+  const output = document.getElementById('outputArea');
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  btn.textContent = 'Generating...';
+
+  setTimeout(() => {
+    output.value = generatePrompt();
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.innerHTML = '✨ Generate Smart Prompt';
+  }, 350);
+});
+
+// ---------- COPY ----------
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const output = document.getElementById('outputArea');
+  if(!output.value.trim()) return;
+  try{
+    await navigator.clipboard.writeText(output.value);
+  } catch(e){
+    output.select();
+    document.execCommand('copy');
+  }
+  const label = document.getElementById('copyLabel');
+  const original = label.textContent;
+  label.textContent = 'Copied!';
+  setTimeout(() => { label.textContent = original; }, 1600);
+});
+
+// ---------- INIT ----------
+renderAll();
+</script>
+</body>
+</html>
