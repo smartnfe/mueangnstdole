@@ -94,6 +94,13 @@
   .scrollbar-thin::-webkit-scrollbar{ width:6px; height:6px; }
   .scrollbar-thin::-webkit-scrollbar-thumb{ background:#C7CCDA; border-radius:99px; }
 
+  .usage-step-number{
+    width:26px;height:26px;border-radius:9999px;flex-shrink:0;
+    background:rgba(255,107,26,.12);color:var(--orange);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:12px;
+  }
+
   ::selection{ background: rgba(255,107,26,0.25); }
 </style>
 </head>
@@ -227,6 +234,20 @@
     <button id="generateBtn" class="btn-generate w-full text-white font-display font-bold text-base py-4 rounded-2xl transition-all">
       ✨ Generate Smart Prompt
     </button>
+
+    <!-- How to use -->
+    <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6 font-th">
+      <p class="section-eyebrow mb-1">วิธีนำ SMART PROMPT ไปใช้</p>
+      <p class="text-xs text-[var(--navy)]/50 mb-4">สร้าง Prompt แล้วทำตามขั้นตอนนี้เพื่อให้ ChatGPT สร้างภาพจากสินค้าของคุณ</p>
+      <ol class="space-y-3 text-sm text-[var(--navy)]/80">
+        <li class="flex gap-3"><span class="usage-step-number">1</span><span><strong>คัดลอก Prompt</strong><br><span class="text-xs text-[var(--navy)]/50">กดปุ่ม “คัดลอก Prompt” ด้านล่าง</span></span></li>
+        <li class="flex gap-3"><span class="usage-step-number">2</span><span><strong>เปิด ChatGPT</strong></span></li>
+        <li class="flex gap-3"><span class="usage-step-number">3</span><span><strong>เลือกโหมด Create Image</strong></span></li>
+        <li class="flex gap-3"><span class="usage-step-number">4</span><span><strong>เพิ่มรูปสินค้า</strong><br><span class="text-xs text-[var(--navy)]/50">อัปโหลดรูปสินค้าที่ต้องการใช้ในภาพ</span></span></li>
+        <li class="flex gap-3"><span class="usage-step-number">5</span><span><strong>วาง Prompt</strong></span></li>
+        <li class="flex gap-3"><span class="usage-step-number">6</span><span><strong>กดเริ่มสร้างภาพ</strong></span></li>
+      </ol>
+    </div>
 
     <!-- Output -->
     <div class="bg-white rounded-2xl border border-[var(--line)] p-5 md:p-6">
@@ -494,8 +515,55 @@ document.getElementById('copyBtn').addEventListener('click', async () => {
   setTimeout(() => { label.textContent = original; }, 1600);
 });
 
+// ---------- THAI UI ----------
+function localizeThaiUi(){
+  const leftSectionTitles = [
+    '01 — ข้อมูลโปรโมชัน', '02 — รูปแบบงานออกแบบ', '03 — เอฟเฟกต์ตัวอักษร',
+    '04 — ตำแหน่งโลโก้', '05 — โทนสี', '06 — ข้อมูลติดต่อท้ายภาพ', '07 — ขนาดและสัดส่วนภาพ'
+  ];
+  document.querySelectorAll('main > section:first-child .section-eyebrow').forEach((el, i) => {
+    if(leftSectionTitles[i]) el.textContent = leftSectionTitles[i];
+  });
+  const rightEyebrows = document.querySelectorAll('main > section:nth-child(2) .section-eyebrow');
+  if(rightEyebrows[0]) rightEyebrows[0].textContent = 'ตัวอย่างเลย์เอาต์';
+  if(rightEyebrows[2]) rightEyebrows[2].textContent = 'SMART PROMPT (EN)';
+
+  const labels = {
+    premium:'พรีเมียมโมเดิร์น', vibrant:'ค้าปลีกสีสด', minimal:'มินิมอล', cyber:'ไซเบอร์พังก์', festive:'เทศกาลอบอุ่น',
+    hand:'ส่วนลดลายมือ', bold:'หัวเรื่องตัวหนา', neon:'ตัวอักษรนีออน', mag:'สไตล์นิตยสาร',
+    tl:'มุมซ้ายบน', tr:'มุมขวาบน', center:'กึ่งกลางด้านบน',
+    square:'โพสต์จัตุรัส (1:1)', portrait45:'โปสเตอร์แนวตั้ง (4:5)', story:'สตอรี่ / รีล (9:16)',
+    landscape:'แบนเนอร์แนวนอน (16:9)', a4:'โปสเตอร์พิมพ์ A4 (3:4)', widecard:'การ์ดโปรโมตแนวนอน (5:4)'
+  };
+  [...STYLE_PRESETS, ...TYPO_EFFECTS, ...LOGO_POS, ...IMAGE_SIZES].forEach(item => {
+    if(labels[item.id]) item.label = labels[item.id];
+  });
+  const fields = {
+    titleInput: ['ชื่อโปรโมชัน / แคมเปญ', 'เช่น ลดราคาส่งท้ายปี'],
+    detailsInput: ['รายละเอียดโปรโมชัน / จุดเด่นสินค้า', 'เช่น ลดสูงสุด 50% ซื้อ 1 แถม 1 สินค้าเข้าใหม่'],
+    fbInput: ['เพจ Facebook', 'facebook.com/yourshop'],
+    lineInput: ['เว็บไซต์ / LINE ID', '@yourshop'],
+    telInput: ['เบอร์โทรศัพท์', '02-123-4567']
+  };
+  Object.entries(fields).forEach(([id, [label, placeholder]]) => {
+    const input = document.getElementById(id);
+    input.previousElementSibling.textContent = label;
+    input.placeholder = placeholder;
+  });
+  document.getElementById('generateBtn').textContent = '✨ สร้าง Smart Prompt';
+  document.getElementById('copyLabel').textContent = 'คัดลอก Prompt';
+  document.getElementById('outputArea').placeholder = 'Smart Prompt ที่สร้างแล้วจะแสดงที่นี่...';
+}
+
 // ---------- INIT ----------
+localizeThaiUi();
 renderAll();
+localizeThaiUi();
+
+// Keep the Thai button label after the short generation animation.
+document.getElementById('generateBtn').addEventListener('click', () => {
+  setTimeout(() => { document.getElementById('generateBtn').textContent = '✨ สร้าง Smart Prompt'; }, 360);
+});
 </script>
 </body>
 </html>
