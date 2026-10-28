@@ -43,8 +43,6 @@ function showScreen(name) {
 /* ---------------- boot ---------------- */
 
 async function boot() {
-  cacheEls();
-
   if (window.REPORT_CONFIG && window.REPORT_CONFIG.orgName) {
     els.orgName.textContent = window.REPORT_CONFIG.orgName;
   }
@@ -57,9 +55,13 @@ async function boot() {
     }
     setApiUrl(url);
     els.setupMsg.textContent = '';
-    boot();
+    startApp();
   });
 
+  await startApp();
+}
+
+async function startApp() {
   if (!getApiUrl()) {
     showScreen('setup');
     return;
@@ -432,6 +434,7 @@ function wireApp() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  cacheEls();
   wireLogin();
   wireApp();
   boot();
