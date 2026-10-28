@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b2545">
+<title>ระบบรายงานผลการปฏิบัติงาน</title>
+<meta name="description" content="ระบบช่วยเขียนรายงานผลการปฏิบัติงานด้วย AI สำหรับบุคลากรศูนย์ส่งเสริมการเรียนรู้">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./app.css">
+</head>
+<body>
+
+<!-- ===== ตั้งค่าที่อยู่ API ===== -->
+<div id="setup" class="screen hidden">
+  <div class="setup-card">
+    <h1 style="margin:0 0 6px;font-size:1.2rem;color:#0b2545">ตั้งค่าการเชื่อมต่อ</h1>
+    <p class="hint">วาง URL ของ Apps Script Web App ที่ลงท้ายด้วย <code>/exec</code><br>
+      (ได้จาก Apps Script → Deploy → Manage deployments)</p>
+    <label>API URL
+      <input id="setupUrl" type="url" placeholder="https://script.google.com/macros/s/AKfy.../exec">
+    </label>
+    <button id="setupSave" class="btn primary" type="button" style="width:100%">บันทึกและเข้าใช้งาน</button>
+    <p id="setupMsg" class="error"></p>
+  </div>
+</div>
+
+<!-- ===== เข้าสู่ระบบ ===== -->
+<div id="login" class="screen hidden">
+  <div class="login-wrap">
+    <div class="brand">
+      <div class="logo">สกร.</div>
+      <div>
+        <h1 id="loginTitle">ระบบรายงานผลการปฏิบัติงาน</h1>
+        <p id="orgName"></p>
+      </div>
+    </div>
+    <form id="loginForm" class="card">
+      <label>ชื่อผู้ใช้
+        <input id="loginUser" type="text" autocomplete="username" autocapitalize="none" required>
+      </label>
+      <label>รหัสผ่าน
+        <input id="loginPass" type="password" autocomplete="current-password" required>
+      </label>
+      <button class="btn primary" type="submit">เข้าสู่ระบบ</button>
+      <p id="loginMsg" class="error"></p>
+      <p class="hint" style="margin-top:14px">หากยังไม่มีบัญชี กรุณาติดต่อผู้ดูแลระบบของหน่วยงาน</p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== ตัวแอป ===== -->
+<div id="app" class="hidden">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="tb-brand">
+        <span class="badge">สกร.</span>
+        <span>ระบบรายงานผลการปฏิบัติงาน<small>ช่วยเขียนรายงานด้วย AI</small></span>
+      </div>
+      <div class="tb-user">
+        <span id="userChip" class="chip" title="เปลี่ยนรหัสผ่าน"></span>
+        <button id="btnLogout" class="btn ghost sm" type="button">ออกจากระบบ</button>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-tab="report" type="button">เขียนรายงาน</button>
+      <button class="tab" data-tab="history" type="button">ประวัติ</button>
+      <button class="tab admin-only hidden" data-tab="users" type="button">จัดการสมาชิก</button>
+      <button class="tab admin-only hidden" data-tab="stats" type="button">ภาพรวม</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- เขียนรายงาน -->
+    <section id="tab-report" class="tabpane">
+      <div class="card">
+        <h2>ข้อมูลการปฏิบัติงาน</h2>
+        <div class="grid2">
+          <label>วันที่ปฏิบัติงาน
+            <input type="date" id="fDate">
+          </label>
+          <label>สถานที่
+            <input type="text" id="fLocation" placeholder="เช่น ห้องประชุมศูนย์ส่งเสริมการเรียนรู้">
+          </label>
+        </div>
+        <label>กิจกรรม / แผนงาน
+          <input type="text" id="fPlan" placeholder="เช่น จัดกิจกรรมส่งเสริมการอ่าน Learning Resort">
+        </label>
+        <label>เป้าหมาย / กลุ่มเป้าหมาย
+          <input type="text" id="fTarget" placeholder="เช่น นักศึกษา กศน. จำนวน 30 คน">
+        </label>
+
+        <div class="row-between">
+          <button id="btnAi" class="btn ai" type="button">✨ ให้ AI ช่วยเขียน</button>
+          <span id="aiStatus" class="muted"></span>
+        </div>
+
+        <label>ผลการปฏิบัติงาน
+          <textarea id="fResult" rows="8" maxlength="5000" placeholder="พิมพ์ผลการปฏิบัติงานเอง หรือกดให้ AI ช่วยเขียนจากกิจกรรมด้านบน"></textarea>
+        </label>
+
+        <div class="row-between" style="margin-bottom:0">
+          <span id="charCount" class="muted">0 / 5,000</span>
+          <div class="btn-row">
+            <button id="btnCancelEdit" class="btn ghost hidden" type="button">ยกเลิกการแก้ไข</button>
+            <button id="btnSave" class="btn primary" type="button">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ประวัติ -->
+    <section id="tab-history" class="tabpane hidden">
+      <div class="card">
+        <h2>ประวัติรายงาน</h2>
+        <div class="filters">
+          <input type="date" id="hFrom" aria-label="ตั้งแต่วันที่">
+          <input type="date" id="hTo" aria-label="ถึงวันที่">
+          <input type="search" id="hQ" placeholder="ค้นหากิจกรรม/ผลงาน..." aria-label="ค้นหา">
+          <select id="hScope" class="admin-only hidden" aria-label="ขอบเขต">
+            <option value="me">เฉพาะของฉัน</option>
+            <option value="all">ของทุกคน</option>
+          </select>
+          <button id="btnRefresh" class="btn ghost" type="button">ค้นหา</button>
+        </div>
+        <p id="hSummary" class="muted"></p>
+        <div id="hList" class="list"></div>
+        <button id="btnMore" class="btn ghost hidden" type="button" style="margin-top:14px">โหลดเพิ่ม</button>
+      </div>
+    </section>
+
+    <!-- จัดการสมาชิก (admin) -->
+    <section id="tab-users" class="tabpane hidden">
+      <div class="card">
+        <div class="row-between">
+          <h2 style="margin:0">จัดการสมาชิก</h2>
+          <button id="btnAddUser" class="btn primary sm" type="button">+ เพิ่มสมาชิก</button>
+        </div>
+        <div class="filters" style="margin-top:14px">
+          <input type="search" id="uSearch" placeholder="ค้นหาชื่อผู้ใช้/ชื่อ-สกุล/ตำแหน่ง">
+          <button id="btnUserSearch" class="btn ghost" type="button">ค้นหา</button>
+        </div>
+        <div id="uList" class="list"></div>
+      </div>
+    </section>
+
+    <!-- ภาพรวม (admin) -->
+    <section id="tab-stats" class="tabpane hidden">
+      <div class="card">
+        <h2>ภาพรวมการรายงาน</h2>
+        <div class="filters">
+          <select id="sMonth" aria-label="เดือน"></select>
+          <input type="number" id="sYear" min="2560" max="2660" step="1" aria-label="ปี ค.ศ." style="max-width:130px">
+          <button id="btnStats" class="btn ghost" type="button">แสดง</button>
+        </div>
+        <div id="sCards" class="stat-cards"></div>
+        <div id="sBody"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="./config.js"></script>
+<script type="module" src="./js/app.js"></script>
+</body>
+</html>
